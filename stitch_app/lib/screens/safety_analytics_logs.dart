@@ -133,7 +133,7 @@ class _SafetyAnalyticsLogsScreenState extends State<SafetyAnalyticsLogsScreen> {
   // Header row widget
   Widget _buildPageHeader(ThemeData theme) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.between,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
@@ -313,7 +313,7 @@ class _SafetyAnalyticsLogsScreenState extends State<SafetyAnalyticsLogsScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.between,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
                 'Total Movements',
@@ -364,7 +364,7 @@ class _SafetyAnalyticsLogsScreenState extends State<SafetyAnalyticsLogsScreen> {
                   children: [
                     // Grid background lines
                     Column(
-                      mainAxisAlignment: MainAxisAlignment.between,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: List.generate(4, (_) => Container(
                         height: 1,
                         color: AppColors.outlineVariant.withOpacity(0.3),
@@ -531,7 +531,7 @@ class _SafetyAnalyticsLogsScreenState extends State<SafetyAnalyticsLogsScreen> {
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.between,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
@@ -587,7 +587,7 @@ class _SafetyAnalyticsLogsScreenState extends State<SafetyAnalyticsLogsScreen> {
           Padding(
             padding: const EdgeInsets.all(24.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.between,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
                   'Safety Log',

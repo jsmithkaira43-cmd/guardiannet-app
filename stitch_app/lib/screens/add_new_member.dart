@@ -509,7 +509,7 @@ class _AddNewMemberScreenState extends State<AddNewMemberScreen> {
     required ValueChanged<bool> onChanged,
   }) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.between,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Expanded(
           child: Column(

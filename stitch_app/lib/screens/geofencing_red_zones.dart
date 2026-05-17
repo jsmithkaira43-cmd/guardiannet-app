@@ -129,7 +129,7 @@ class _GeofencingRedZonesScreenState extends State<GeofencingRedZonesScreen> {
   // Header Row Component
   Widget _buildPageHeader(ThemeData theme) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.between,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Expanded(
@@ -386,7 +386,7 @@ class _GeofencingRedZonesScreenState extends State<GeofencingRedZonesScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.between,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
                 'Active Alerts',
@@ -564,7 +564,7 @@ class _GeofencingRedZonesScreenState extends State<GeofencingRedZonesScreen> {
           Padding(
             padding: const EdgeInsets.all(24.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.between,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
                   'Zone List',

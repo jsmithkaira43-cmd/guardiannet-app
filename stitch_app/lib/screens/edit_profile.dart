@@ -496,7 +496,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             border: Border.all(color: AppColors.outlineVariant),
           ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.between,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
                 child: Text(

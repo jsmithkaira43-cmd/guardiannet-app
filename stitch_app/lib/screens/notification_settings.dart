@@ -140,7 +140,7 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
 
                       // Footer Row
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.between,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Row(
                             children: [
@@ -267,7 +267,7 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
               ),
             ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.between,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Row(
                   children: [
@@ -564,7 +564,7 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
               ),
             ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.between,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Row(
                   children: [
@@ -675,7 +675,7 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
               border: Border.all(color: AppColors.outlineVariant),
             ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.between,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   time.format(context),

@@ -203,7 +203,7 @@ class WelcomeToGuardiannetScreen extends StatelessWidget {
           children: [
             Expanded(
               child: _buildDetailCard(
-                icon: Icons.shield_lock,
+                icon: Icons.security,
                 title: 'ENCRYPTION',
                 subtitle: 'AES-256 Multi-layer',
               ),
@@ -211,7 +211,7 @@ class WelcomeToGuardiannetScreen extends StatelessWidget {
             const SizedBox(width: 16),
             Expanded(
               child: _buildDetailCard(
-                icon: Icons.database,
+                icon: Icons.storage,
                 title: 'RECORDS',
                 subtitle: 'Immutable Audit Logs',
               ),
@@ -241,13 +241,13 @@ class WelcomeToGuardiannetScreen extends StatelessWidget {
         _buildAlertsCard(height: 140),
         const SizedBox(height: 16),
         _buildDetailCard(
-          icon: Icons.shield_lock,
+          icon: Icons.security,
           title: 'ENCRYPTION',
           subtitle: 'AES-256 Multi-layer',
         ),
         const SizedBox(height: 16),
         _buildDetailCard(
-          icon: Icons.database,
+          icon: Icons.storage,
           title: 'RECORDS',
           subtitle: 'Immutable Audit Logs',
         ),
@@ -408,7 +408,7 @@ class WelcomeToGuardiannetScreen extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.between,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Icon(
             Icons.location_on,
@@ -454,7 +454,7 @@ class WelcomeToGuardiannetScreen extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.between,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Icon(
             Icons.notifications_active,

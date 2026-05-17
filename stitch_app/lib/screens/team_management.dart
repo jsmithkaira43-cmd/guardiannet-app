@@ -94,7 +94,7 @@ class _TeamManagementScreenState extends State<TeamManagementScreen> {
   // Page Header Component
   Widget _buildPageHeader(ThemeData theme) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.between,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Expanded(
@@ -248,7 +248,7 @@ class _TeamManagementScreenState extends State<TeamManagementScreen> {
               ),
             ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.between,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   'Active Personnel',
@@ -341,7 +341,7 @@ class _TeamManagementScreenState extends State<TeamManagementScreen> {
               ),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.between,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
@@ -483,7 +483,7 @@ class _TeamManagementScreenState extends State<TeamManagementScreen> {
               ),
             ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.between,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   'Invite Pending',
@@ -502,7 +502,7 @@ class _TeamManagementScreenState extends State<TeamManagementScreen> {
                   child: const Text(
                     '2 Pending',
                     style: TextStyle(
-                      color: AppColors.onSecondaryFixedFixedVariant ?? AppColors.secondary,
+                      color: AppColors.onSecondaryFixedVariant,
                       fontSize: 10,
                       fontWeight: FontWeight.bold,
                     ),
@@ -544,7 +544,7 @@ class _TeamManagementScreenState extends State<TeamManagementScreen> {
               ),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.between,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [

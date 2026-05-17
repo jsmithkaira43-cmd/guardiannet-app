@@ -150,7 +150,7 @@ class _ActiveTrackingStatusScreenState extends State<ActiveTrackingStatusScreen>
         ],
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.between,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
@@ -219,7 +219,7 @@ class _ActiveTrackingStatusScreenState extends State<ActiveTrackingStatusScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.between,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -609,7 +609,7 @@ class _ActiveTrackingStatusScreenState extends State<ActiveTrackingStatusScreen>
               ),
             ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.between,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
