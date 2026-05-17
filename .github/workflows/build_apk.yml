@@ -35,6 +35,7 @@ jobs:
           mv android/app/src/main/AndroidManifest.xml ../AndroidManifest.xml.bak
           rm -rf android
           flutter create --platforms android --org com.guardiannet .
+          rm -rf test
           mv ../AndroidManifest.xml.bak android/app/src/main/AndroidManifest.xml
 
       - name: Get dependencies
