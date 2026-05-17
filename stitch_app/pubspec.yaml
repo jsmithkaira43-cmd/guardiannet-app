@@ -20,6 +20,8 @@ dependencies:
   cloud_firestore: ^4.14.0
   geolocator: ^10.1.0
   flutter_local_notifications: ^17.0.0
+  flutter_map: ^6.1.0
+  latlong2: ^0.9.0
 
 dev_dependencies:
   flutter_test:
@@ -29,3 +31,6 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   # No local font assets needed — google_fonts handles Inter at runtime
+
+dependency_overrides:
+  geolocator_android: 4.6.1

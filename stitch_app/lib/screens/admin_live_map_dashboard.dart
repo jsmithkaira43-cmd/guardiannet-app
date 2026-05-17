@@ -1,8 +1,68 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong2.dart';
+import 'package:geolocator/geolocator.dart';
+import '../services/gps_location_service.dart';
 
-class AdminLiveMapDashboardScreen extends StatelessWidget {
+class AdminLiveMapDashboardScreen extends StatefulWidget {
   const AdminLiveMapDashboardScreen({super.key});
+
+  @override
+  State<AdminLiveMapDashboardScreen> createState() => _AdminLiveMapDashboardScreenState();
+}
+
+class _AdminLiveMapDashboardScreenState extends State<AdminLiveMapDashboardScreen> {
+  final MapController _mapController = MapController();
+  final List<LatLng> _routePoints = [];
+  LatLng? _currentPosition;
+  StreamSubscription<Position>? _positionSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeLiveTracking();
+  }
+
+  Future<void> _initializeLiveTracking() async {
+    // 1. Get initial coordinate
+    final Position? initialPos = await GPSLocationService.instance.getCurrentCoordinates();
+    if (initialPos != null) {
+      if (mounted) {
+        setState(() {
+          final latLng = LatLng(initialPos.latitude, initialPos.longitude);
+          _currentPosition = latLng;
+          _routePoints.add(latLng);
+        });
+        _mapController.move(LatLng(initialPos.latitude, initialPos.longitude), 16.5);
+      }
+    }
+
+    // 2. Subscribe to coordinates updates stream
+    const LocationSettings settings = LocationSettings(
+      accuracy: LocationAccuracy.high,
+      distanceFilter: 5,
+    );
+
+    _positionSubscription = Geolocator.getPositionStream(locationSettings: settings)
+        .listen((Position position) {
+          if (mounted) {
+            setState(() {
+              final latLng = LatLng(position.latitude, position.longitude);
+              _currentPosition = latLng;
+              _routePoints.add(latLng);
+            });
+            _mapController.move(latLng, _mapController.camera.zoom);
+          }
+        });
+  }
+
+  @override
+  void dispose() {
+    _positionSubscription?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -168,30 +228,87 @@ class AdminLiveMapDashboardScreen extends StatelessWidget {
   }
 
   Widget _buildMapArea(BuildContext context) {
+    final theme = Theme.of(context);
     return Stack(
       children: [
-        // Simulated map background
-        Container(
-          color: const Color(0xFFE5E7EB),
-          child: CustomPaint(
-            painter: _DotGridPainter(),
-            child: const SizedBox.expand(),
+        // Live OpenStreetMap rendering canvas
+        FlutterMap(
+          mapController: _mapController,
+          options: MapOptions(
+            initialCenter: _currentPosition ?? const LatLng(37.4220, -122.0840),
+            initialZoom: 16.5,
           ),
+          children: [
+            TileLayer(
+              urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+              userAgentPackageName: 'com.guardiannet.stitch_app',
+            ),
+            if (_routePoints.isNotEmpty)
+              PolylineLayer(
+                polylines: [
+                  Polyline(
+                    points: _routePoints,
+                    strokeWidth: 4.5,
+                    color: theme.colorScheme.primary,
+                  ),
+                ],
+              ),
+            MarkerLayer(
+              markers: [
+                if (_currentPosition != null)
+                  Marker(
+                    point: _currentPosition!,
+                    width: 60,
+                    height: 60,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        // Pulsing outer animation frame
+                        Container(
+                          width: 36,
+                          height: 36,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: theme.colorScheme.primary.withOpacity(0.25),
+                          ),
+                        ),
+                        // Dynamic core marker
+                        Container(
+                          width: 22,
+                          height: 22,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: theme.colorScheme.primary,
+                            border: Border.all(color: Colors.white, width: 2),
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 4,
+                                color: Colors.black.withOpacity(0.25),
+                              )
+                            ],
+                          ),
+                          child: const Icon(
+                            Icons.navigation,
+                            size: 10,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+              ],
+            ),
+          ],
         ),
 
-        // Employee markers on map
-        _buildMapMarker(context, left: 0.33, top: 0.25, hasAlert: true, color: Colors.red),
-        _buildMapMarker(context, left: 0.5, top: 0.5, hasAlert: false, color: Colors.green),
-        _buildMapMarker(context, left: 0.7, top: 0.6, hasAlert: false, color: Colors.green),
-
-        // Overlay UI
+        // Overlay UI controls
         Positioned.fill(
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // Top row: search + status
+                // Top row: search + status card
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -200,7 +317,7 @@ class AdminLiveMapDashboardScreen extends StatelessWidget {
                     _buildStatusCard(context),
                   ],
                 ),
-                // Bottom row: FAB + member cards
+                // Bottom row: FAB + member cards list
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
@@ -214,58 +331,6 @@ class AdminLiveMapDashboardScreen extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-
-  Widget _buildMapMarker(BuildContext context,
-      {required double left, required double top, required bool hasAlert, required Color color}) {
-    return Positioned(
-      left: 0,
-      top: 0,
-      right: 0,
-      bottom: 0,
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          return Stack(
-            children: [
-              Positioned(
-                left: constraints.maxWidth * left,
-                top: constraints.maxHeight * top,
-                child: Stack(
-                  clipBehavior: Clip.none,
-                  children: [
-                    Container(
-                      width: 44,
-                      height: 44,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: color, width: 3),
-                        color: Colors.white,
-                      ),
-                      child: const Icon(Icons.person, size: 22, color: Colors.grey),
-                    ),
-                    if (hasAlert)
-                      Positioned(
-                        top: -4,
-                        right: -4,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.secondaryContainer,
-                            borderRadius: BorderRadius.circular(99),
-                            border: Border.all(color: Colors.white, width: 1),
-                          ),
-                          child: const Text('ALERT',
-                              style: TextStyle(color: Colors.white, fontSize: 7, fontWeight: FontWeight.bold)),
-                        ),
-                      ),
-                  ],
-                ),
-              ),
-            ],
-          );
-        },
-      ),
     );
   }
 
@@ -559,24 +624,4 @@ class AdminLiveMapDashboardScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-class _DotGridPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = const Color(0xFFD1D5DB)
-      ..strokeWidth = 1.5
-      ..style = PaintingStyle.fill;
-
-    const spacing = 20.0;
-    for (double x = 0; x < size.width; x += spacing) {
-      for (double y = 0; y < size.height; y += spacing) {
-        canvas.drawCircle(Offset(x, y), 1, paint);
-      }
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
