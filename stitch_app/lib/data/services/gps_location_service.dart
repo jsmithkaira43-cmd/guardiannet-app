@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter/foundation.dart';
 import '../repositories/safety_log_repository.dart';
+import 'geofence_trigger_service.dart';
 
 class GPSLocationService {
   static final GPSLocationService instance = GPSLocationService._init();
@@ -86,6 +87,12 @@ class GPSLocationService {
           if (kDebugMode) {
             print('New GPS Coordinates tracked: Lat: ${position.latitude}, Long: ${position.longitude}');
           }
+
+          // Evaluate Haversine Geofence boundaries breach trigger
+          await GeofenceTriggerService.instance.evaluateGeofences(
+            position.latitude,
+            position.longitude,
+          );
 
           // Periodic telemetry check: If speed is dangerously high or outside bounds, log an event
           if (position.speed > 25.0) { // Over ~90 km/h

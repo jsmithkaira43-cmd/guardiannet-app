@@ -35,6 +35,9 @@ jobs:
           mv android/app/src/main/AndroidManifest.xml ../AndroidManifest.xml.bak
           rm -rf android
           flutter create --platforms android --org com.guardiannet .
+          echo "flutter.compileSdkVersion=34" >> android/local.properties
+          echo "flutter.targetSdkVersion=34" >> android/local.properties
+          echo "flutter.minSdkVersion=21" >> android/local.properties
           rm -rf test
           python3 -c "
           import os, re
