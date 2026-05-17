@@ -29,6 +29,14 @@ jobs:
           channel: 'stable'
           cache: true
 
+      - name: Recreate Android Project Files
+        working-directory: stitch_app
+        run: |
+          mv android/app/src/main/AndroidManifest.xml ../AndroidManifest.xml.bak
+          rm -rf android
+          flutter create --platforms android --org com.guardiannet .
+          mv ../AndroidManifest.xml.bak android/app/src/main/AndroidManifest.xml
+
       - name: Get dependencies
         working-directory: stitch_app
         run: flutter pub get
