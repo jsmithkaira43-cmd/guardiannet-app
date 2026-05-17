@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GuardianNet Unified Comms</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#44474d",
+                    "surface-container": "#e5eeff",
+                    "surface-dim": "#cbdbf5",
+                    "tertiary-container": "#003308",
+                    "on-background": "#0b1c30",
+                    "surface": "#f8f9ff",
+                    "on-surface": "#0b1c30",
+                    "on-primary-fixed": "#081b38",
+                    "secondary": "#b7131a",
+                    "on-secondary-fixed-variant": "#93000d",
+                    "on-primary": "#ffffff",
+                    "outline-variant": "#c5c6ce",
+                    "primary-container": "#1a2b48",
+                    "primary": "#031632",
+                    "tertiary-fixed-dim": "#7ddc7a",
+                    "primary-fixed-dim": "#b6c7eb",
+                    "surface-container-highest": "#d3e4fe",
+                    "primary-fixed": "#d7e2ff",
+                    "on-tertiary-fixed": "#002204",
+                    "surface-container-low": "#eff4ff",
+                    "on-primary-fixed-variant": "#374765",
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#fffbff",
+                    "inverse-surface": "#213145",
+                    "on-error": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#8293b5",
+                    "tertiary": "#001c03",
+                    "surface-tint": "#4e5f7e",
+                    "outline": "#75777e",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "secondary-fixed": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#005313",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#98f994",
+                    "surface-bright": "#f8f9ff",
+                    "on-tertiary-container": "#48a54b",
+                    "on-error-container": "#93000a",
+                    "secondary-container": "#db322f",
+                    "surface-variant": "#d3e4fe",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-high": "#dce9ff",
+                    "inverse-primary": "#b6c7eb",
+                    "background": "#f8f9ff",
+                    "secondary-fixed-dim": "#ffb4ac",
+                    "on-secondary-fixed": "#410002"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "32px",
+                    "margin-mobile": "16px",
+                    "sidebar-width": "260px",
+                    "gutter": "16px",
+                    "unit": "4px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "data-mono": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "data-mono": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #c5c6ce; border-radius: 10px; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface h-screen flex overflow-hidden">
+<!-- NavigationDrawer (Sidebar) -->
+<aside class="hidden md:flex flex-col h-full w-[280px] bg-primary text-on-primary py-6 space-y-2 border-r border-on-primary-fixed-variant shadow-md shrink-0">
+<div class="px-6 mb-8">
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary">Operations Center</h1>
+<div class="mt-4 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-fixed-dim flex items-center justify-center overflow-hidden border-2 border-on-primary-fixed-variant">
+<img alt="Admin User" class="w-full h-full object-cover" data-alt="A professional headshot of a security operations supervisor in a crisp corporate uniform, looking composed and authoritative. The background is a blurred high-tech control room with soft blue lighting. The overall aesthetic is professional, sharp, and enterprise-grade." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBuxPz2O31EOhYdlAA03PkbreTTcpS8hD1EmtJFErQENBmyfeFJyrB-CX_KGGhw5TnK5fR3NgYu9vOmSMUG4vIrutCZN9OvZdE6ZBXmDi4Dpxg5KUhBfoPj6zjCWBENJGIlNH2Zgc8A42LV_HgO5eMBhajqk9xN48ctE18loytfnyads1c04AxDzaWju-xdB2ItsoJgFFcLMWl41LWvJJD7eJZ6dW0ONc2SM94QWGIJPTLxpSITbtaAV8lNghllYNFaeYcfOVqaIc"/>
+</div>
+<div>
+<p class="font-label-md text-label-md font-bold">Safety Officer</p>
+<p class="text-[10px] opacity-70 uppercase tracking-widest">Active Duty</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1 px-2">
+<div class="bg-primary-container text-on-primary-container rounded-lg mx-2 px-4 py-3 flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+<span class="font-label-md text-label-md">Operations Center</span>
+</div>
+<div class="text-primary-fixed-dim hover:text-on-primary hover:bg-primary-fixed-variant transition-all rounded-lg mx-2 px-4 py-3 flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="report_problem">report_problem</span>
+<span class="font-label-md text-label-md">Emergency Protocol</span>
+</div>
+<div class="text-primary-fixed-dim hover:text-on-primary hover:bg-primary-fixed-variant transition-all rounded-lg mx-2 px-4 py-3 flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-label-md text-label-md">Communication</span>
+</div>
+<div class="text-primary-fixed-dim hover:text-on-primary hover:bg-primary-fixed-variant transition-all rounded-lg mx-2 px-4 py-3 flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+<span class="font-label-md text-label-md">Personnel Tracking</span>
+</div>
+<div class="text-primary-fixed-dim hover:text-on-primary hover:bg-primary-fixed-variant transition-all rounded-lg mx-2 px-4 py-3 flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-md text-label-md">System Audit</span>
+</div>
+</nav>
+<div class="px-6 pt-6 border-t border-on-primary-fixed-variant">
+<div class="bg-secondary-container text-on-secondary-container p-4 rounded-xl flex items-center justify-between">
+<div>
+<p class="font-label-md text-label-md font-bold">Global SOS</p>
+<p class="text-[10px]">Instant Alert</p>
+</div>
+<span class="material-symbols-outlined text-3xl" data-icon="emergency" style="font-variation-settings: 'FILL' 1;">emergency</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0 bg-background relative">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-16 z-50 bg-surface border-b border-outline-variant shadow-sm shrink-0">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined md:hidden" data-icon="menu">menu</span>
+<h2 class="font-headline-md text-headline-md font-bold text-primary">GuardianNet Unified Comms</h2>
+</div>
+<div class="flex items-center gap-4">
+<!-- User Status Badge -->
+<div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant border border-on-tertiary-container/20">
+<span class="w-2 h-2 rounded-full bg-on-tertiary-container"></span>
+<span class="font-label-md text-label-md">SAFE - ACTIVE</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+</div>
+</div>
+</header>
+<!-- Chat Portal Body -->
+<div class="flex-1 flex min-h-0">
+<!-- Message Stream -->
+<section class="flex-1 flex flex-col min-w-0 bg-white shadow-sm overflow-hidden">
+<div class="flex-1 overflow-y-auto p-gutter space-y-6 custom-scrollbar">
+<!-- Date Separator -->
+<div class="flex items-center gap-4">
+<div class="h-px flex-1 bg-outline-variant"></div>
+<span class="font-label-md text-label-md text-outline uppercase tracking-widest">Today, October 24</span>
+<div class="h-px flex-1 bg-outline-variant"></div>
+</div>
+<!-- System Alert Message -->
+<div class="flex justify-center px-4">
+<div class="max-w-md w-full bg-secondary-fixed text-on-secondary-fixed p-4 rounded-xl border border-secondary/20 shadow-sm">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="warning" style="font-variation-settings: 'FILL' 1;">warning</span>
+<div class="flex-1">
+<p class="font-body-md text-body-md font-semibold">Security Breach Notification</p>
+<p class="font-body-md text-body-md mt-1">Employee #448 entered Restricted Zone C without prior authorization.</p>
+<div class="mt-3 flex gap-2">
+<button class="bg-secondary text-on-secondary px-3 py-1.5 rounded-lg font-label-md text-label-md hover:opacity-90 transition-all">Request Status</button>
+<button class="bg-transparent border border-secondary text-secondary px-3 py-1.5 rounded-lg font-label-md text-label-md hover:bg-secondary/5 transition-all">Dismiss</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Standard Incoming Message -->
+<div class="flex items-start gap-3 max-w-2xl">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="person">person</span>
+</div>
+<div>
+<div class="flex items-baseline gap-2 mb-1">
+<span class="font-label-md text-label-md font-bold text-primary">Operative 712</span>
+<span class="font-data-mono text-data-mono text-outline">13:45</span>
+</div>
+<div class="bg-surface-container-low border border-outline-variant p-3 rounded-tr-xl rounded-br-xl rounded-bl-xl text-on-surface">
+<p class="font-body-md text-body-md">Completed perimeter check at Gate 4. No anomalies detected. Signal strength is nominal.</p>
+</div>
+</div>
+</div>
+<!-- Safety Status Update (Auto-generated) -->
+<div class="flex justify-center">
+<div class="bg-surface-variant/50 px-4 py-1.5 rounded-full border border-outline-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[16px]" data-icon="history">history</span>
+<span class="font-label-md text-label-md text-on-surface-variant italic">Status changed to ON-SITE (14:02)</span>
+</div>
+</div>
+<!-- Outgoing Message -->
+<div class="flex items-start gap-3 max-w-2xl ml-auto flex-row-reverse">
+<div class="w-8 h-8 rounded-full bg-primary flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-sm" data-icon="admin_panel_settings">admin_panel_settings</span>
+</div>
+<div class="text-right">
+<div class="flex items-baseline gap-2 mb-1 flex-row-reverse">
+<span class="font-label-md text-label-md font-bold text-primary">You (Supervisor)</span>
+<span class="font-data-mono text-data-mono text-outline">14:05</span>
+</div>
+<div class="bg-primary text-on-primary p-3 rounded-tl-xl rounded-br-xl rounded-bl-xl shadow-sm">
+<p class="font-body-md text-body-md">Acknowledged, 712. Proceed to Sector B for routine sensor calibration. Share live GPS for the duration of the transit.</p>
+</div>
+</div>
+</div>
+<!-- Location Pin Message -->
+<div class="flex items-start gap-3 max-w-2xl">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="person">person</span>
+</div>
+<div class="w-full">
+<div class="flex items-baseline gap-2 mb-1">
+<span class="font-label-md text-label-md font-bold text-primary">Operative 712</span>
+<span class="font-data-mono text-data-mono text-outline">14:06</span>
+</div>
+<div class="bg-white border border-outline-variant overflow-hidden rounded-xl shadow-sm max-w-sm">
+<div class="h-32 bg-slate-200 relative group overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A detailed satellite view map showing a corporate industrial complex with high-contrast tactical overlays. A glowing green GPS pin marks a specific location between two warehouses. The map has a professional UI aesthetic with dark blue accents and sharp white labels." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCIPbmLm62FR4UfDj6sUazVXiF4OwTIP8eGYyoClkJUECIaVsNniZSWHTyUZwDAwBRQw6rrdHbQEZ0lLkZqoiEUoN9iscqow61zSmbqHE-FL3zBUloWip7g44XFs2HNL5IycT80kMpCQ--BOSV5lt5oijFULuER88kRapphJc0efeyc-dTGfO9Bynmup8iTnICOliQQ1-Cv8nChWmA-UEhr_qHQ75qPQM5L5gBX_46iBPY21xD67uLEwJQkiJe1YpOd_bvArN8fiT0');"></div>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-all"></div>
+<div class="absolute top-2 right-2 bg-primary text-on-primary px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-widest">Live</div>
+</div>
+<div class="p-3 flex items-center justify-between">
+<div>
+<p class="font-label-md text-label-md font-bold">Transit to Sector B</p>
+<p class="text-[10px] text-on-surface-variant uppercase">0.4 km from your location</p>
+</div>
+<span class="material-symbols-outlined text-primary" data-icon="directions_walk">directions_walk</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Rich Input Bar -->
+<div class="p-4 bg-surface border-t border-outline-variant">
+<div class="flex items-end gap-3 max-w-5xl mx-auto">
+<div class="flex gap-1 pb-1">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-all text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="add_location_alt">add_location_alt</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-all text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="attach_file">attach_file</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-all text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="mic">mic</span>
+</button>
+</div>
+<div class="flex-1 relative">
+<textarea class="w-full bg-white border border-outline-variant rounded-2xl px-4 py-3 pr-12 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none resize-none font-body-md text-body-md" placeholder="Type an instruction or message..." rows="1"></textarea>
+<button class="absolute right-2 bottom-2 w-8 h-8 flex items-center justify-center rounded-full bg-primary text-on-primary shadow-sm hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="send">send</span>
+</button>
+</div>
+<div class="pb-1">
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-secondary-container text-on-secondary-container shadow-md hover:bg-secondary transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="emergency" style="font-variation-settings: 'FILL' 1;">emergency</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Integrated Sidebar -->
+<aside class="hidden xl:flex flex-col w-[300px] border-l border-outline-variant bg-surface-container-low shrink-0">
+<div class="p-6">
+<h3 class="font-label-md text-label-md font-bold text-primary uppercase tracking-widest mb-4">Personnel Online (12)</h3>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-3 bg-white rounded-xl border border-outline-variant shadow-sm">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center overflow-hidden">
+<img alt="Employee" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdH-MQp8O-B_VhRzAM5vzUhEFWmPAIoeJDgiiB9sgoHoPY2C6-ati7JLUn_2IThQY3I3HVtGLmO6RgKrM1I6W609AYf7X5TgqVO-rbmtEJiRJasYu0oP-LOi9cs3POOSDwDr1Dq1dwpPSgbsEGX3kvvQEVo5_CNPXiwxH03uApnQWxSauyyWyfh6aIIeTNMM9Yrn70cQOYk_oc5168gDhH-YY9cN64SoziGmQSj9_OLmKO5XopKLza1iDY2lL9O1BuOWRQMiOvjd4"/>
+</div>
+<div class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-on-tertiary-container rounded-full border-2 border-white"></div>
+</div>
+<div>
+<p class="font-label-md text-label-md font-bold">Marcus Chen</p>
+<p class="text-[10px] text-on-surface-variant">Gate 4 - Active</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline text-lg" data-icon="more_vert">more_vert</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-white rounded-xl border border-outline-variant shadow-sm">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center overflow-hidden">
+<img alt="Employee" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYozFfnxepCR_XAwLs8_OXwPjHMjn6XkfGVIS0_UjToO1V1XnEbtc9DGcT2epCrRjs7WdTD8y5dzqsBDW0jj6q2cpt-oVaynS9D8Vo54Ks5qnouDa_7UAKVWSs4IvjkBF1PxhmFiPuhQMxFGJtDI0HvCyHgBCkFzGWzgbnCWM6SWXjpasI3M9DWsAo3JoAXrxLkupugyEIAJ12xpYprkhH__iudMen8u1O9fiaHdfw70t2PmnjbqJ5ZK0rVlDkmQOtMb1TFMs0mWA"/>
+</div>
+<div class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-secondary rounded-full border-2 border-white"></div>
+</div>
+<div>
+<p class="font-label-md text-label-md font-bold">Sarah Vane</p>
+<p class="text-[10px] text-on-surface-variant">Zone C - Alert</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline text-lg" data-icon="more_vert">more_vert</span>
+</div>
+</div>
+</div>
+<div class="p-6 pt-0 flex-1 overflow-y-auto custom-scrollbar">
+<h3 class="font-label-md text-label-md font-bold text-primary uppercase tracking-widest mb-4">Emergency Protocols</h3>
+<div class="space-y-2">
+<button class="w-full text-left p-3 rounded-lg border border-outline-variant hover:bg-surface-container-high transition-all group">
+<p class="font-label-md text-label-md font-bold group-hover:text-primary">Lockdown Level 1</p>
+<p class="text-[10px] text-on-surface-variant">Seal all external perimeter gates</p>
+</button>
+<button class="w-full text-left p-3 rounded-lg border border-outline-variant hover:bg-surface-container-high transition-all group">
+<p class="font-label-md text-label-md font-bold group-hover:text-primary">Evacuation Signal</p>
+<p class="text-[10px] text-on-surface-variant">Broadcast to all handheld devices</p>
+</button>
+<button class="w-full text-left p-3 rounded-lg border border-outline-variant hover:bg-surface-container-high transition-all group">
+<p class="font-label-md text-label-md font-bold group-hover:text-primary">Remote Disable</p>
+<p class="text-[10px] text-on-surface-variant">Revoke all electronic access keys</p>
+</button>
+</div>
+</div>
+</aside>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 pb-safe px-4 md:hidden bg-surface border-t border-outline-variant shadow-lg rounded-t-xl">
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="shield">shield</span>
+<span class="font-label-md text-label-md">Status</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="emergency">emergency</span>
+<span class="font-label-md text-label-md">Alerts</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1">
+<span class="material-symbols-outlined" data-icon="forum">forum</span>
+<span class="font-label-md text-label-md">Messages</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="badge">badge</span>
+<span class="font-label-md text-label-md">Teams</span>
+</div>
+</nav>
+</main>
+</body></html>

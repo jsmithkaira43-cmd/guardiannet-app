@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f8f9ff",
+                        "secondary": "#b7131a",
+                        "primary": "#031632",
+                        "outline-variant": "#c5c6ce",
+                        "inverse-primary": "#b6c7eb",
+                        "tertiary-container": "#003308",
+                        "outline": "#75777e",
+                        "on-surface": "#0b1c30",
+                        "inverse-surface": "#213145",
+                        "on-secondary-fixed-variant": "#93000d",
+                        "inverse-on-surface": "#eaf1ff",
+                        "secondary-container": "#db322f",
+                        "surface-container-highest": "#d3e4fe",
+                        "secondary-fixed-dim": "#ffb4ac",
+                        "primary-fixed-dim": "#b6c7eb",
+                        "on-tertiary-fixed": "#002204",
+                        "on-primary-fixed-variant": "#374765",
+                        "surface-container": "#e5eeff",
+                        "primary-container": "#1a2b48",
+                        "surface-variant": "#d3e4fe",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#98f994",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#44474d",
+                        "tertiary-fixed-dim": "#7ddc7a",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#fffbff",
+                        "on-tertiary-container": "#48a54b",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#4e5f7e",
+                        "primary-fixed": "#d7e2ff",
+                        "surface-container-high": "#dce9ff",
+                        "surface-bright": "#f8f9ff",
+                        "on-primary-fixed": "#081b38",
+                        "on-tertiary-fixed-variant": "#005313",
+                        "tertiary": "#001c03",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#8293b5",
+                        "secondary-fixed": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#410002",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#eff4ff",
+                        "background": "#f8f9ff",
+                        "on-background": "#0b1c30",
+                        "surface-dim": "#cbdbf5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sidebar-width": "260px",
+                        "margin-desktop": "32px",
+                        "unit": "4px",
+                        "margin-mobile": "16px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "data-mono": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "data-mono": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container font-headline-md text-headline-md md:font-headline-lg md:text-headline-lg docked full-width top-0 bg-primary dark:bg-primary-container shadow-md shadow-md flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 z-50 sticky">
+<div class="flex items-center gap-4">
+<button class="hover:bg-primary-container/20 transition-colors p-1 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary tracking-tight">Edit Profile</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined hover:bg-primary-container/20 transition-colors p-2 rounded-full cursor-pointer" data-icon="notifications">notifications</span>
+</div>
+</header>
+<main class="flex-grow flex flex-col lg:flex-row">
+<!-- NavigationDrawer (Desktop Only) -->
+<aside class="hidden lg:flex flex-col fixed left-0 top-0 h-full z-40 bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container font-label-md text-label-md docked left-0 h-screen w-sidebar-width border-r border-outline-variant shadow-lg pt-20">
+<div class="px-6 py-8 flex flex-col items-start">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest mb-3 flex items-center justify-center overflow-hidden">
+<img alt="Admin User" class="w-full h-full object-cover" data-alt="A professional headshot of a corporate security administrator in a minimalist style. The portrait features clean lighting, a soft focus office background in deep navy and cool gray tones, and a sharp, authoritative expression. The aesthetic is high-end, corporate, and focuses on trust and professional vigilance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN0tPVxZZGlGrlZAyJXoIDebZAtfMfMEaoBIeAgFu7TU1tliBbFd3vSfr9YvKm94mcgpmCeVrQaDv9oWsbTmhnyvezB6H6SZlutspZrhzDEehRoG4iD8wGLbemQN3LSXLofV5snKa8h2Msr2ANN_AMXbL33vKYRWNSwL8MsV2s1tYCnzz72MFFJnqiZ_v6bYyOmqC4DlAsUBr3fARPdD7wsxg8iM3hI6K2SKnRN51FNW0DPIzf5YILztp4VCqKHDKnBuAHV_md39g"/>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-primary">Command Center</h3>
+<p class="text-primary-fixed-dim text-label-md">System Administrator</p>
+</div>
+<nav class="flex-grow">
+<a class="flex items-center gap-3 text-primary-fixed-dim hover:text-on-primary mx-2 my-1 p-3 transition-all duration-200 ease-in-out hover:bg-primary-fixed-dim/10" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span>Live Map</span>
+</a>
+<a class="flex items-center gap-3 text-primary-fixed-dim hover:text-on-primary mx-2 my-1 p-3 transition-all duration-200 ease-in-out hover:bg-primary-fixed-dim/10" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span>Geofencing</span>
+</a>
+<a class="flex items-center gap-3 text-primary-fixed-dim hover:text-on-primary mx-2 my-1 p-3 transition-all duration-200 ease-in-out hover:bg-primary-fixed-dim/10" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Team Management</span>
+</a>
+<a class="flex items-center gap-3 text-primary-fixed-dim hover:text-on-primary mx-2 my-1 p-3 transition-all duration-200 ease-in-out hover:bg-primary-fixed-dim/10" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+<span>Safety Analytics</span>
+</a>
+</nav>
+</aside>
+<!-- Content Canvas -->
+<section class="flex-grow lg:ml-sidebar-width px-margin-mobile md:px-margin-desktop py-8 pb-32">
+<div class="max-w-2xl mx-auto space-y-8">
+<!-- Profile Photo Section -->
+<div class="flex flex-col items-center gap-4">
+<div class="relative group">
+<div class="w-32 h-32 rounded-full border-4 border-surface-container-highest shadow-md overflow-hidden bg-surface-container">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="A detailed digital portrait of a professional operations manager. He has a confident and focused look, wearing a clean charcoal polo shirt. The lighting is bright and modern, set against a blurred background of a high-tech control room with soft blue and deep navy ambient lights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1HaMt_LmnFglMVVWsisDsKt8sW-o4iCaBwek0dWq-9g3BlDuAohe2MBNZDCqwFRGuLviG71GBM8L7MAmzl1rtYHLtFoibAK265Un7YuFnwTsLVDPZ_2uHQjmsBNt9As3Pxd5WLQInMWe2bTdBCi359zrTXC8np65Ugxn93C1dSTYgFfp234ra57Sa6uV-jeBfb-NLic7bdzQFLN29tRlqzX1IaCjTh_CSXS-vv3kMGpSCnplAbjIqqiMkZEMN9R785kJVlfsatlw"/>
+</div>
+<button class="absolute bottom-0 right-0 bg-primary text-on-primary p-2 rounded-full shadow-lg hover:scale-105 transition-transform">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+</div>
+<button class="text-primary font-label-md text-label-md hover:underline">Edit Photo</button>
+</div>
+<!-- Basic Details Form -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm space-y-6">
+<h2 class="font-headline-md text-headline-md text-primary">Basic Details</h2>
+<div class="grid grid-cols-1 gap-6">
+<!-- Full Name -->
+<div class="space-y-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant block">Full Name</label>
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-2.5 text-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none" type="text" value="Marcus Thorne"/>
+</div>
+<!-- Email Address -->
+<div class="space-y-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant block">Email Address</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2.5 text-body-md text-on-surface-variant cursor-not-allowed outline-none" readonly="" type="email" value="m.thorne@guardiannet.com"/>
+<div class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1 text-tertiary-container bg-tertiary-fixed/20 px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[16px]" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Verified</span>
+</div>
+</div>
+</div>
+<!-- Phone & ID Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant block">Phone Number</label>
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-2.5 text-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none" type="tel" value="+1 (555) 902-4821"/>
+</div>
+<div class="space-y-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant block">Employee ID</label>
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-2.5 text-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none" type="text" value="GN-8842-OPS"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Professional Info -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm space-y-6">
+<h2 class="font-headline-md text-headline-md text-primary">Professional Info</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant block">Role</label>
+<div class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2.5 text-body-md flex items-center justify-between">
+<span>Senior Operations Manager</span>
+<span class="material-symbols-outlined text-outline" data-icon="lock">lock</span>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant block">Department</label>
+<div class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2.5 text-body-md flex items-center justify-between">
+<span>Global Safety &amp; Logistics</span>
+<span class="material-symbols-outlined text-outline" data-icon="lock">lock</span>
+</div>
+</div>
+</div>
+<p class="text-label-md text-outline italic">Professional info can only be updated by a System Administrator.</p>
+</div>
+<!-- Actions Section -->
+<div class="flex flex-col gap-4">
+<button class="w-full bg-primary text-on-primary font-headline-md py-4 rounded-xl shadow-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="save">save</span>
+                        Save Changes
+                    </button>
+<button class="w-full bg-transparent text-secondary border border-secondary font-headline-md py-4 rounded-xl hover:bg-secondary/5 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="lock_reset">lock_reset</span>
+                        Change Password
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-safe h-16 bg-surface-container-highest dark:bg-surface-container-lowest text-primary dark:text-inverse-primary font-label-md text-label-md docked full-width bottom-0 rounded-t-xl border-t border-outline-variant shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-[10px]">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="text-[10px]">Messages</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="shutter_speed">shutter_speed</span>
+<span class="text-[10px]">Safety</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary-container font-bold bg-primary/10 rounded-xl px-4 py-1 Active: scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+<span class="text-[10px]">Profile</span>
+</a>
+</nav>
+</body></html>

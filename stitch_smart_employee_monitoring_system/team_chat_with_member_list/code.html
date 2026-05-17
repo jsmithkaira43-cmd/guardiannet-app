@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>GuardianNet | Secure Messaging</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9ff;
+        }
+        /* Hide scrollbars for cleaner data look */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#d3e4fe",
+                        "secondary-fixed-dim": "#ffb4ac",
+                        "primary-fixed-dim": "#b6c7eb",
+                        "on-tertiary-fixed": "#002204",
+                        "on-primary-fixed-variant": "#374765",
+                        "surface-container": "#e5eeff",
+                        "primary-container": "#1a2b48",
+                        "surface-variant": "#d3e4fe",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#98f994",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#44474d",
+                        "surface": "#f8f9ff",
+                        "secondary": "#b7131a",
+                        "primary": "#031632",
+                        "outline-variant": "#c5c6ce",
+                        "inverse-primary": "#b6c7eb",
+                        "tertiary-container": "#003308",
+                        "outline": "#75777e",
+                        "on-surface": "#0b1c30",
+                        "inverse-surface": "#213145",
+                        "on-secondary-fixed-variant": "#93000d",
+                        "inverse-on-surface": "#eaf1ff",
+                        "secondary-container": "#db322f",
+                        "on-secondary-container": "#fffbff",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#48a54b",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#4e5f7e",
+                        "primary-fixed": "#d7e2ff",
+                        "surface-container-low": "#eff4ff",
+                        "background": "#f8f9ff",
+                        "on-background": "#0b1c30",
+                        "surface-dim": "#cbdbf5",
+                        "tertiary-fixed-dim": "#7ddc7a",
+                        "on-secondary-fixed": "#410002",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#dce9ff",
+                        "surface-bright": "#f8f9ff",
+                        "on-primary-fixed": "#081b38",
+                        "on-tertiary-fixed-variant": "#005313",
+                        "tertiary": "#001c03",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "margin-mobile": "16px",
+                        "sidebar-width": "260px",
+                        "margin-desktop": "32px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "data-mono": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "data-mono": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden">
+<!-- Main Sidebar Navigation (Desktop Only) -->
+<aside class="hidden lg:flex flex-col fixed left-0 top-0 h-full z-40 bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container border-r border-outline-variant shadow-lg w-[260px]">
+<div class="p-6 flex flex-col gap-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-3xl">security</span>
+<h1 class="font-headline-md text-headline-md font-bold tracking-tight">GuardianNet</h1>
+</div>
+<div class="flex items-center gap-3 py-4 border-b border-white/10">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container">
+<img alt="Admin User" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrn4dY5zdfz41b0Kv9YCLhy3DCTgXan7oXsg9F_stNJ0opnTDNLr_mISF_cJWs7Oc0OBFZwlOuIedJTI3_Zc2sps90doQIxmnVLNdUMWUnJCCkvq4Au6B7uY-5qQf1KBZ65nHA2RONAj2RnztXxI6oIuXLb112OtcoUqK_9HZXKPaRSSp84UUsvNt5ibeZ6NId8JrblSYUTBIp5eSIq4QALujUA8nN6MR5Ab2a-CfuefkMcrR4Fb6NzvtqZawgZQY7BxyM56kKD9M"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-primary">Command Center</p>
+<p class="text-[10px] uppercase tracking-widest opacity-70">System Administrator</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-2">
+<a class="flex items-center gap-3 px-4 py-3 text-primary-fixed-dim hover:text-on-primary hover:bg-primary-fixed-dim/10 transition-all rounded-lg mx-2 my-1" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-label-md text-label-md">Live Map</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-primary-fixed-dim hover:text-on-primary hover:bg-primary-fixed-dim/10 transition-all rounded-lg mx-2 my-1" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-label-md text-label-md">Geofencing</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container transition-all rounded-lg mx-2 my-1" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Team Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-primary-fixed-dim hover:text-on-primary hover:bg-primary-fixed-dim/10 transition-all rounded-lg mx-2 my-1" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="font-label-md text-label-md">Safety Analytics</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Canvas (Adjusted for Sidebars) -->
+<main class="flex-1 flex h-full lg:ml-[260px] relative overflow-hidden">
+<!-- Member List Sidebar (New) -->
+<aside class="hidden md:flex flex-col w-72 bg-surface border-r border-outline-variant z-10">
+<div class="p-4 border-b border-outline-variant bg-surface-container-low">
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-9 pr-4 py-2 text-body-md focus:ring-1 focus:ring-primary outline-none" placeholder="Search team members..." type="text"/>
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl">search</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto no-scrollbar">
+<div class="px-2 py-4">
+<h3 class="px-4 mb-2 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Active Staff</h3>
+<!-- Marcus Thorne -->
+<button class="w-full flex items-center gap-3 px-4 py-3 hover:bg-primary/5 transition-colors rounded-xl text-left group">
+<div class="relative shrink-0">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-highest">
+<img alt="Marcus Thorne" class="w-full h-full object-cover" onerror="this.src='https://ui-avatars.com/api/?name=Marcus+Thorne&amp;background=031632&amp;color=fff'" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX1N7C_yN1HkH_uS7tJ2V8g5rL9E_S7C0JvQ_Y4E_R1U_T7F_V8G_X9H_Z1A_C3D_E5F_G7H_I9J_K1L_M3N_O5P_Q7R_S9T_U1V_W3X_Y5Z_A7B_C9D_E1F_G3H_I5J_K7L_M9N_O1P_Q3R_S5T_U7V_W9X_Y1Z_A3B_C5D_E7F_G9H_I1J_K3L_M5N_O7P_Q9R"/>
+</div>
+<span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-green-500 border-2 border-surface"></span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-headline-md text-body-md font-semibold text-on-surface truncate">Marcus Thorne</p>
+<p class="text-[12px] text-on-surface-variant truncate">Sector A Perimeter</p>
+</div>
+</button>
+<!-- Elena Rodriguez (Selected/Active) -->
+<button class="w-full flex items-center gap-3 px-4 py-3 bg-primary/10 rounded-xl text-left group">
+<div class="relative shrink-0">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-highest">
+<img alt="Elena Rodriguez" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6A-t8-4Hg0YuREgIYs68J_ptghH2diEv503tbEZDgZTGrkOZIg6JXNRObO4bT4Fslg4n4rmrU_uZxhvpgDHBRQfHj4T8cbqc1RNDrh_JzHqvr0Dg3rc6-LvM_7mgHlKzb55x8yvDvgjMIws3uiSpeyMeMDC_ybk-4-Bu8pvQi9JsKV2KYPk2z7mmHmmspvt43n9oV3mlC_whg3Lmjnyx4C9yurJIEoB8MmmlhhUOLGnLRPMF_Krx3YQSzcxG-pMalX00P_daouzU"/>
+</div>
+<span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-green-500 border-2 border-surface"></span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-headline-md text-body-md font-semibold text-on-surface truncate">Elena Rodriguez</p>
+<p class="text-[12px] text-secondary font-medium truncate">Active • Zone B</p>
+</div>
+</button>
+<!-- Julian Chen -->
+<button class="w-full flex items-center gap-3 px-4 py-3 hover:bg-primary/5 transition-colors rounded-xl text-left group">
+<div class="relative shrink-0">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-highest">
+<img alt="Julian Chen" class="w-full h-full object-cover" onerror="this.src='https://ui-avatars.com/api/?name=Julian+Chen&amp;background=031632&amp;color=fff'" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX1N7C_yN1HkH_uS7tJ2V8g5rL9E_S7C0JvQ_Y4E_R1U_T7F_V8G_X9H_Z1A_C3D_E5F_G7H_I9J_K1L_M3N_O5P_Q7R_S9T_U1V_W3X_Y5Z_A7B_C9D_E1F_G3H_I5J_K7L_M9N_O1P_Q3R_S5T_U7V_W9X_Y1Z_A3B_C5D_E7F_G9H_I1J_K3L_M5N_O7P_Q9R"/>
+</div>
+<span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-surface-dim border-2 border-surface"></span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-headline-md text-body-md font-semibold text-on-surface truncate">Julian Chen</p>
+<p class="text-[12px] text-on-surface-variant truncate">Off-duty • Standby</p>
+</div>
+</button>
+</div>
+</div>
+</aside>
+<!-- Chat Area -->
+<div class="flex-1 flex flex-col min-w-0 h-full relative">
+<!-- Header -->
+<header class="flex justify-between items-center w-full px-margin-mobile md:px-6 py-4 z-50 bg-primary dark:bg-primary-container shadow-md text-on-primary">
+<div class="flex items-center gap-4">
+<button class="lg:hidden p-2 hover:bg-primary-container/20 transition-colors rounded-full">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<h2 class="font-headline-md text-headline-md font-bold tracking-tight">Elena Rodriguez</h2>
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+</div>
+<div class="flex items-center gap-2 opacity-80">
+<span class="font-label-md text-label-md uppercase tracking-tighter">Field Staff</span>
+<span class="text-[10px]">•</span>
+<span class="font-label-md text-label-md text-tertiary-fixed-dim">SAFE</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-primary-container/20 transition-colors rounded-full" title="Safety Status Details">
+<span class="material-symbols-outlined">shutter_speed</span>
+</button>
+<button class="p-2 hover:bg-primary-container/20 transition-colors rounded-full" title="Notifications">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</header>
+<!-- Message Body -->
+<section class="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 no-scrollbar bg-surface-container-low">
+<!-- Date Separator -->
+<div class="flex justify-center">
+<span class="px-3 py-1 bg-outline-variant/20 rounded-full font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Today</span>
+</div>
+<!-- Received Message -->
+<div class="flex flex-col items-start max-w-[90%] md:max-w-[80%]">
+<div class="flex items-end gap-2">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-highest shrink-0">
+<img alt="Elena Rodriguez" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6A-t8-4Hg0YuREgIYs68J_ptghH2diEv503tbEZDgZTGrkOZIg6JXNRObO4bT4Fslg4n4rmrU_uZxhvpgDHBRQfHj4T8cbqc1RNDrh_JzHqvr0Dg3rc6-LvM_7mgHlKzb55x8yvDvgjMIws3uiSpeyMeMDC_ybk-4-Bu8pvQi9JsKV2KYPk2z7mmHmmspvt43n9oV3mlC_whg3Lmjnyx4C9yurJIEoB8MmmlhhUOLGnLRPMF_Krx3YQSzcxG-pMalX00P_daouzU"/>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-t-xl rounded-br-xl shadow-sm">
+<p class="font-body-md text-body-md text-on-surface">Arrived at Site B. All perimeter checks are clear. Initiating primary inspection now.</p>
+</div>
+</div>
+<span class="mt-1 ml-10 font-label-md text-label-md text-on-surface-variant opacity-60">09:12 AM</span>
+</div>
+<!-- System Notification -->
+<div class="flex justify-center">
+<div class="flex items-center gap-3 bg-yellow-100 dark:bg-tertiary-container/30 border border-yellow-200 dark:border-tertiary-container px-4 py-2 rounded-lg">
+<span class="material-symbols-outlined text-yellow-700 dark:text-on-tertiary-container text-sm">warning</span>
+<p class="font-label-md text-label-md text-yellow-900 dark:text-on-tertiary-container">User entered Restricted Zone B</p>
+<span class="font-data-mono text-data-mono opacity-60">09:14 AM</span>
+</div>
+</div>
+<!-- Sent Message -->
+<div class="flex flex-col items-end ml-auto max-w-[90%] md:max-w-[80%]">
+<div class="bg-primary text-on-primary p-4 rounded-t-xl rounded-bl-xl shadow-md">
+<p class="font-body-md text-body-md">Understood, Elena. We've flagged your entry into Zone B. Maintain active channel. What is your current battery level?</p>
+</div>
+<div class="mt-1 mr-1 flex items-center gap-1">
+<span class="font-label-md text-label-md text-on-surface-variant opacity-60">09:15 AM</span>
+<span class="material-symbols-outlined text-sm text-primary">done_all</span>
+</div>
+</div>
+<!-- Received Message (Status update) -->
+<div class="flex flex-col items-start max-w-[90%] md:max-w-[80%]">
+<div class="flex items-end gap-2">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-highest shrink-0">
+<img alt="Elena Rodriguez" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOhyiRXkff84yJkoOxV7Hq48D6Y4hvYC0thi5q6uWtRPG9U12z-lW73vbEt_YOakZMdvZnxvCimHjR_2RVAY8prLpB15Bo8RlbSUPjaVS4ZsSldcZ3FqScACPauIefyW2rsUiJoRhxfDnAyQb4UoscruSQDCa8TlnXZ9aJMXPXhdqMKK1iUSQZXqMsZyDeQo1h4lOYcXSdWwNKIag3atoHcYZbmuixIZgDfDLQ_D5AioQMxvaxn4rvPVMPbNQuqZxuK6MKqdQRShE"/>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-t-xl rounded-br-xl shadow-sm">
+<p class="font-body-md text-body-md text-on-surface">Battery at 84%. GPS signal strong. I see the anomaly at the north gate, checking it now.</p>
+<div class="mt-3 flex items-center gap-2 px-2 py-1 bg-surface-container rounded border border-outline-variant">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span class="font-data-mono text-data-mono text-on-surface-variant">40.7128° N, 74.0060° W</span>
+</div>
+</div>
+</div>
+<span class="mt-1 ml-10 font-label-md text-label-md text-on-surface-variant opacity-60">09:18 AM</span>
+</div>
+<!-- Alert Message -->
+<div class="flex justify-center">
+<div class="flex items-center gap-3 bg-red-50 border border-red-200 px-6 py-3 rounded-xl shadow-sm">
+<span class="material-symbols-outlined text-error font-variation-settings-'FILL'-1" style="font-variation-settings: 'FILL' 1;">error</span>
+<div class="flex flex-col">
+<p class="font-label-md text-label-md text-error font-bold uppercase tracking-tight">Proximity Alert</p>
+<p class="font-body-md text-body-md text-on-error-container">Unauthorized motion detected 20m from your location.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Interaction Area -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant p-4 space-y-4">
+<!-- Quick Replies -->
+<div class="flex gap-2 overflow-x-auto no-scrollbar pb-2">
+<button class="shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-container border border-outline-variant rounded-full font-label-md text-label-md text-on-surface-variant hover:bg-primary/5 hover:border-primary/30 transition-colors">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+                        Acknowledge
+                    </button>
+<button class="shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-container border border-outline-variant rounded-full font-label-md text-label-md text-on-surface-variant hover:bg-primary/5 hover:border-primary/30 transition-colors">
+<span class="material-symbols-outlined text-sm">contact_support</span>
+                        Request Status
+                    </button>
+<button class="shrink-0 flex items-center gap-2 px-4 py-2 bg-red-50 border border-red-200 rounded-full font-label-md text-label-md text-error hover:bg-red-100 transition-colors">
+<span class="material-symbols-outlined text-sm">cancel</span>
+                        Clear Alert
+                    </button>
+<button class="shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-container border border-outline-variant rounded-full font-label-md text-label-md text-on-surface-variant hover:bg-primary/5 hover:border-primary/30 transition-colors">
+<span class="material-symbols-outlined text-sm">camera_alt</span>
+                        Request Photo
+                    </button>
+</div>
+<!-- Input Field -->
+<div class="flex items-center gap-3">
+<div class="relative flex-1">
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none font-body-md text-body-md text-on-surface transition-all" placeholder="Type a message or command..." type="text"/>
+<div class="absolute right-2 top-1/2 -translate-y-1/2 flex gap-1">
+<button class="p-2 hover:bg-surface-container-highest rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">attach_file</span>
+</button>
+<button class="p-2 hover:bg-surface-container-highest rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">mic</span>
+</button>
+</div>
+</div>
+<button class="w-12 h-12 flex items-center justify-center bg-primary text-on-primary rounded-xl shadow-md hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</footer>
+</div>
+<!-- Mobile Bottom Nav -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-safe h-16 bg-surface-container-highest border-t border-outline-variant">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary-container font-bold bg-primary/10 rounded-xl px-4 py-1" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-label-md text-label-md">Messages</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">shutter_speed</span>
+<span class="font-label-md text-label-md">Safety</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+</main>
+</body></html>

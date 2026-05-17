@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .map-container {
+            background-color: #e5e7eb;
+            background-image: radial-gradient(#d1d5db 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+<title>GuardianNet Admin Dashboard</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased overflow-hidden">
+<!-- TopAppBar -->
+<header class="bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container font-headline-md text-headline-md md:font-headline-lg md:text-headline-lg docked full-width top-0 bg-primary dark:bg-primary-container shadow-md shadow-md flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 z-50 fixed">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary tracking-tight">GuardianNet</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:bg-primary-container/20 transition-colors p-2 rounded-full flex items-center justify-center transition-all Active: opacity-80 scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</div>
+</header>
+<!-- NavigationDrawer (Desktop Only) -->
+<aside class="hidden lg:flex flex-col fixed left-0 top-0 h-full z-40 bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container font-label-md text-label-md docked left-0 h-screen w-sidebar-width border-r border-outline-variant shadow-lg pt-24 transition-all duration-200 ease-in-out">
+<div class="px-6 mb-8 flex flex-col items-start">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest mb-3 flex items-center justify-center overflow-hidden">
+<img alt="Admin User" class="w-full h-full object-cover" data-alt="A professional corporate portrait of a security operations manager in a well-lit modern office. The lighting is crisp and high-key, emphasizing a clean light-mode aesthetic. The subject wears a charcoal business suit, and the background shows a blurred high-tech control room with blue and white interface elements. The overall atmosphere is authoritative and vigilant." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMtY38lVbZWsMwyX6OQnC2Sz1E3XoxKHOQCUhWKWJjcC18FDFc6AWlDwscIBAIuvJfrAJ3JCQZxrGymAH09iGn7OEdz4s6NQ3zGw8tw4CB_P_7517HjuncLcxzU0JP2oXC861Sk9MBcRat172GYltPF8ScPfuru4hUbbXX-qXiDPbEr4CpnnOIRtoDVMbzjv4Apw5NOeX4zjIbOQwyvF5clXezfda2ijVnbjLcB9ABoYqu3y4SRV-RnAKgcwxJlwj8cRtdA-cnq3Y"/>
+</div>
+<div class="font-headline-md text-headline-md text-on-primary font-bold">Command Center</div>
+<div class="text-primary-fixed-dim opacity-80">System Administrator</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="bg-secondary-container text-on-secondary-container rounded-lg mx-2 my-1 flex items-center gap-3 px-4 py-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="map" style="font-variation-settings: 'FILL' 1;">map</span>
+<span class="font-label-md text-label-md">Live Map</span>
+</a>
+<a class="text-primary-fixed-dim hover:text-on-primary mx-2 my-1 hover:bg-primary-fixed-dim/10 flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="font-label-md text-label-md">Geofencing</span>
+</a>
+<a class="text-primary-fixed-dim hover:text-on-primary mx-2 my-1 hover:bg-primary-fixed-dim/10 flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-md text-label-md">Team Management</span>
+</a>
+<a class="text-primary-fixed-dim hover:text-on-primary mx-2 my-1 hover:bg-primary-fixed-dim/10 flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+<span class="font-label-md text-label-md">Safety Analytics</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:pl-[260px] pt-16 h-screen relative flex flex-col">
+<!-- Live Map Interface -->
+<div class="flex-1 relative map-container overflow-hidden" data-location="Chicago, IL" style="">
+<!-- Simulated Map Markers -->
+<div class="absolute top-1/4 left-1/3 group cursor-pointer">
+<div class="relative">
+<div class="w-12 h-12 rounded-full border-4 border-secondary-container bg-white overflow-hidden shadow-lg transform group-hover:scale-110 transition-transform">
+<img alt="Marker" class="w-full h-full object-cover" data-alt="Close up portrait of a male employee wearing a high-visibility safety vest and a white hard hat. The background is a slightly blurred construction site under bright daylight. The image is crisp and professional, fitting an enterprise monitoring dashboard's clean aesthetic with subtle navy blue and white accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu87Zo6mbEqxTTdy-uVaAEI483plmXknCD8wOACuVHL8IP4IQRRcgAg-UAPVMPBKAlpMIx1bOJnVaU82mckBNO9dz0KeTD2mDaNwEnV3UdFbQ4XjNdpUuEGc46t7PMhcBG-fD66dj83E-on8rkjtItD78tE7xmCm2j2fCAxb3_fXHkvkaVLCGlytpRBgP9JHjIiSgbzr5owf-skJLAhBqp_6kHzaE2yEQveXLXqKfBoWK-Q0OVyFXJFpJifw7D8FrR9DhKrkNr6gs"/>
+</div>
+<div class="absolute -top-1 -right-1 bg-secondary-container text-white text-[10px] px-1 rounded-full border border-white">ALERT</div>
+</div>
+</div>
+<div class="absolute top-1/2 left-1/2 group cursor-pointer">
+<div class="w-10 h-10 rounded-full border-4 border-on-tertiary-container bg-white overflow-hidden shadow-lg transform group-hover:scale-110 transition-transform">
+<img alt="Marker" class="w-full h-full object-cover" data-alt="Corporate professional headshot of a female employee in a business casual environment. Soft natural lighting emphasizes clarity and modern style. The color palette is dominated by clean whites and deep navy blues, maintaining a corporate and reliable feel for a safety monitoring application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxzmHAne-bl1ak-P01xtk6Msos63u_6I3PRBXXUbxqUd6J0qN3ic_G3tD6_gibUql_pAp76GL5AewKmNL52eJjpwYf6of9ufWz42H2CcJD_lpvhsiXMvSX4lB0xv4GbU1M7rICC4JqYRevN88X4JbrLisOK4H6I5d9QqY-Ik9o6NRxyPQYvl-sAlY5plx8S9OjYhCf3Tm2K7c0Txvpec5XLj1uvwPt21Lz4_Dh2xsbegNCVhB2bpmLrJeCXllQC-2OcRVf0wO5j-U"/>
+</div>
+</div>
+<div class="absolute bottom-1/3 right-1/4 group cursor-pointer">
+<div class="w-10 h-10 rounded-full border-4 border-on-tertiary-container bg-white overflow-hidden shadow-lg transform group-hover:scale-110 transition-transform">
+<img alt="Marker" class="w-full h-full object-cover" data-alt="Headshot of a focused technician working in a tech-heavy environment. The lighting is professional and cool-toned, with high contrast. The image reinforces a theme of vigilance and enterprise-grade security, using a palette of blues, grays, and whites to match a modern corporate dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhcBmxNoyJYchLt-mepC9L9bEsHkFeEFvuN70IMwKJpo5VeOPyzsdW0dnMeT4-Z3YnsmRtR1TbbpjXlrach5uTsqP4qWMdX8Px3FhXv-Xa2XG_UDws6xx0xM22k3jrYagBxmQPR3x5Lu_MoAZzTrs2ZsAVEzD9tsj2m4xZrErWtYTv2dEhGgbNtlfd2ZDbuv4iihKGorTuaYA5JwN--wratPD739fnwTRaQ78jbBH9wk314bWua_ztOv_L2GqXx8CC7Ztj0dTBvc4"/>
+</div>
+</div>
+<!-- UI Overlay Elements -->
+<div class="absolute inset-0 pointer-events-none p-4 md:p-8 flex flex-col justify-between">
+<!-- Top Row: Search and Status -->
+<div class="flex flex-col md:flex-row gap-4 justify-between items-start pointer-events-auto">
+<div class="w-full max-w-md relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full bg-white/95 backdrop-blur-md border border-outline-variant rounded-full py-3 pl-12 pr-4 shadow-sm focus:ring-2 focus:ring-primary focus:border-primary font-body-md text-body-md outline-none" placeholder="Search members, zones, or teams..." type="text"/>
+</div>
+<div class="bg-white/95 backdrop-blur-md border border-outline-variant rounded-xl p-4 shadow-lg w-full md:w-80">
+<div class="flex justify-between items-center mb-3">
+<h3 class="font-headline-md text-headline-md text-primary">Live Status</h3>
+<span class="inline-flex h-2 w-2 rounded-full bg-on-tertiary-container animate-pulse"></span>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<div class="text-center">
+<p class="font-label-md text-label-md text-outline">ACTIVE</p>
+<p class="font-headline-md text-headline-md font-bold text-on-surface">42</p>
+</div>
+<div class="text-center border-x border-outline-variant">
+<p class="font-label-md text-label-md text-error">RED ZONE</p>
+<p class="font-headline-md text-headline-md font-bold text-error">03</p>
+</div>
+<div class="text-center">
+<p class="font-label-md text-label-md text-outline">ALERTS</p>
+<p class="font-headline-md text-headline-md font-bold text-on-surface">12</p>
+</div>
+</div>
+</div>
+</div>
+<!-- FAB & Quick Actions -->
+<div class="flex justify-end pointer-events-auto">
+<button class="bg-secondary-container text-on-secondary-container hover:bg-secondary transition-colors px-6 py-4 rounded-full shadow-2xl flex items-center gap-3 font-label-md text-label-md uppercase tracking-wider">
+<span class="material-symbols-outlined" data-icon="broadcast_on_home">broadcast_on_home</span>
+                        Broadcast Message
+                    </button>
+</div>
+<!-- Bottom Row: Member Swipe Cards -->
+<div class="w-full overflow-x-auto flex gap-4 pb-4 pointer-events-auto snap-x no-scrollbar">
+<!-- Member Card 1 -->
+<div class="min-w-[280px] md:min-w-[320px] snap-center bg-white border border-secondary-container shadow-xl rounded-xl p-4 flex gap-4">
+<div class="relative shrink-0">
+<img alt="User" class="w-16 h-16 rounded-lg object-cover" data-alt="A portrait of a male logistics worker in a bright, modern warehouse. He is looking directly at the camera with a confident expression. The lighting is clean and professional, emphasizing detail and high-quality enterprise aesthetics. The image palette uses soft whites and contrasting dark accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjZJyUo9gsTFUJpSlCcmwBHZfh84BACui49j8IpOeLhww3I2MStEf6upVvuUMDXOl6ZP-6Et3WsfK_XTkDyzEDDTy47pmxaZ5XI4hvLM65aRvOxIFIjbJfaFzu6HfX62g9QGhhWK9G0CuR1dpJJV3x6y4Id6Fs6AxN3FUf62DjwLtO6MAdtZjJZ1z8EWTF9U-LZuZeY5NWDi8dxPOBKY7hRb3KMJsRHYIGfOrP4D2nrmx-vb67CNAqqy-3klzgyh5vafWID4X2Zz0"/>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-error rounded-full border-2 border-white"></div>
+</div>
+<div class="flex-1 overflow-hidden">
+<h4 class="font-headline-md text-headline-md text-on-surface truncate">Marcus Chen</h4>
+<p class="font-label-md text-label-md text-error mb-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="location_on">location_on</span>
+                                Zone A - Restricted
+                            </p>
+<div class="flex items-center justify-between mt-2 pt-2 border-t border-outline-variant">
+<span class="flex items-center gap-1 text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]" data-icon="battery_2_bar">battery_2_bar</span>
+                                    32%
+                                </span>
+<button class="text-primary font-bold text-[11px] hover:underline uppercase">View Details</button>
+</div>
+</div>
+</div>
+<!-- Member Card 2 -->
+<div class="min-w-[280px] md:min-w-[320px] snap-center bg-white border border-outline-variant shadow-lg rounded-xl p-4 flex gap-4">
+<div class="relative shrink-0">
+<img alt="User" class="w-16 h-16 rounded-lg object-cover" data-alt="Professional photo of a female corporate employee in a bright office hallway. The lighting is diffused and natural, highlighting a clean and stable business atmosphere. The composition is professional and balanced, adhering to a high-end enterprise UI style with deep navy and light gray tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJrALEL2MxmtbToUy8pR8WlCLld9JYtvkPTs3u5dQESkMuSVRGZQQ4FXl0tcetuvyfltVvF_b4PLGnsnjwb6vlILHSz5S1Nul2R-t0FAPH_JBysbiYvQgmdxSG99hTdcwbUyUJJZY0780dF1551Xya3b4TVjxQ_sn0bInfs2nMa4H0pERgUYVuROXLUfNFANjuJaZP__KfHe0gJNZixaK1YUWi0lK0rmb9Pukz0AM0_d3qCZmUcwPqzbMlNxwArxEUeWyFhUtI1B0"/>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-on-tertiary-container rounded-full border-2 border-white"></div>
+</div>
+<div class="flex-1 overflow-hidden">
+<h4 class="font-headline-md text-headline-md text-on-surface truncate">Sarah Jenkins</h4>
+<p class="font-label-md text-label-md text-on-surface-variant mb-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="history">history</span>
+                                Seen 2m ago - Office
+                            </p>
+<div class="flex items-center justify-between mt-2 pt-2 border-t border-outline-variant">
+<span class="flex items-center gap-1 text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]" data-icon="battery_full">battery_full</span>
+                                    98%
+                                </span>
+<button class="text-primary font-bold text-[11px] hover:underline uppercase">View Details</button>
+</div>
+</div>
+</div>
+<!-- Member Card 3 -->
+<div class="min-w-[280px] md:min-w-[320px] snap-center bg-white border border-outline-variant shadow-lg rounded-xl p-4 flex gap-4">
+<div class="relative shrink-0">
+<img alt="User" class="w-16 h-16 rounded-lg object-cover" data-alt="A portrait of a senior engineering manager in a technical environment with warm, professional lighting. The setting is clean and high-tech, showcasing a mood of reliable oversight. The visual style is modern corporate, using a stable color palette of slate, white, and deep blues." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkNDRG5y7iCBgIRPOdKk66ajhgsPavWqiFxY_5VUZX8QxEA0VeSgY1Ebq8ozI0OcB1GZxiOJur8OEfBU9N-zKqbqiEXajtmY7jvL3SotwZu4iZUflF0nJv06mK92ns0SqxevzWXSKvPzV44dilTIbkRHFFRsS4zgJPB933hq86kZRhsTjpWyV6-2rmu4HXGApk8C5qvA1mWCuDiAWioy3JlqTznrCSgKJYcvK_2uwKEmjGmBihobdwrb9KOSNCepyRM5edNnM1MTA"/>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-on-tertiary-container rounded-full border-2 border-white"></div>
+</div>
+<div class="flex-1 overflow-hidden">
+<h4 class="font-headline-md text-headline-md text-on-surface truncate">David Miller</h4>
+<p class="font-label-md text-label-md text-on-surface-variant mb-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="history">history</span>
+                                Seen 5m ago - Site B
+                            </p>
+<div class="flex items-center justify-between mt-2 pt-2 border-t border-outline-variant">
+<span class="flex items-center gap-1 text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]" data-icon="battery_5_bar">battery_5_bar</span>
+                                    64%
+                                </span>
+<button class="text-primary font-bold text-[11px] hover:underline uppercase">View Details</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-safe h-16 bg-surface-container-highest dark:bg-surface-container-lowest text-primary dark:text-inverse-primary font-label-md text-label-md docked full-width bottom-0 rounded-t-xl border-t border-outline-variant shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-[10px]">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="text-[10px]">Messages</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary-container font-bold bg-primary/10 rounded-xl px-4 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="shutter_speed" style="font-variation-settings: 'FILL' 1;">shutter_speed</span>
+<span class="text-[10px]">Safety</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="text-[10px]">Profile</span>
+</a>
+</nav>
+<style>
+        /* Custom scrollbar hiding */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</body></html>

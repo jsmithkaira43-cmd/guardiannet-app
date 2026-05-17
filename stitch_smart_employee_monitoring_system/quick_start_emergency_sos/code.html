@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GuardianNet - Emergency SOS Setup</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9ff;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sos-glow {
+            box-shadow: 0 0 30px rgba(183, 19, 26, 0.2);
+        }
+        .step-active {
+            width: 32px;
+            background-color: #031632;
+        }
+        /* Custom progress ring simulation */
+        .progress-ring {
+            stroke-dasharray: 283;
+            stroke-dashoffset: 70;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#cbdbf5",
+                        "primary-container": "#1a2b48",
+                        "secondary-fixed-dim": "#ffb4ac",
+                        "on-secondary-fixed-variant": "#93000d",
+                        "on-tertiary-fixed": "#002204",
+                        "on-secondary-fixed": "#410002",
+                        "background": "#f8f9ff",
+                        "surface": "#f8f9ff",
+                        "secondary-container": "#db322f",
+                        "on-background": "#0b1c30",
+                        "surface-container": "#e5eeff",
+                        "surface-tint": "#4e5f7e",
+                        "surface-container-low": "#eff4ff",
+                        "on-primary-container": "#8293b5",
+                        "outline": "#75777e",
+                        "primary": "#031632",
+                        "inverse-primary": "#b6c7eb",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "on-secondary-container": "#fffbff",
+                        "surface-container-high": "#dce9ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-primary-fixed": "#081b38",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#48a54b",
+                        "on-surface": "#0b1c30",
+                        "on-tertiary-fixed-variant": "#005313",
+                        "primary-fixed": "#d7e2ff",
+                        "tertiary-fixed-dim": "#7ddc7a",
+                        "tertiary": "#001c03",
+                        "on-primary-fixed-variant": "#374765",
+                        "secondary-fixed": "#ffdad6",
+                        "tertiary-fixed": "#98f994",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#b7131a",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#213145",
+                        "surface-container-highest": "#d3e4fe",
+                        "outline-variant": "#c5c6ce",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#44474d",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#003308",
+                        "primary-fixed-dim": "#b6c7eb",
+                        "surface-bright": "#f8f9ff",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sidebar-width": "260px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "32px",
+                        "gutter": "16px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "data-mono": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "data-mono": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface">
+<!-- Top Navigation Anchor -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 bg-surface-container-low border-b border-outline-variant shadow-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="security">security</span>
+<span class="font-headline-md text-headline-md-mobile text-primary font-bold tracking-tight">GuardianNet</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-surface-variant transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary text-[10px] font-bold">JD</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-margin-mobile md:px-margin-desktop max-w-5xl mx-auto min-h-screen flex flex-col">
+<!-- Progress Stepper -->
+<div class="flex justify-center items-center gap-3 mb-10">
+<div class="h-2 w-8 rounded-full bg-surface-variant"></div>
+<div class="h-2 w-8 rounded-full bg-surface-variant"></div>
+<div class="h-2 w-12 rounded-full bg-primary"></div>
+<div class="h-2 w-8 rounded-full bg-surface-variant"></div>
+</div>
+<!-- Content Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+<!-- Left Column: Instructions -->
+<div class="md:col-span-5 flex flex-col gap-6">
+<div>
+<span class="font-label-md text-label-md text-secondary uppercase tracking-widest mb-2 block">Step 3 of 4</span>
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4">Emergency SOS</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                        Your safety is our priority. In the event of a critical threat, GuardianNet provides a direct link to immediate professional assistance.
+                    </p>
+</div>
+<div class="bg-surface-container rounded-xl p-6 border border-outline-variant shadow-sm">
+<h3 class="font-headline-md text-headline-md text-primary mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="emergency_share">emergency_share</span>
+                        How it Works
+                    </h3>
+<ul class="space-y-4">
+<li class="flex gap-3">
+<span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary-container text-white flex items-center justify-center text-[12px] font-bold">1</span>
+<p class="font-body-md text-body-md text-on-surface-variant">Press and hold the SOS button for 3 seconds to prevent accidental triggers.</p>
+</li>
+<li class="flex gap-3">
+<span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary-container text-white flex items-center justify-center text-[12px] font-bold">2</span>
+<p class="font-body-md text-body-md text-on-surface-variant">Local law enforcement and your dedicated security team are alerted instantly with your live location.</p>
+</li>
+<li class="flex gap-3">
+<span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary-container text-white flex items-center justify-center text-[12px] font-bold">3</span>
+<p class="font-body-md text-body-md text-on-surface-variant">A secure audio/video channel opens to document the incident and provide real-time guidance.</p>
+</li>
+</ul>
+</div>
+</div>
+<!-- Right Column: Interactive Demo Area -->
+<div class="md:col-span-7 flex flex-col items-center justify-center py-8">
+<div class="relative group">
+<!-- Outer Pulse Animation (Static Representation) -->
+<div class="absolute inset-0 rounded-full bg-secondary opacity-10 animate-ping"></div>
+<div class="absolute -inset-4 rounded-full border-2 border-secondary/20 border-dashed"></div>
+<!-- SOS Button Container -->
+<div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full bg-surface shadow-xl border border-outline-variant flex items-center justify-center z-10">
+<!-- Progress Ring SVG -->
+<svg class="absolute inset-0 w-full h-full -rotate-90">
+<circle cx="50%" cy="50%" fill="transparent" r="48%" stroke="#E2E8F0" stroke-width="8"></circle>
+<circle class="progress-ring" cx="50%" cy="50%" fill="transparent" r="48%" stroke="#B7131A" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<!-- Central Interaction Core -->
+<button class="w-48 h-48 md:w-56 md:h-56 rounded-full bg-secondary flex flex-col items-center justify-center text-white sos-glow active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined text-[64px] mb-2" data-icon="emergency" data-weight="fill" style="font-variation-settings: 'FILL' 1;">emergency</span>
+<span class="font-headline-md text-headline-md tracking-widest font-extrabold">SOS</span>
+</button>
+<!-- Hold Hint -->
+<div class="absolute -bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap">
+<span class="bg-primary text-white px-4 py-2 rounded-full font-label-md text-label-md flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="touch_app">touch_app</span>
+                                PRESS AND HOLD TO TRIGGER
+                            </span>
+</div>
+</div>
+</div>
+<!-- Status Panel -->
+<div class="mt-20 w-full bg-white rounded-xl border border-outline-variant p-4 shadow-sm max-w-md">
+<div class="flex items-center justify-between mb-4 border-b border-outline-variant pb-3">
+<span class="font-label-md text-label-md text-on-surface-variant">READY STATE</span>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span class="font-data-mono text-data-mono text-green-700">ENCRYPTED CONNECTION</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="location_on">location_on</span>
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold">Signal</p>
+<p class="font-data-mono text-data-mono">Strong (GNSS)</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="shield">shield</span>
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold">Authorities</p>
+<p class="font-data-mono text-data-mono">Standby</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Controls -->
+<footer class="fixed bottom-0 left-0 w-full z-50 bg-surface-container-lowest border-t border-outline-variant px-margin-mobile md:px-margin-desktop py-6">
+<div class="max-w-5xl mx-auto flex items-center justify-between">
+<button class="flex items-center gap-2 px-6 py-3 border border-outline text-primary font-label-md text-label-md rounded-lg hover:bg-surface-variant transition-colors active:scale-95">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+                BACK
+            </button>
+<div class="flex items-center gap-4">
+<button class="font-label-md text-label-md text-on-surface-variant px-4 hover:underline">
+                    Skip Tutorial
+                </button>
+<button class="flex items-center gap-2 px-10 py-3 bg-primary text-white font-label-md text-label-md rounded-lg hover:bg-primary-container transition-colors active:scale-95">
+                    FINISH SETUP
+                    <span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+</button>
+</div>
+</div>
+</footer>
+<!-- Visual Map Context (Faded Background Support) -->
+<div class="fixed inset-0 pointer-events-none opacity-[0.03] z-[-1]">
+<img alt="Map Background" class="w-full h-full object-cover" data-alt="A detailed, technical top-down view of a city street map layout featuring intricate lines, grid patterns, and geometric urban planning. The visual style is minimalist and corporate, utilizing a monochromatic palette of soft grays and deep blues. The aesthetic is clean and professional, conveying a sense of order, surveillance, and structural oversight for an enterprise security application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-AVYwZyeqOcH2PLK3euL1rbg9ZRfRYzzeWHPtVbZ-hVS334xsa4DH7pyxcMjBCdSrONaiE3KfIgnXIxzHup_vwF25hfB-KlOu_w0wCaI9wu6bciCCYNMzW3jRa3LHoHCqugWYzOm5h_iBlY-K6a_kD1X-5qS5DJWYQnFJND5_Uz6ymHjN_2XcYaJNu9YPO90DjFf2EsXy2tg5O_nMgJKLa5WOAMPiNkbA7EN_qNUBHZt8cKzWr_58FFaXsFbPSmvxV1CELX8jMa4"/>
+</div>
+</body></html>

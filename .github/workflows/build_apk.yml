@@ -1,0 +1,60 @@
+name: Build Flutter APK
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:   # Allows manual trigger from GitHub UI
+
+jobs:
+  build-apk:
+    name: Build Android APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.19.0'
+          channel: 'stable'
+          cache: true
+
+      - name: Get dependencies
+        working-directory: stitch_app
+        run: flutter pub get
+
+      - name: Analyze code
+        working-directory: stitch_app
+        run: flutter analyze --no-fatal-infos
+
+      - name: Build Debug APK
+        working-directory: stitch_app
+        run: flutter build apk --debug
+
+      - name: Build Release APK
+        working-directory: stitch_app
+        run: flutter build apk --release --no-shrink
+
+      - name: Upload Debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: guardiannet-debug-apk
+          path: stitch_app/build/app/outputs/flutter-apk/app-debug.apk
+          retention-days: 7
+
+      - name: Upload Release APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: guardiannet-release-apk
+          path: stitch_app/build/app/outputs/flutter-apk/app-release.apk
+          retention-days: 30

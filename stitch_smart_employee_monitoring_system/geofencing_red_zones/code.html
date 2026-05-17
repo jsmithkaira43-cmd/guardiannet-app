@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom map overlay simulation */
+        .map-overlay-red {
+            background: rgba(186, 26, 26, 0.2);
+            border: 2px solid #ba1a1a;
+        }
+        .map-overlay-blue {
+            background: rgba(3, 22, 50, 0.15);
+            border: 2px solid #031632;
+            clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed": "#002204",
+                      "surface-container-lowest": "#ffffff",
+                      "background": "#f8f9ff",
+                      "on-secondary-fixed": "#410002",
+                      "error-container": "#ffdad6",
+                      "surface-container-low": "#eff4ff",
+                      "tertiary-fixed": "#98f994",
+                      "on-primary-fixed": "#081b38",
+                      "secondary-fixed-dim": "#ffb4ac",
+                      "on-surface": "#0b1c30",
+                      "tertiary-fixed-dim": "#7ddc7a",
+                      "on-error-container": "#93000a",
+                      "surface-bright": "#f8f9ff",
+                      "outline-variant": "#c5c6ce",
+                      "surface-variant": "#d3e4fe",
+                      "on-secondary-container": "#fffbff",
+                      "on-tertiary": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "surface-container": "#e5eeff",
+                      "secondary": "#b7131a",
+                      "on-error": "#ffffff",
+                      "surface-dim": "#cbdbf5",
+                      "primary-fixed-dim": "#b6c7eb",
+                      "surface-container-highest": "#d3e4fe",
+                      "secondary-fixed": "#ffdad6",
+                      "secondary-container": "#db322f",
+                      "surface-tint": "#4e5f7e",
+                      "surface-container-high": "#dce9ff",
+                      "surface": "#f8f9ff",
+                      "inverse-surface": "#213145",
+                      "on-secondary": "#ffffff",
+                      "primary-fixed": "#d7e2ff",
+                      "on-primary-container": "#8293b5",
+                      "tertiary": "#001c03",
+                      "primary": "#031632",
+                      "on-secondary-fixed-variant": "#93000d",
+                      "primary-container": "#1a2b48",
+                      "tertiary-container": "#003308",
+                      "on-tertiary-container": "#48a54b",
+                      "inverse-on-surface": "#eaf1ff",
+                      "inverse-primary": "#b6c7eb",
+                      "on-background": "#0b1c30",
+                      "on-tertiary-fixed-variant": "#005313",
+                      "outline": "#75777e",
+                      "on-surface-variant": "#44474d",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed-variant": "#374765"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "32px",
+                      "sidebar-width": "260px",
+                      "unit": "4px",
+                      "gutter": "16px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "label-md": ["Inter"],
+                      "data-mono": ["Inter"]
+              },
+              "fontSize": {
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "data-mono": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- TopAppBar Navigation Shell -->
+<header class="bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container font-headline-md text-headline-md md:font-headline-lg md:text-headline-lg docked full-width top-0 shadow-md flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 z-50 fixed">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+<span class="font-headline-md text-headline-md font-bold text-on-primary tracking-tight">GuardianNet</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined hover:bg-primary-container/20 transition-colors p-2 rounded-full" data-icon="notifications">notifications</button>
+</div>
+</header>
+<!-- Navigation Drawer (Desktop Sidebar) -->
+<nav class="hidden lg:flex flex-col fixed left-0 top-0 h-full z-40 bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container font-label-md text-label-md docked left-0 h-screen w-sidebar-width border-r border-outline-variant shadow-lg pt-24">
+<div class="px-6 mb-8 flex flex-col items-start">
+<div class="w-12 h-12 bg-primary-fixed-dim rounded-full flex items-center justify-center text-primary font-bold mb-3 overflow-hidden">
+<img alt="Admin User" data-alt="A professional headshot of a security operations manager in a dark navy blue uniform. The lighting is dramatic and corporate, featuring a soft blue rim light that matches the enterprise security theme. The background is a blurred high-tech command center with glowing data monitors. The overall aesthetic is authoritative, clean, and modern light-mode compliant." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHv8g3IvZYd8CMhkuPHsp08Axa267CIss5L-xLI9ePsW_WkIErJdFg3x1DooBP-DL6I4QbxIQEaxorWBu2_Z6vr0TirnqtNAH4p2k72w3ME7pqOOCjgYJDi8P9iUjR3J0Ff_r3YFhObIUVOEug8iCbn3N7cGczUE18bruyrgfS_T3rF23F5h2YBB9eCqbz07ufFFUO4jWCdCgztIyj72mA6RhS2mywu_HHRMWaGqcyjZ50LrVZXbuvBelG-UqSwQq1B3mDWIvWmpo"/>
+</div>
+<p class="font-headline-md text-headline-md text-on-primary">Command Center</p>
+<p class="text-primary-fixed-dim opacity-80">System Administrator</p>
+</div>
+<div class="flex flex-col gap-1">
+<a class="text-primary-fixed-dim hover:text-on-primary mx-2 my-1 flex items-center gap-4 px-4 py-3 transition-all duration-200 ease-in-out hover:bg-primary-fixed-dim/10" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+                Live Map
+            </a>
+<a class="bg-secondary-container text-on-secondary-container rounded-lg mx-2 my-1 flex items-center gap-4 px-4 py-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+                Geofencing
+            </a>
+<a class="text-primary-fixed-dim hover:text-on-primary mx-2 my-1 flex items-center gap-4 px-4 py-3 transition-all duration-200 ease-in-out hover:bg-primary-fixed-dim/10" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+                Team Management
+            </a>
+<a class="text-primary-fixed-dim hover:text-on-primary mx-2 my-1 flex items-center gap-4 px-4 py-3 transition-all duration-200 ease-in-out hover:bg-primary-fixed-dim/10" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+                Safety Analytics
+            </a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="lg:ml-sidebar-width pt-20 pb-20 md:pb-8 min-h-screen">
+<div class="p-margin-mobile md:p-margin-desktop max-w-[1400px] mx-auto">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Geofencing &amp; Red Zones</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Configure perimeter safety and restricted movement protocols.</p>
+</div>
+<button class="bg-primary text-on-primary flex items-center gap-2 px-6 py-3 rounded-xl shadow-md hover:opacity-90 transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="add_location_alt">add_location_alt</span>
+<span class="font-label-md text-label-md">ADD NEW ZONE</span>
+</button>
+</div>
+<!-- Bento Layout -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Map View (Primary Canvas) -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-[0_2px_4px_rgba(0,0,0,0.05)] h-[500px] relative">
+<div class="absolute inset-0 bg-slate-200">
+<!-- Simulated Map Background -->
+<img class="w-full h-full object-cover opacity-60 grayscale-[0.5]" data-alt="A high-resolution satellite map of a large industrial complex featuring multiple warehouses and shipping docks. The map is viewed from a top-down perspective with a professional, data-rich aesthetic. The colors are muted and cool, following a corporate security palette of blues and grays. The scene is crisp and detailed, showing intricate site logistics layout." data-location="Chicago, Illinois" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPLUT4sLpiDyjUEHLOiqfepSV93UyGp6tnTxgQBg-MKMVI_PXPr2qbOpL7RcbVA5540u_j5vas2-A3GJPRV2_6zt9vPlgz-5Wtu2qqra9IcMFhFR0-eyyOFh7PCi42AHza3lBg39B_kRa6nmKAiKXRmlvGXE2Q-RmbPRR2cHqgOVWxu2GxahJvZu_pT-dtZe-DzvvbP85T4mwUPsZ183dmJ8I3zmIopAfDlkLKJimmelJ7QMF7QOr7fPUETah8z0RD4obU9A-JFnY"/>
+<!-- Geofence Overlays -->
+<div class="absolute top-1/4 left-1/4 w-48 h-48 rounded-full map-overlay-red flex items-center justify-center">
+<div class="bg-secondary p-1 rounded-full shadow-lg">
+<span class="material-symbols-outlined text-on-secondary text-sm" data-icon="dangerous">dangerous</span>
+</div>
+</div>
+<div class="absolute top-1/3 left-1/2 w-64 h-48 map-overlay-blue flex items-center justify-center">
+<div class="bg-primary p-1 rounded-full shadow-lg">
+<span class="material-symbols-outlined text-on-primary text-sm" data-icon="verified_user">verified_user</span>
+</div>
+</div>
+<!-- Map Controls Floating -->
+<div class="absolute bottom-4 right-4 flex flex-col gap-2">
+<button class="bg-white p-2 rounded-lg shadow-md hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+<button class="bg-white p-2 rounded-lg shadow-md hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="remove">remove</span>
+</button>
+<button class="bg-white p-2 rounded-lg shadow-md hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="layers">layers</span>
+</button>
+</div>
+<!-- Legend Overlay -->
+<div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm p-4 rounded-lg shadow-lg border border-outline-variant max-w-[200px]">
+<h3 class="font-label-md text-label-md text-on-surface mb-2 uppercase tracking-wider">Legend</h3>
+<div class="space-y-2">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-secondary"></div>
+<span class="text-[11px] font-medium">Red Zone (Restricted)</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="text-[11px] font-medium">Safe Geofence</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Alert Panel (Side Column) -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-gutter">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-[0_2px_4px_rgba(0,0,0,0.05)]">
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-headline-md text-headline-md text-on-surface">Active Alerts</h2>
+<span class="bg-secondary/10 text-secondary text-[10px] font-bold px-2 py-0.5 rounded-full border border-secondary/20">2 CRITICAL</span>
+</div>
+<div class="space-y-3">
+<div class="flex gap-3 p-3 bg-error-container rounded-lg border border-error/10">
+<span class="material-symbols-outlined text-secondary" data-icon="warning">warning</span>
+<div>
+<p class="font-label-md text-label-md text-on-error-container">Unidentified Entry</p>
+<p class="text-[11px] text-on-error-container/70">Restricted Zone B • 2m ago</p>
+</div>
+</div>
+<div class="flex gap-3 p-3 bg-error-container rounded-lg border border-error/10">
+<span class="material-symbols-outlined text-secondary" data-icon="bedtime">bedtime</span>
+<div>
+<p class="font-label-md text-label-md text-on-error-container">Dark Movement Alert</p>
+<p class="text-[11px] text-on-error-container/70">Warehousing North • 15m ago</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-primary text-on-primary rounded-xl p-6 shadow-lg">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined" data-icon="privacy_tip">privacy_tip</span>
+<h3 class="font-label-md text-label-md">System Health</h3>
+</div>
+<p class="text-primary-fixed-dim text-[11px] mb-4">All 24 geofencing beacons are transmitting successfully. GPS precision within 0.8m.</p>
+<div class="w-full bg-primary-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary-fixed h-full w-[94%]"></div>
+</div>
+</div>
+</div>
+<!-- Zone Management List (Full Width Section) -->
+<div class="col-span-12">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-[0_2px_4px_rgba(0,0,0,0.05)]">
+<div class="p-6 border-b border-outline-variant flex items-center justify-between">
+<h2 class="font-headline-md text-headline-md text-on-surface">Zone List</h2>
+<div class="flex gap-2">
+<button class="p-2 border border-outline-variant rounded-lg hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="filter_list">filter_list</span>
+</button>
+<button class="p-2 border border-outline-variant rounded-lg hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="search">search</span>
+</button>
+</div>
+</div>
+<!-- Interactive Data Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant">ZONE NAME</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant">TYPE</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant">DARK MOVEMENT</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant">ENTRY/EXIT</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant text-right">ACTIONS</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Zone 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-2 h-8 bg-primary rounded-full"></div>
+<div>
+<p class="font-headline-md text-[15px] text-on-surface">Warehousing North</p>
+<p class="text-[11px] text-on-surface-variant">Area: 1,200 m²</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="bg-primary/10 text-primary text-[10px] font-bold px-2.5 py-1 rounded-md border border-primary/20">SAFE ZONE</span>
+</td>
+<td class="px-6 py-5">
+<button class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none bg-primary">
+<span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</td>
+<td class="px-6 py-5">
+<button class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none bg-primary">
+<span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</td>
+</tr>
+<!-- Zone 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-2 h-8 bg-secondary rounded-full"></div>
+<div>
+<p class="font-headline-md text-[15px] text-on-surface">Restricted Zone B</p>
+<p class="text-[11px] text-on-surface-variant">Area: 450 m²</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="bg-secondary/10 text-secondary text-[10px] font-bold px-2.5 py-1 rounded-md border border-secondary/20">RED ZONE</span>
+</td>
+<td class="px-6 py-5">
+<button class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none bg-outline">
+<span class="translate-x-0 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</td>
+<td class="px-6 py-5">
+<button class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none bg-primary">
+<span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Navigation Shell -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 bg-surface-container-highest dark:bg-surface-container-lowest border-t border-outline-variant shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] flex justify-around items-center px-4 pb-safe h-16">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-label-md text-label-md">Messages</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary-container font-bold bg-primary/10 rounded-xl px-4 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="shutter_speed">shutter_speed</span>
+<span class="font-label-md text-label-md">Safety</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+<!-- Floating Action Button (Mobile Contextual) -->
+<button class="lg:hidden fixed bottom-20 right-6 w-14 h-14 bg-secondary-container text-on-secondary-container rounded-full shadow-2xl flex items-center justify-center active:scale-90 transition-transform z-40">
+<span class="material-symbols-outlined text-3xl" data-icon="add">add</span>
+</button>
+</body></html>

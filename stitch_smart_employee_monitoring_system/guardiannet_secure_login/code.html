@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GuardianNet | Secure Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#b6c7eb",
+                        "tertiary-fixed": "#98f994",
+                        "outline-variant": "#c5c6ce",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#b6c7eb",
+                        "secondary": "#b7131a",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#db322f",
+                        "on-tertiary-container": "#48a54b",
+                        "on-tertiary-fixed": "#002204",
+                        "surface-variant": "#d3e4fe",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#44474d",
+                        "secondary-fixed": "#ffdad6",
+                        "on-surface": "#0b1c30",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#ffb4ac",
+                        "on-primary-container": "#8293b5",
+                        "surface-tint": "#4e5f7e",
+                        "outline": "#75777e",
+                        "tertiary-container": "#003308",
+                        "background": "#f8f9ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "tertiary-fixed-dim": "#7ddc7a",
+                        "surface": "#f8f9ff",
+                        "on-tertiary-fixed-variant": "#005313",
+                        "on-secondary-fixed-variant": "#93000d",
+                        "inverse-surface": "#213145",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#d7e2ff",
+                        "surface-bright": "#f8f9ff",
+                        "primary-container": "#1a2b48",
+                        "on-secondary-container": "#fffbff",
+                        "surface-container-high": "#dce9ff",
+                        "on-error": "#ffffff",
+                        "on-background": "#0b1c30",
+                        "surface-container-low": "#eff4ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "primary": "#031632",
+                        "on-secondary-fixed": "#410002",
+                        "on-primary-fixed": "#081b38",
+                        "tertiary": "#001c03",
+                        "surface-container": "#e5eeff",
+                        "on-primary-fixed-variant": "#374765"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sidebar-width": "260px",
+                        "margin-desktop": "32px",
+                        "unit": "4px",
+                        "gutter": "16px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "data-mono": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "data-mono": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body-md text-on-background min-h-screen flex items-center justify-center overflow-x-hidden">
+<!-- Background Decoration -->
+<div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+<div class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-surface-container-highest rounded-full blur-[120px] opacity-50"></div>
+<div class="absolute -bottom-[10%] -right-[10%] w-[50%] h-[50%] bg-surface-variant rounded-full blur-[120px] opacity-40"></div>
+</div>
+<!-- Auth Container -->
+<main class="relative z-10 w-full max-w-[1200px] grid grid-cols-1 lg:grid-cols-12 gap-0 lg:shadow-xl lg:rounded-xl overflow-hidden bg-white">
+<!-- Branding Side (Left) -->
+<section class="hidden lg:flex lg:col-span-7 bg-primary relative p-12 flex-col justify-between text-on-primary">
+<div class="absolute inset-0 opacity-20">
+<img alt="Security Infrastructure" class="w-full h-full object-cover grayscale brightness-50" data-alt="A professional, high-tech security operations center with glowing blue server racks and digital interfaces. The scene is depicted with a cinematic wide-angle lens, emphasizing cold, navy blue tones and sharp industrial lines. Soft ambient light from the monitors creates a focused, authoritative atmosphere of constant vigilance and modern enterprise protection. The image feels deep, technical, and immensely secure." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWx5RbINWJE-nF_JQhpCRYcmeiMhLXeVkOe_lZN6fjVFOT3QWHAI2SQ8kwTTn3LLP1CpfFvTEJP1TK62ITRmt23ubuo5TL39BjSP65BB9M9R2UzFg8Ds_jR3tPC64Qo-BXm1yCahijZCll8h-3-TxcxRXoV7nW5sf50BXTbSz-P60yzmd_WO1fOro6KQ9eoNOhHS8t-v6qo_xfxLrpwgRr-HAXYS9k055uLkRO-BvnBJ26_-0i4H8GXpVJ8U23aLtVVf5GkSJN1XQ"/>
+</div>
+<div class="relative z-10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[40px] text-inverse-primary" data-icon="security">security</span>
+<h1 class="font-headline-lg text-headline-lg tracking-tight text-white">GuardianNet</h1>
+</div>
+<div class="mt-8 max-w-md">
+<h2 class="font-headline-md text-headline-md text-inverse-primary mb-4">Enterprise-Grade Personnel Protection</h2>
+<p class="font-body-lg text-body-lg text-on-primary/80 leading-relaxed">
+                        Securely manage operative safety, real-time tracking, and incident response through a unified command interface.
+                    </p>
+</div>
+</div>
+<div class="relative z-10 border-t border-on-primary/20 pt-8 flex items-center gap-6">
+<div class="flex -space-x-3">
+<img class="w-10 h-10 rounded-full border-2 border-primary" data-alt="Close up portrait of a professional corporate security director with a confident expression, soft natural lighting in a modern office." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvf525SAfK7xiXoXWvUrjKWYU7UKJjxPF92rYFgNTGXxwTkB0PcwCcozI4QjOZZnmnfkAwUqDYmuo1fGDvbBDyF1oCfLnlYt9gove-rehDWLa8rEVycfksyL5Rjz1lmZimIGPhylKB9kppq0Gddlldt3Y4HHUt-Z6Yp_n8Sr12JeImSg4KtnAc-Ubpd148IECb3OhJNHYC1c3ujyU4l3Q6uA1LdiTxDRZM8MfIutfnuVW5MbiyssYePYujaQ7emKyMI9xLN2VWRyo"/>
+<img class="w-10 h-10 rounded-full border-2 border-primary" data-alt="Portrait of a female safety officer in professional attire, high-key corporate lighting, modern minimalist background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJO758btN-U1kilgl3qBpbBjhaKor3SanVROBB4PFkyMdncP6qB2dBl2d0Y9J-0X5iZCC9umeK3z8Mk6ekHDp1zULYxnaYWOFPEDInfJR6DkWY65DpjECDt5hbtWcW0uyM1KKyKldyYzGWVRlv9yViqMZwhvOS4ShZU0D9TmKg8S2I_AgGyos8M0qDBif9QmnDVLn6LoCceMdtAZSeQogpS4xem4hOO-4hS6DfY_wwZiJAEkTmXAuqM2GWZt0e0WrdYk0gFsT9cFk"/>
+<div class="w-10 h-10 rounded-full bg-primary-container border-2 border-primary flex items-center justify-center text-[10px] font-bold">+500</div>
+</div>
+<p class="text-label-md font-label-md opacity-70 italic">Trusted by Global Operations Managers</p>
+</div>
+</section>
+<!-- Login Form Side (Right) -->
+<section class="col-span-1 lg:col-span-5 flex flex-col justify-center p-8 md:p-12 lg:p-16 bg-surface">
+<!-- Mobile Header -->
+<div class="flex lg:hidden items-center gap-2 mb-12">
+<span class="material-symbols-outlined text-primary text-[32px]" data-icon="security">security</span>
+<span class="font-headline-md text-headline-md text-primary">GuardianNet</span>
+</div>
+<div class="mb-10">
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-2">Welcome Back</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Access your secure security dashboard.</p>
+</div>
+<form action="#" class="space-y-6" onsubmit="return false;">
+<!-- Corporate Email -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant block uppercase tracking-wider" for="email">Corporate Email</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="mail">mail</span>
+<input class="w-full pl-10 pr-4 py-3 bg-white border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none font-body-md text-on-surface" id="email" placeholder="name@company.com" type="email"/>
+</div>
+</div>
+<!-- Password -->
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<label class="font-label-md text-label-md text-on-surface-variant block uppercase tracking-wider" for="password">Password</label>
+<a class="text-label-md font-label-md text-secondary hover:underline" href="#">Forgot password?</a>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="lock">lock</span>
+<input class="w-full pl-10 pr-12 py-3 bg-white border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none font-body-md text-on-surface" id="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface" type="button">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+<!-- Remember Me -->
+<div class="flex items-center gap-2">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" id="remember" type="checkbox"/>
+<label class="font-body-md text-body-md text-on-surface-variant select-none" for="remember">Remember this device</label>
+</div>
+<!-- Login CTA -->
+<button class="w-full bg-primary text-on-primary py-4 rounded-lg font-label-md text-label-md flex items-center justify-center gap-2 hover:opacity-90 transition-opacity active:scale-[0.98] duration-150" type="submit">
+                    SIGN IN TO DASHBOARD
+                    <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</form>
+<!-- Divider -->
+<div class="my-10 flex items-center gap-4">
+<div class="h-[1px] flex-1 bg-outline-variant"></div>
+<span class="font-label-md text-label-md text-outline uppercase">Enterprise SSO</span>
+<div class="h-[1px] flex-1 bg-outline-variant"></div>
+</div>
+<!-- SSO Options -->
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-3 py-3 border border-outline-variant rounded-lg font-label-md text-label-md text-on-surface hover:bg-surface-container-low transition-colors">
+<img alt="Google" class="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdvA0tz2IFgaQ8l3c6qECbnKxbx8gnAzaYocH5n4s0Eie-Bq5hjXSt058mYHSd5hhmRsuzecha3gJYh3UxFrAZau4KwQSGd1ePYX-9Wbx00kJaC-O5r_qZTgSnoflU-JgdP4kAgoyB3USOYZMQ65GNowxKT9770zuZ5B8Ju_im0z1cwIHUmYfMz4UCSPVKP0zOxzKgq7wRu0mEXe6WlBlrl8N75eep2l0lSeClQPng8ha5suYAU4AqgxZhvYjHOJYsf1M9C7lA3Lk"/>
+                    GOOGLE
+                </button>
+<button class="flex items-center justify-center gap-3 py-3 border border-outline-variant rounded-lg font-label-md text-label-md text-on-surface hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-primary" data-icon="corporate_fare">corporate_fare</span>
+                    ADFS
+                </button>
+</div>
+<p class="mt-12 text-center text-label-md font-label-md text-on-surface-variant">
+                By logging in, you agree to our 
+                <a class="text-primary hover:underline" href="#">Privacy Policy</a> and 
+                <a class="text-primary hover:underline" href="#">System Protocols</a>.
+            </p>
+</section>
+</main>
+<!-- Footer Meta -->
+<div class="fixed bottom-6 w-full text-center pointer-events-none z-0">
+<p class="text-label-md font-label-md text-outline opacity-50 uppercase tracking-[0.2em]">GuardianNet Security Cloud • v4.2.1-PRO</p>
+</div>
+</body></html>

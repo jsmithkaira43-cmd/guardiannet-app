@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#cbdbf5",
+                    "primary-container": "#1a2b48",
+                    "secondary-fixed-dim": "#ffb4ac",
+                    "on-secondary-fixed-variant": "#93000d",
+                    "on-tertiary-fixed": "#002204",
+                    "on-secondary-fixed": "#410002",
+                    "background": "#f8f9ff",
+                    "surface": "#f8f9ff",
+                    "secondary-container": "#db322f",
+                    "on-background": "#0b1c30",
+                    "surface-container": "#e5eeff",
+                    "surface-tint": "#4e5f7e",
+                    "surface-container-low": "#eff4ff",
+                    "on-primary-container": "#8293b5",
+                    "outline": "#75777e",
+                    "primary": "#031632",
+                    "inverse-primary": "#b6c7eb",
+                    "on-tertiary": "#ffffff",
+                    "surface-variant": "#d3e4fe",
+                    "on-secondary-container": "#fffbff",
+                    "surface-container-high": "#dce9ff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-primary-fixed": "#081b38",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-container": "#48a54b",
+                    "on-surface": "#0b1c30",
+                    "on-tertiary-fixed-variant": "#005313",
+                    "primary-fixed": "#d7e2ff",
+                    "tertiary-fixed-dim": "#7ddc7a",
+                    "tertiary": "#001c03",
+                    "on-primary-fixed-variant": "#374765",
+                    "secondary-fixed": "#ffdad6",
+                    "tertiary-fixed": "#98f994",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary": "#b7131a",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#213145",
+                    "surface-container-highest": "#d3e4fe",
+                    "outline-variant": "#c5c6ce",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#44474d",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#003308",
+                    "primary-fixed-dim": "#b6c7eb",
+                    "surface-bright": "#f8f9ff",
+                    "on-secondary": "#ffffff",
+                    "error": "#ba1a1a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sidebar-width": "260px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "32px",
+                    "gutter": "16px",
+                    "unit": "4px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "data-mono": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "data-mono": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-grid-subtle {
+            background-image: radial-gradient(#e5eeff 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen flex flex-col">
+<!-- Top Navigation Shell suppressed for Task-Focused Onboarding Flow -->
+<main class="flex-grow flex items-center justify-center px-margin-mobile md:px-margin-desktop py-12 bg-grid-subtle">
+<div class="max-w-4xl w-full grid grid-cols-1 md:grid-cols-12 gap-gutter bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<!-- Content Section -->
+<div class="md:col-span-7 p-8 md:p-12 flex flex-col">
+<div class="mb-8">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-surface-container text-primary font-label-md text-label-md mb-4 uppercase tracking-wider">
+                        Step 02 / 05
+                    </span>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4">
+                        Red Zones &amp; Geofencing
+                    </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-prose">
+                        Maintain situational awareness with automated perimeter monitoring. Our geofencing technology identifies high-risk areas and ensures you stay within authorized operational boundaries.
+                    </p>
+</div>
+<div class="space-y-6 flex-grow">
+<div class="flex items-start gap-4 p-4 rounded-lg bg-error-container/20 border border-error/10">
+<span class="material-symbols-outlined text-secondary shrink-0" data-icon="report" style="font-variation-settings: 'FILL' 1;">report</span>
+<div>
+<h3 class="font-headline-md text-headline-md text-secondary mb-1">Instant Alerts</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                                Receive immediate push notifications and haptic feedback when your device enters or approaches a pre-defined restricted zone.
+                            </p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-4 rounded-lg bg-surface-container-low border border-outline-variant">
+<span class="material-symbols-outlined text-primary shrink-0" data-icon="security">security</span>
+<div>
+<h3 class="font-headline-md text-headline-md text-primary mb-1">Protective Escort</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                                If you remain within a Red Zone for more than 60 seconds, GuardianNet automatically initiates an encrypted status check.
+                            </p>
+</div>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="mt-12 flex items-center justify-between border-t border-outline-variant pt-8">
+<button class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-outline text-on-surface font-label-md text-label-md hover:bg-surface-variant transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_back">arrow_back</span>
+                        Back
+                    </button>
+<button class="inline-flex items-center gap-2 px-8 py-3 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-all shadow-sm active:scale-95 duration-150">
+                        Next Step
+                        <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Visual Preview Section -->
+<div class="md:col-span-5 bg-surface-container-low relative flex flex-col">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover grayscale-[0.2] contrast-[1.1]" data-alt="A high-fidelity satellite map view of a modern urban financial district with glass-clad skyscrapers. A large, translucent circular red zone is superimposed over a specific city block, glowing with a soft intensity. The visual style is clean, corporate, and technical, using a palette of deep blues and charcoal grays with the vibrant red zone as a focal point. Soft directional lighting suggests a high-tech security monitoring interface." data-location="Metropolis Financial District" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9ul1NnX7n1YGgnJ6ANUJP-HZUxUPT3lifsuoW-g2jkSOLeaFteU-qiontZlBTPaE7x06CQ0T-TCwDa4YOwliBJB55fN4ELqcW05lE_8GPc9NMv-yj1E8B03SYnHhy17YxXz4YpS9OkmIimAm-vxNT6KxbnEcX-vMltFR3YLrxQuYNb1W44rMq_Y8coSt5jaXSXVgOXZcBiIuw-MM1YvnAuEmKeyUR_zEpdq_hEVYOyLYZIMWhmyzVYVCL6iKyPZ_nKa6VRK5nIFo"/>
+</div>
+<!-- Map Overlay Elements -->
+<div class="relative z-10 p-6 flex flex-col h-full justify-between pointer-events-none">
+<div class="flex justify-end">
+<div class="bg-surface-container-lowest/90 backdrop-blur-md p-3 rounded-xl border border-outline-variant shadow-lg pointer-events-auto">
+<div class="flex items-center gap-2 mb-2">
+<div class="w-2 h-2 rounded-full bg-secondary animate-pulse"></div>
+<span class="font-label-md text-label-md text-secondary">RESTRICTED AREA</span>
+</div>
+<div class="text-[10px] text-on-surface-variant font-data-mono uppercase tracking-tighter">
+                                Zone ID: GN-4491-X
+                            </div>
+</div>
+</div>
+<div class="w-full">
+<div class="bg-secondary text-on-secondary p-4 rounded-xl shadow-xl border border-on-secondary-fixed-variant flex items-center gap-4 pointer-events-auto">
+<div class="bg-white/20 p-2 rounded-lg">
+<span class="material-symbols-outlined" data-icon="warning" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div>
+<div class="font-label-md text-label-md opacity-80 uppercase tracking-widest">Warning</div>
+<div class="font-headline-md text-headline-md leading-tight">Entering Red Zone</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Technical Detail Overlay -->
+<div class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-primary/80 to-transparent pointer-events-none p-6 flex items-end">
+<div class="grid grid-cols-2 gap-4 w-full">
+<div class="space-y-1">
+<div class="text-[10px] text-surface-variant font-label-md uppercase">GPS Accuracy</div>
+<div class="font-data-mono text-white text-body-md">± 1.2m</div>
+</div>
+<div class="space-y-1">
+<div class="text-[10px] text-surface-variant font-label-md uppercase">Zone Radius</div>
+<div class="font-data-mono text-white text-body-md">250m</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Nav suppressed for Task-Focused Flow -->
+</body></html>

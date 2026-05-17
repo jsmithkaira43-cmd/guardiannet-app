@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GuardianNet | Notification Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#001c03",
+                        "on-primary-fixed-variant": "#374765",
+                        "surface-container-high": "#dce9ff",
+                        "on-surface-variant": "#44474d",
+                        "on-primary-container": "#8293b5",
+                        "on-secondary-fixed": "#410002",
+                        "secondary": "#b7131a",
+                        "primary-fixed-dim": "#b6c7eb",
+                        "on-tertiary-fixed": "#002204",
+                        "on-secondary-container": "#fffbff",
+                        "error-container": "#ffdad6",
+                        "background": "#f8f9ff",
+                        "on-primary": "#ffffff",
+                        "surface": "#f8f9ff",
+                        "on-background": "#0b1c30",
+                        "on-secondary-fixed-variant": "#93000d",
+                        "outline-variant": "#c5c6ce",
+                        "on-tertiary-container": "#48a54b",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#f8f9ff",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#213145",
+                        "secondary-fixed": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "primary-fixed": "#d7e2ff",
+                        "surface-dim": "#cbdbf5",
+                        "tertiary-fixed": "#98f994",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "secondary-container": "#db322f",
+                        "surface-container-low": "#eff4ff",
+                        "primary-container": "#1a2b48",
+                        "surface-tint": "#4e5f7e",
+                        "on-surface": "#0b1c30",
+                        "outline": "#75777e",
+                        "tertiary-fixed-dim": "#7ddc7a",
+                        "primary": "#031632",
+                        "surface-container": "#e5eeff",
+                        "secondary-fixed-dim": "#ffb4ac",
+                        "tertiary-container": "#003308",
+                        "on-primary-fixed": "#081b38",
+                        "inverse-primary": "#b6c7eb",
+                        "on-tertiary-fixed-variant": "#005313"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "sidebar-width": "260px",
+                        "unit": "4px",
+                        "margin-desktop": "32px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "data-mono": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "data-mono": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-primary dark:bg-primary-container shadow-md flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 z-50 fixed top-0 left-0">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-primary" data-icon="security">security</span>
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary tracking-tight">GuardianNet</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-primary hover:bg-primary-container/20 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="md:hidden text-on-primary">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+</header>
+<!-- Side Navigation Drawer (Desktop) -->
+<aside class="hidden lg:flex flex-col fixed left-0 top-0 h-full z-40 bg-primary dark:bg-primary-container border-r border-outline-variant shadow-lg w-sidebar-width pt-24">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="Admin User" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnL5KtoswULe8-uvqPP64yz3h-6vD87Qm63plsjQVBizJYNA0bXUCK8BA_VMIxc4YLImyP7zpPMm_6KmpvsNchurl2s5CMzIFw6CvxmgKa6QTTFzqV8vCo7AQhpdgtmTXSuMSmPrhLVM9_0Zmsampxt2v1dkEv1YHaa4ozm4hp7Z_bmkAk4qduK7TguELLIfp0D6jH22E96AbgfAUmKF7ox5TSBq7XyKeVGusEybGYRqyYn8wFsJSlfeEDxghAciawPzlFeWFbAlw"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-primary">Command Center</p>
+<p class="text-[10px] text-primary-fixed-dim uppercase tracking-wider">System Administrator</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 text-primary-fixed-dim hover:text-on-primary mx-2 my-1 px-4 py-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="font-label-md text-label-md">Live Map</span>
+</a>
+<a class="flex items-center gap-3 text-primary-fixed-dim hover:text-on-primary mx-2 my-1 px-4 py-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="font-label-md text-label-md">Geofencing</span>
+</a>
+<a class="flex items-center gap-3 text-primary-fixed-dim hover:text-on-primary mx-2 my-1 px-4 py-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-md text-label-md">Team Management</span>
+</a>
+<a class="flex items-center gap-3 text-primary-fixed-dim hover:text-on-primary mx-2 my-1 px-4 py-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+<span class="font-label-md text-label-md">Safety Analytics</span>
+</a>
+<div class="mx-4 my-4 border-t border-primary-container/30"></div>
+<a class="flex items-center gap-3 bg-secondary-container text-on-secondary-container rounded-lg mx-2 my-1 px-4 py-3 shadow-md" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Notification Settings</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:ml-[260px] pt-24 pb-20 md:pb-8 px-margin-mobile md:px-margin-desktop bg-background min-h-screen">
+<div class="max-w-5xl mx-auto">
+<!-- Header Section -->
+<div class="mb-8">
+<h2 class="font-headline-lg text-headline-lg text-on-background mb-2">Notification Settings</h2>
+<p class="font-body-md text-on-surface-variant">Configure alert thresholds and delivery channels for enterprise-wide safety monitoring.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Left Column: Alerts & Toggles -->
+<div class="md:col-span-8 space-y-gutter">
+<!-- Safety Alerts Card -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0_2px_4px_rgba(0,0,0,0.05)] overflow-hidden">
+<div class="bg-surface-container-low px-6 py-4 border-b border-outline-variant flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="shutter_speed">shutter_speed</span>
+                                Safety Alerts
+                            </h3>
+<span class="bg-tertiary-container text-on-tertiary-container px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-widest">Active Monitoring</span>
+</div>
+<div class="p-0">
+<!-- Alert Item: Geofence -->
+<div class="px-6 py-4 flex items-center justify-between border-b border-outline-variant/50 hover:bg-surface-container-high/20 transition-colors">
+<div class="flex-1">
+<p class="font-label-md text-on-surface">Geofence Breaches</p>
+<p class="text-[12px] text-on-surface-variant">Notify when personnel exit defined operational zones.</p>
+</div>
+<div class="flex items-center gap-3">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+<!-- Alert Item: Red Zone (Critical) -->
+<div class="px-6 py-4 flex items-center justify-between border-b border-outline-variant/50 hover:bg-surface-container-high/20 transition-colors">
+<div class="flex-1">
+<p class="font-label-md text-secondary">Red Zone Entry (Critical)</p>
+<p class="text-[12px] text-on-surface-variant">Instant override alerts for unauthorized entry into restricted hazard areas.</p>
+</div>
+<div class="flex items-center gap-3">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+</div>
+<!-- Alert Item: Dark Movement -->
+<div class="px-6 py-4 flex items-center justify-between border-b border-outline-variant/50 hover:bg-surface-container-high/20 transition-colors">
+<div class="flex-1">
+<p class="font-label-md text-on-surface">Dark Movement Alerts</p>
+<p class="text-[12px] text-on-surface-variant">Detection of personnel movement in unlit or low-visibility sectors.</p>
+</div>
+<div class="flex items-center gap-3">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+<!-- Alert Item: System Health -->
+<div class="px-6 py-4 flex items-center justify-between hover:bg-surface-container-high/20 transition-colors">
+<div class="flex-1">
+<p class="font-label-md text-on-surface">System Health</p>
+<p class="text-[12px] text-on-surface-variant">Network connectivity status and hardware heartbeat monitoring.</p>
+</div>
+<div class="flex items-center gap-3">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+</section>
+<!-- Delivery Methods -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0_2px_4px_rgba(0,0,0,0.05)] overflow-hidden">
+<div class="bg-surface-container-low px-6 py-4 border-b border-outline-variant">
+<h3 class="font-headline-md text-headline-md flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="send">send</span>
+                                Delivery Channels
+                            </h3>
+</div>
+<div class="p-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+<!-- Push Notifications -->
+<div class="border border-outline-variant rounded-lg p-4 flex flex-col items-center text-center gap-3 hover:border-primary hover:bg-primary/5 transition-all group">
+<span class="material-symbols-outlined text-3xl text-outline group-hover:text-primary" data-icon="notifications_active">notifications_active</span>
+<div>
+<p class="font-label-md text-on-surface">Push</p>
+<p class="text-[10px] text-on-surface-variant uppercase">Desktop &amp; Mobile</p>
+</div>
+<input checked="" class="w-5 h-5 text-primary rounded border-outline-variant focus:ring-primary" type="checkbox"/>
+</div>
+<!-- SMS -->
+<div class="border border-outline-variant rounded-lg p-4 flex flex-col items-center text-center gap-3 hover:border-primary hover:bg-primary/5 transition-all group">
+<span class="material-symbols-outlined text-3xl text-outline group-hover:text-primary" data-icon="sms">sms</span>
+<div>
+<p class="font-label-md text-on-surface">SMS</p>
+<p class="text-[10px] text-on-surface-variant uppercase">Emergency Backup</p>
+</div>
+<input checked="" class="w-5 h-5 text-primary rounded border-outline-variant focus:ring-primary" type="checkbox"/>
+</div>
+<!-- Email -->
+<div class="border border-outline-variant rounded-lg p-4 flex flex-col items-center text-center gap-3 hover:border-primary hover:bg-primary/5 transition-all group">
+<span class="material-symbols-outlined text-3xl text-outline group-hover:text-primary" data-icon="mail">mail</span>
+<div>
+<p class="font-label-md text-on-surface">Email</p>
+<p class="text-[10px] text-on-surface-variant uppercase">Shift Summaries</p>
+</div>
+<input class="w-5 h-5 text-primary rounded border-outline-variant focus:ring-primary" type="checkbox"/>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Schedule & Metadata -->
+<div class="md:col-span-4 space-y-gutter">
+<!-- Quiet Hours Card -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0_2px_4px_rgba(0,0,0,0.05)] overflow-hidden">
+<div class="bg-surface-container-low px-6 py-4 border-b border-outline-variant flex items-center justify-between">
+<h3 class="font-label-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="bedtime">bedtime</span>
+                                Quiet Hours
+                            </h3>
+<label class="relative inline-flex items-center cursor-pointer scale-75">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="p-6 space-y-4">
+<div class="space-y-2">
+<label class="text-[12px] font-bold text-on-surface-variant uppercase tracking-wider">Start Time</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border-outline-variant rounded-lg px-4 py-2 text-on-surface focus:ring-primary focus:border-primary transition-all" type="time" value="22:00"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-[12px] font-bold text-on-surface-variant uppercase tracking-wider">End Time</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border-outline-variant rounded-lg px-4 py-2 text-on-surface focus:ring-primary focus:border-primary transition-all" type="time" value="06:00"/>
+</div>
+</div>
+<div class="pt-2">
+<p class="text-[11px] text-on-surface-variant italic">Note: Critical Red Zone Entry alerts will bypass Quiet Hours settings to ensure maximum safety oversight.</p>
+</div>
+</div>
+</section>
+<!-- Quick Status Banner -->
+<div class="bg-primary-container p-6 rounded-xl border border-primary/20 relative overflow-hidden group">
+<div class="relative z-10">
+<p class="font-label-md text-on-primary-container mb-1">Global Override</p>
+<p class="text-[11px] text-on-primary-container/80 mb-4">Temporarily silence all non-critical notifications for the next hour.</p>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-label-md w-full active:scale-95 transition-all shadow-md">
+                                Enable DND Mode
+                            </button>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-8xl" data-icon="do_not_disturb_on">do_not_disturb_on</span>
+</div>
+</div>
+<!-- Info Illustration -->
+<div class="rounded-xl overflow-hidden border border-outline-variant h-48 relative">
+<img alt="Security Ops" class="w-full h-full object-cover" data-alt="A high-tech control room environment with multiple glowing blue monitor screens displaying intricate global maps and safety telemetry data. The atmosphere is professional and sophisticated, with a deep navy and slate color palette. Soft, focused ambient lighting highlights the precision of the security equipment, creating an authoritative and vigilant mood consistent with enterprise security standards." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRL3XRrQRkLXGxTW6J_sL5fZq-VuxkkusXRlncVWvGRjvxytFwakEigjBmkpt17uV5JuUp9dApN6gr9pyeVd4pyU9XnyrGPxafHTkKw4PtT9VOG5-wQ-0Xs37TixDu9als0oBiLti3Epv1wCkNJWwYefDimtSxGfXaGpo514ZK3no4mGgNad9M610eoaC9TvZUjmqug14b73qCO-KP8V8Q57hdXMg7kFfX-zC6MsQYAlpuZG-DnA7cLBFx9mIE-OpiXVJdKPeIK20"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex items-end p-4">
+<p class="text-on-primary text-[12px] font-medium leading-tight">GuardianNet uses AI-driven prioritization to ensure you only see what matters.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="mt-12 flex flex-col md:flex-row items-center justify-between border-t border-outline-variant pt-8 gap-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary-container animate-pulse"></span>
+<p class="text-[12px] text-on-surface-variant">Last profile sync: Today at 08:42 AM</p>
+</div>
+<div class="flex gap-4 w-full md:w-auto">
+<button class="flex-1 md:flex-none border border-outline-variant text-on-surface px-8 py-2.5 rounded-lg font-label-md text-label-md hover:bg-surface-container transition-colors">
+                        Reset Defaults
+                    </button>
+<button class="flex-1 md:flex-none bg-primary text-on-primary px-12 py-2.5 rounded-lg font-label-md text-label-md shadow-lg active:scale-95 transition-all">
+                        Save Configuration
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-safe h-16 bg-surface-container-highest dark:bg-surface-container-lowest border-t border-outline-variant shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-label-md text-label-md">Messages</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="shutter_speed">shutter_speed</span>
+<span class="font-label-md text-label-md">Safety</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary-container font-bold bg-primary/10 rounded-xl px-4 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+</body></html>

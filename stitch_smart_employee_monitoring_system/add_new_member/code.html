@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#1a2b48",
+                    "secondary-fixed-dim": "#ffb4ac",
+                    "primary-fixed-dim": "#b6c7eb",
+                    "inverse-on-surface": "#eaf1ff",
+                    "primary-fixed": "#d7e2ff",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed": "#002204",
+                    "on-primary-container": "#8293b5",
+                    "inverse-surface": "#213145",
+                    "outline-variant": "#c5c6ce",
+                    "on-primary": "#ffffff",
+                    "on-background": "#0b1c30",
+                    "surface-variant": "#d3e4fe",
+                    "on-primary-fixed": "#081b38",
+                    "tertiary": "#001c03",
+                    "on-secondary-container": "#fffbff",
+                    "surface-tint": "#4e5f7e",
+                    "surface-container-highest": "#d3e4fe",
+                    "primary": "#031632",
+                    "on-tertiary-container": "#48a54b",
+                    "on-surface-variant": "#44474d",
+                    "surface": "#f8f9ff",
+                    "secondary": "#b7131a",
+                    "on-primary-fixed-variant": "#374765",
+                    "tertiary-container": "#003308",
+                    "surface-bright": "#f8f9ff",
+                    "surface-dim": "#cbdbf5",
+                    "secondary-fixed": "#ffdad6",
+                    "tertiary-fixed": "#98f994",
+                    "secondary-container": "#db322f",
+                    "outline": "#75777e",
+                    "inverse-primary": "#b6c7eb",
+                    "on-error": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "background": "#f8f9ff",
+                    "surface-container-high": "#dce9ff",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed-variant": "#005313",
+                    "on-surface": "#0b1c30",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "surface-container-low": "#eff4ff",
+                    "tertiary-fixed-dim": "#7ddc7a",
+                    "on-secondary-fixed": "#410002",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#93000d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "32px",
+                    "sidebar-width": "260px",
+                    "margin-mobile": "16px",
+                    "gutter": "16px",
+                    "unit": "4px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "data-mono": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "data-mono": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container font-headline-md text-headline-md md:font-headline-lg md:text-headline-lg docked full-width top-0 bg-primary dark:bg-primary-container shadow-md flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 z-50 fixed">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-primary" data-icon="security">security</span>
+<span class="font-headline-md text-headline-md font-bold text-on-primary tracking-tight">GuardianNet</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:bg-primary-container/20 transition-colors p-2 rounded-full">
+<span class="material-symbols-outlined text-on-primary" data-icon="notifications">notifications</span>
+</button>
+</div>
+</header>
+<!-- Navigation Drawer (Desktop) -->
+<aside class="hidden lg:flex flex-col fixed left-0 top-0 h-full z-40 bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container font-label-md text-label-md docked left-0 h-screen w-sidebar-width border-r border-outline-variant shadow-lg pt-24">
+<div class="px-6 mb-8 flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden">
+<img alt="Admin User" class="w-full h-full object-cover" data-alt="A professional close-up headshot of a corporate system administrator in a clean, modern office environment. The lighting is bright and professional, utilizing the light-mode GuardianNet color palette of navy and soft grays. The individual wears professional attire, looking directly at the camera with a helpful and authoritative expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC36GMqEydJOOnCdkrMXOMmdhv0S3IsFilCdgMya9Qq_y5W4WHpWAzGopi8GRXhRqaF6HiRZemVTVXNfyCmXV_yifuLeCjE5tMdb-tifrUAK7dhO6ig0dRYHv00qg-tfBLkAmUZKGhHX_wjzzq_7fq759uOLS1FpoDL6HiTRW89uA0JgvWZurSdmKRnIgVfiIzIvb9nMkh7OEVdsdeLvEVdpAJ0jImVkS2-0JcEs9FjI_S1dPaM_KkRc2V0VAOXQ2lwP0wJYsSILkU"/>
+</div>
+<div>
+<p class="font-bold text-on-primary">Command Center</p>
+<p class="text-primary-fixed-dim text-[10px]">System Administrator</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="text-primary-fixed-dim hover:text-on-primary mx-2 my-1 flex items-center gap-3 px-4 py-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+                Live Map
+            </a>
+<a class="bg-secondary-container text-on-secondary-container rounded-lg mx-2 my-1 flex items-center gap-3 px-4 py-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+                Team Management
+            </a>
+<a class="text-primary-fixed-dim hover:text-on-primary mx-2 my-1 flex items-center gap-3 px-4 py-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+                Geofencing
+            </a>
+<a class="text-primary-fixed-dim hover:text-on-primary mx-2 my-1 flex items-center gap-3 px-4 py-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+                Safety Analytics
+            </a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:ml-sidebar-width pt-24 pb-20 md:pb-10 px-margin-mobile md:px-margin-desktop max-w-5xl mx-auto">
+<!-- Header Section -->
+<div class="mb-8 flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">Add New Member</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Onboard a new operative to the GuardianNet security ecosystem.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Left Column: Form Fields -->
+<div class="md:col-span-8 space-y-6">
+<!-- Basic Details Card -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0_2px_4px_rgba(0,0,0,0.05)] overflow-hidden">
+<div class="px-6 py-4 border-b border-outline-variant bg-surface-container-low">
+<h2 class="font-headline-md text-headline-md text-primary">Basic Details</h2>
+</div>
+<div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface">Full Name</label>
+<input class="border border-outline rounded-lg px-4 py-2.5 bg-white focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all text-body-md" placeholder="e.g. Johnathan Sentinel" type="text"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface">Employee ID</label>
+<input class="border border-outline rounded-lg px-4 py-2.5 bg-white focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all text-body-md" placeholder="GN-XXXXX" type="text"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface">Email Address</label>
+<input class="border border-outline rounded-lg px-4 py-2.5 bg-white focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all text-body-md" placeholder="name@guardiannet.com" type="email"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface">Phone Number</label>
+<input class="border border-outline rounded-lg px-4 py-2.5 bg-white focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all text-body-md" placeholder="+1 (555) 000-0000" type="tel"/>
+</div>
+</div>
+</section>
+<!-- Professional Info Card -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0_2px_4px_rgba(0,0,0,0.05)] overflow-hidden">
+<div class="px-6 py-4 border-b border-outline-variant bg-surface-container-low">
+<h2 class="font-headline-md text-headline-md text-primary">Professional Info</h2>
+</div>
+<div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface">Role</label>
+<div class="relative">
+<select class="w-full appearance-none border border-outline rounded-lg px-4 py-2.5 bg-white focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all text-body-md cursor-pointer">
+<option disabled="" selected="" value="">Select assigned role</option>
+<option>Admin</option>
+<option>Field Staff</option>
+<option>Dispatcher</option>
+<option>Security Lead</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface">Department</label>
+<div class="relative">
+<select class="w-full appearance-none border border-outline rounded-lg px-4 py-2.5 bg-white focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all text-body-md cursor-pointer">
+<option disabled="" selected="" value="">Select department</option>
+<option>Global Safety &amp; Logistics</option>
+<option>Maintenance</option>
+<option>Security Operations</option>
+<option>IT Infrastructure</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Permissions & Preview -->
+<div class="md:col-span-4 space-y-6">
+<!-- Permissions Card -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0_2px_4px_rgba(0,0,0,0.05)] overflow-hidden">
+<div class="px-6 py-4 border-b border-outline-variant bg-surface-container-low">
+<h2 class="font-headline-md text-headline-md text-primary">Set Permissions</h2>
+</div>
+<div class="p-6 space-y-4">
+<!-- Toggle Item -->
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-semibold">Live Map Access</span>
+<span class="text-[11px] text-on-surface-variant">Real-time GPS tracking</span>
+</div>
+<button class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out bg-primary focus:outline-none">
+<span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</div>
+<!-- Toggle Item -->
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-semibold">Messaging Access</span>
+<span class="text-[11px] text-on-surface-variant">Internal comms systems</span>
+</div>
+<button class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out bg-primary focus:outline-none">
+<span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</div>
+<!-- Toggle Item -->
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-semibold">Administrative Rights</span>
+<span class="text-[11px] text-on-surface-variant">Can modify system users</span>
+</div>
+<button class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out bg-outline-variant focus:outline-none">
+<span class="translate-x-0 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</div>
+</div>
+</section>
+<!-- Profile Preview Decoration -->
+<div class="hidden md:block bg-primary p-8 rounded-xl relative overflow-hidden">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-white/10 rounded-full blur-2xl"></div>
+<div class="relative z-10 flex flex-col items-center text-center">
+<div class="w-20 h-20 bg-surface-container-highest rounded-full border-4 border-on-primary/20 flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="person_add">person_add</span>
+</div>
+<h3 class="text-on-primary font-bold text-headline-md mb-1">Onboarding...</h3>
+<p class="text-primary-fixed-dim text-body-md">Fill details to generate ID badge</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Bottom Actions -->
+<div class="mt-12 flex flex-col md:flex-row items-center justify-end gap-4 pb-12">
+<button class="w-full md:w-auto px-8 py-3 rounded-lg border border-outline text-primary font-bold hover:bg-surface-container transition-all active:scale-95 text-body-lg">
+                Cancel
+            </button>
+<button class="w-full md:w-auto px-10 py-3 rounded-lg bg-primary text-on-primary font-bold shadow-md hover:bg-primary-container transition-all active:scale-95 text-body-lg flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="send">send</span>
+                Send Invitation
+            </button>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-safe h-16 bg-surface-container-highest dark:bg-surface-container-lowest border-t border-outline-variant shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-label-md text-label-md">Messages</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="shutter_speed">shutter_speed</span>
+<span class="font-label-md text-label-md">Safety</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary-container font-bold bg-primary/10 rounded-xl px-4 py-1">
+<span class="material-symbols-outlined" data-icon="account_circle" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+<span class="font-label-md text-label-md">Profile</span>
+</div>
+</nav>
+</body></html>

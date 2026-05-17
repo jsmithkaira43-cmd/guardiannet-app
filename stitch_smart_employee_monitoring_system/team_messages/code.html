@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9ff;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c5c6ce;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-highest": "#d3e4fe",
+                      "secondary-fixed-dim": "#ffb4ac",
+                      "primary-fixed-dim": "#b6c7eb",
+                      "on-tertiary-fixed": "#002204",
+                      "on-primary-fixed-variant": "#374765",
+                      "surface-container": "#e5eeff",
+                      "primary-container": "#1a2b48",
+                      "surface-variant": "#d3e4fe",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary-fixed": "#98f994",
+                      "on-error": "#ffffff",
+                      "on-surface-variant": "#44474d",
+                      "surface": "#f8f9ff",
+                      "secondary": "#b7131a",
+                      "primary": "#031632",
+                      "outline-variant": "#c5c6ce",
+                      "inverse-primary": "#b6c7eb",
+                      "tertiary-container": "#003308",
+                      "outline": "#75777e",
+                      "on-surface": "#0b1c30",
+                      "inverse-surface": "#213145",
+                      "on-secondary-fixed-variant": "#93000d",
+                      "inverse-on-surface": "#eaf1ff",
+                      "secondary-container": "#db322f",
+                      "on-primary-container": "#8293b5",
+                      "secondary-fixed": "#ffdad6",
+                      "on-error-container": "#93000a",
+                      "error": "#ba1a1a",
+                      "on-secondary-fixed": "#410002",
+                      "error-container": "#ffdad6",
+                      "surface-container-low": "#eff4ff",
+                      "background": "#f8f9ff",
+                      "on-background": "#0b1c30",
+                      "surface-dim": "#cbdbf5",
+                      "tertiary-fixed-dim": "#7ddc7a",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-container": "#fffbff",
+                      "on-tertiary-container": "#48a54b",
+                      "on-primary": "#ffffff",
+                      "surface-tint": "#4e5f7e",
+                      "primary-fixed": "#d7e2ff",
+                      "surface-container-high": "#dce9ff",
+                      "surface-bright": "#f8f9ff",
+                      "on-primary-fixed": "#081b38",
+                      "on-tertiary-fixed-variant": "#005313",
+                      "tertiary": "#001c03",
+                      "on-tertiary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "4px",
+                      "margin-mobile": "16px",
+                      "sidebar-width": "260px",
+                      "margin-desktop": "32px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": ["Inter"],
+                      "data-mono": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "data-mono": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background overflow-hidden">
+<!-- TopAppBar -->
+<header class="bg-primary dark:bg-primary-container shadow-md flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 z-50 fixed top-0 left-0">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-primary">security</span>
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary tracking-tight">GuardianNet</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-primary hover:bg-primary-container/20 transition-colors p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</header>
+<!-- NavigationDrawer (Desktop Only) -->
+<aside class="hidden lg:flex flex-col fixed left-0 top-0 h-full z-40 bg-primary dark:bg-primary-container border-r border-outline-variant w-sidebar-width shadow-lg pt-24">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-bold">AD</div>
+<div class="flex flex-col">
+<span class="text-on-primary font-bold text-label-md font-label-md">Command Center</span>
+<span class="text-primary-fixed-dim text-[10px]">System Administrator</span>
+</div>
+</div>
+<nav class="flex-1 px-2 space-y-1">
+<a class="flex items-center gap-3 text-primary-fixed-dim hover:text-on-primary mx-2 my-1 p-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-label-md text-label-md">Live Map</span>
+</a>
+<a class="flex items-center gap-3 text-primary-fixed-dim hover:text-on-primary mx-2 my-1 p-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-label-md text-label-md">Geofencing</span>
+</a>
+<a class="flex items-center gap-3 text-primary-fixed-dim hover:text-on-primary mx-2 my-1 p-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Team Management</span>
+</a>
+<a class="flex items-center gap-3 text-primary-fixed-dim hover:text-on-primary mx-2 my-1 p-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="font-label-md text-label-md">Safety Analytics</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:ml-[260px] pt-20 pb-20 lg:pb-0 h-screen flex flex-col bg-surface">
+<!-- Inbox Toolbar -->
+<div class="p-margin-mobile md:p-margin-desktop bg-surface-container-low border-b border-outline-variant">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="relative flex-1 max-w-xl">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline rounded-lg text-body-md focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="Search safety threads..." type="text"/>
+</div>
+<button class="bg-primary text-on-primary font-bold px-6 py-2 rounded-lg flex items-center justify-center gap-2 shadow-md hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined">campaign</span>
+<span>Broadcast</span>
+</button>
+</div>
+</div>
+<!-- Thread List Area -->
+<section class="flex-1 overflow-y-auto custom-scrollbar p-margin-mobile md:p-margin-desktop">
+<div class="max-w-4xl mx-auto space-y-3">
+<!-- Priority/Alert Thread -->
+<div class="bg-surface-container-lowest border border-error/20 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer flex items-center gap-4 border-l-4 border-l-error">
+<div class="relative">
+<img alt="User" class="w-12 h-12 rounded-full object-cover border-2 border-error" data-alt="A professional headshot of a middle-aged security operations officer in a clean, high-key studio setting. He wears a dark navy tactical polo shirt. The lighting is crisp and modern, reflecting an enterprise security atmosphere with a neutral, light gray background and subtle blue tonal accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS3W0g_sgpAARq-MOlIjQsVuCl7xaRmHzdhiRzUPNpSLADr9TaEMj-WTYduFZOO9VvErinR9fSQsOoo79xyopkZvvse6dq8OL1C2ob6ihFtNhT3QWBp7suZZmPdAAvA8OvMZROmh6wCv0-iHAxMQSSUS4VOZCmP0K7JZCx8DtecBwft8ienqA4o7JogbtXv5_RaUozg-HdbmaKNLSJghKdMqFltsuaGACVgzejF3pUVyHkCB0iW7k51KWBzRSiAQn5j0LP-rltoPE"/>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-error rounded-full border-2 border-surface-container-lowest flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px] text-white" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-[16px] text-on-surface font-bold truncate">Marcus Thorne</h3>
+<span class="text-error font-label-md text-label-md uppercase">2m ago</span>
+</div>
+<p class="text-body-md text-on-surface-variant truncate font-semibold">Alert: Red Zone entry - Perimeter breach detected at Sector 4.</p>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="bg-error text-on-error text-[10px] px-2 py-0.5 rounded-full font-bold">URGENT</span>
+<div class="w-5 h-5 bg-error text-on-error rounded-full flex items-center justify-center text-[10px] font-bold shadow-sm">1</div>
+</div>
+</div>
+<!-- Regular Threads -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer flex items-center gap-4">
+<div class="relative">
+<img alt="User" class="w-12 h-12 rounded-full object-cover" data-alt="A portrait of a confident female safety supervisor in a corporate setting. She is wearing a professional blazer over a white shirt. The background is a blurred modern office corridor with glass walls and bright, cool lighting. The aesthetic is professional, sharp, and secure." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDI-l0PQwVeAWGSD758-T2DCICU9hAOt9v4ev8ZVZAI2621NI-Re6DCc-F5IA34YqV4geWAuvKlQcGzWqU_HCf1I3HihJhiSmMJ5lWYQIWDiPJIhD7YI_khPwS2OjTiPMUUZp4Wf6_CCoecfxvh9XSopjbvrdJ4Dx4FMZEQVPiJpEtQgXvdER6hGdqOtjbAVdiay2IBcMjvO6VpUvCp5VORmBNOntdH0PwWFlrw0xtgLZhChJIeMQxx4E4QvMN1CVx7s12KAQ-OMyw"/>
+<div class="absolute -bottom-1 -right-1 w-3 h-3 bg-tertiary-fixed-dim rounded-full border-2 border-surface-container-lowest"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-[16px] text-on-surface font-bold truncate">Elena Rodriguez</h3>
+<span class="text-outline font-label-md text-label-md uppercase">15m ago</span>
+</div>
+<p class="text-body-md text-on-surface-variant truncate">Safety check-in confirmed for the North Wing team. All clear.</p>
+</div>
+<div class="flex flex-col items-end gap-2">
+<div class="w-5 h-5 bg-primary text-on-primary rounded-full flex items-center justify-center text-[10px] font-bold">3</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer flex items-center gap-4">
+<div class="relative">
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed font-bold text-headline-md">JD</div>
+<div class="absolute -bottom-1 -right-1 w-3 h-3 bg-tertiary-fixed-dim rounded-full border-2 border-surface-container-lowest"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-[16px] text-on-surface font-bold truncate">James Dubois</h3>
+<span class="text-outline font-label-md text-label-md uppercase">1h ago</span>
+</div>
+<p class="text-body-md text-on-surface-variant truncate">Vehicle telemetry suggests maintenance required for Unit 77.</p>
+</div>
+</div>
+<!-- Active Monitoring Group -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer flex items-center gap-4">
+<div class="flex -space-x-4">
+<img class="w-10 h-10 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="Portrait of a young woman with a focused expression, wearing a high-visibility vest over a dark sweater. The setting is an industrial warehouse with soft, diffused top-down lighting. The mood is diligent and alert, maintaining a professional security aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdo7aYvt-wnRcq3S7IH7R1OIs65Fa-kxCxJQJ4nmozt12Z_45R3SrGhrqghVdpZbxsduG_PHLGTKcLtQHNvtz73CPL_7nFZqjqosHYtzqqVwEhmJu5Vf0xVk1VKoy9XZvEI1XRYSS4vmT6xYUqh2ytuu_j1NMM-Rjy65oDoB9Mr3Y5uyL1Fl3m7rgz3f-obeGb1cm_bB2balJYQFxgolmMK3fi77eYo0yI-AWaW0W3dCKDlMzOSnHVUFGt1PDZ26Zc4ebndnejY6E"/>
+<img class="w-10 h-10 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="Portrait of a senior field officer with short graying hair and a steady gaze. He is wearing a technical jacket in a cool navy color. The lighting is bright and even, characteristic of a high-end corporate application. The background is a clean, neutral architectural wall." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFD0pUWtHGUDv53JsSSLjPBfD7bynzOsJBM9bsnxhnac9z5UznKEAQ6PvR85uzMLU02DQhAPUKvJaZAz3YE1bxlW1-gZvGsvFE9Dw2aUNQ1BsVE_ZscnRDP87SF0Ci6r6tJZ6xiPJQ4j-691gXRUydSz26r8uqqatDkoZCU6uFDrv-HuwDawjYuQ-JhZM_wmQQ8Joy1xdeyWgMFdcn34nS_-57ZH1_ULuMpKQOYz_dFbWpU_0nziAIj0SRBf5ypYqpVABNHOZ2sYU"/>
+<div class="w-10 h-10 rounded-full border-2 border-surface-container-lowest bg-surface-container-highest flex items-center justify-center text-[10px] font-bold text-on-surface-variant">+8</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-[16px] text-on-surface font-bold truncate">Logistics Group (Delta)</h3>
+<span class="text-outline font-label-md text-label-md uppercase">3h ago</span>
+</div>
+<p class="text-body-md text-on-surface-variant truncate">Sarah: Shift handover complete. All equipment accounted for.</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer flex items-center gap-4 opacity-75">
+<div class="relative">
+<img alt="User" class="w-12 h-12 rounded-full object-cover grayscale" data-alt="A professional male corporate executive looking at the camera with a slight smile. He is in a modern office with large windows. The scene is bright and airy with a cool color temperature. The overall style is clean, corporate, and minimalist." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsnJ6AuE6KKYG7UZ3UJjFTgDsrPLyt-rp4ezduIgldksX7vP8aRugwsKYTpiYJWBi_GRKg-3GAp4Kgkw5TsowNuvubOEkxmC5jtSf3td5Dvk60nCdNxdn6O3E2i9Tp6ca2deFpX7OGcCowLdilvB4UjRdS9TypARPVEH75HYCg3UVAinZIeztJfhUbmkDOKQ2tBe4Vi3zvbSQ9M9IoNcP7fre66lRC7Zpm3y5QKrlwayPVX6aIy0UTzUfj812BkickkNoucNquJlw"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-[16px] text-on-surface font-bold truncate">Robert Chen</h3>
+<span class="text-outline font-label-md text-label-md uppercase">Yesterday</span>
+</div>
+<p class="text-body-md text-on-surface-variant truncate">The quarterly safety review has been uploaded to the portal.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-safe h-16 bg-surface-container-highest dark:bg-surface-container-lowest border-t border-outline-variant shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary-container font-bold bg-primary/10 rounded-xl px-4 py-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+<span class="font-label-md text-label-md">Messages</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">shutter_speed</span>
+<span class="font-label-md text-label-md">Safety</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+</body></html>

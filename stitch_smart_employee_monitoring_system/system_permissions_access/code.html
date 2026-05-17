@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GuardianNet | System Permissions</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#005313",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#213145",
+                        "on-tertiary-container": "#48a54b",
+                        "on-background": "#0b1c30",
+                        "surface-container": "#e5eeff",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#ffdad6",
+                        "on-secondary-container": "#fffbff",
+                        "on-primary-container": "#8293b5",
+                        "on-surface": "#0b1c30",
+                        "tertiary": "#001c03",
+                        "primary-container": "#1a2b48",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "primary": "#031632",
+                        "on-secondary-fixed": "#410002",
+                        "on-primary-fixed": "#081b38",
+                        "primary-fixed": "#d7e2ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#eff4ff",
+                        "on-tertiary-fixed": "#002204",
+                        "outline-variant": "#c5c6ce",
+                        "on-secondary-fixed-variant": "#93000d",
+                        "surface-bright": "#f8f9ff",
+                        "surface-dim": "#cbdbf5",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#75777e",
+                        "surface-variant": "#d3e4fe",
+                        "on-primary-fixed-variant": "#374765",
+                        "primary-fixed-dim": "#b6c7eb",
+                        "tertiary-fixed": "#98f994",
+                        "secondary-fixed-dim": "#ffb4ac",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#dce9ff",
+                        "tertiary-container": "#003308",
+                        "background": "#f8f9ff",
+                        "tertiary-fixed-dim": "#7ddc7a",
+                        "surface-tint": "#4e5f7e",
+                        "inverse-primary": "#b6c7eb",
+                        "secondary": "#b7131a",
+                        "surface": "#f8f9ff",
+                        "secondary-container": "#db322f",
+                        "on-surface-variant": "#44474d",
+                        "inverse-on-surface": "#eaf1ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "margin-desktop": "32px",
+                        "gutter": "16px",
+                        "unit": "4px",
+                        "sidebar-width": "260px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "data-mono": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "data-mono": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col items-center">
+<!-- Top Navigation Anchor -->
+<header class="bg-primary shadow-sm flex justify-between items-center w-full px-margin-mobile h-14 z-50 fixed top-0">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-primary" data-icon="security">security</span>
+<span class="text-headline-md font-headline-md font-bold text-on-primary">GuardianNet</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-primary/70" data-icon="signal_cellular_4_bar">signal_cellular_4_bar</span>
+</div>
+</header>
+<main class="w-full max-w-4xl px-margin-mobile pt-24 pb-12 flex flex-col items-center">
+<!-- Hero Section -->
+<div class="text-center mb-10 w-full">
+<h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg mb-4 text-primary">Secure Your Journey</h1>
+<p class="text-body-lg text-on-surface-variant max-w-2xl mx-auto">To provide real-time protection and automated safety alerts, GuardianNet requires high-precision system access. Your data is encrypted and used only for your safety.</p>
+</div>
+<!-- Permission Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mb-12">
+<!-- Live Safety Tracking -->
+<div class="bg-surface-container-lowest border border-outline-variant p-6 rounded-xl shadow-sm flex flex-col h-full">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center mb-6 text-primary">
+<span class="material-symbols-outlined text-[32px]" data-icon="location_on">location_on</span>
+</div>
+<h3 class="text-headline-md font-headline-md mb-2">Live Safety Tracking</h3>
+<p class="text-body-md text-on-surface-variant mb-6 flex-grow">Requires 'Always Allow' location access to monitor your path and alert emergency services if you deviate from your route.</p>
+<div class="bg-primary-fixed/20 p-3 rounded-lg border border-primary-fixed">
+<span class="text-label-md font-label-md text-on-primary-fixed-variant uppercase">Critical Access</span>
+</div>
+</div>
+<!-- Automated Check-ins -->
+<div class="bg-surface-container-lowest border border-outline-variant p-6 rounded-xl shadow-sm flex flex-col h-full">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center mb-6 text-primary">
+<span class="material-symbols-outlined text-[32px]" data-icon="sync_saved_locally">sync_saved_locally</span>
+</div>
+<h3 class="text-headline-md font-headline-md mb-2">Automated Check-ins</h3>
+<p class="text-body-md text-on-surface-variant mb-6 flex-grow">Background Refresh ensures the app remains active to confirm your arrival at destinations even when your phone is locked.</p>
+<div class="bg-surface-container-high p-3 rounded-lg border border-outline-variant">
+<span class="text-label-md font-label-md text-on-surface-variant uppercase">Optimization Required</span>
+</div>
+</div>
+<!-- Emergency Response -->
+<div class="bg-surface-container-lowest border border-outline-variant p-6 rounded-xl shadow-sm flex flex-col h-full">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center mb-6 text-primary">
+<span class="material-symbols-outlined text-[32px]" data-icon="emergency_share">emergency_share</span>
+</div>
+<h3 class="text-headline-md font-headline-md mb-2">Emergency Response</h3>
+<p class="text-body-md text-on-surface-variant mb-6 flex-grow">Motion &amp; Fitness sensors detect sudden falls or high-impact events to automatically trigger distress protocols.</p>
+<div class="bg-surface-container-high p-3 rounded-lg border border-outline-variant">
+<span class="text-label-md font-label-md text-on-surface-variant uppercase">Auto-Detection</span>
+</div>
+</div>
+</div>
+<!-- Privacy Illustration/Graphic Area -->
+<div class="w-full bg-primary-container rounded-xl overflow-hidden mb-12 flex flex-col md:flex-row items-center">
+<div class="w-full md:w-1/2 p-8 text-on-primary">
+<h2 class="text-headline-md font-headline-md mb-4">Enterprise-Grade Privacy</h2>
+<p class="text-body-md text-on-primary-container mb-6">GuardianNet uses end-to-end encryption for all telemetry data. Your location history is never sold to third parties and is automatically purged after 48 hours of safe activity.</p>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary-fixed" data-icon="verified_user">verified_user</span>
+<span class="text-label-md font-label-md">GDPR &amp; HIPAA Compliant Data Handling</span>
+</div>
+</div>
+<div class="w-full md:w-1/2 h-64 md:h-80 relative">
+<img alt="Data Security Graphic" class="w-full h-full object-cover grayscale opacity-40 mix-blend-screen" data-alt="A professional close-up of a high-tech server room with glowing blue and white lights, representing data security and enterprise-grade encryption. The atmosphere is clean, modern, and clinical, emphasizing reliability and stability within the GuardianNet navy color palette. The lighting is soft but precise, reflecting off brushed metal surfaces to create a sense of advanced technological protection." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCisq8fdD7c2UhSVeeh9WhEu6I3nqLFP64wmOWxAgPlj5uIoBVoiUK15ewY4eO7MLVIAMyifJRahuxFxts2_sc0RJsaH9kHa44MqlgX5zO0CzMZrk2dk6lHaR4gjftS8CEPu2kNcnj7ADGXC8sG4JnndmZGsJRkAPfN3XrVPWcHSoTtUVwbSVHHMjzmxkmIeWkvG4H7ujir9k0YqHrZ4j4-cFm_4ek0be_E9969vKbinMIUSnNlche3qo33N_J1Pxub2FqhwIQzXe4"/>
+<div class="absolute inset-0 bg-gradient-to-r from-primary-container to-transparent"></div>
+</div>
+</div>
+<!-- Action Section -->
+<div class="w-full max-w-md flex flex-col gap-4 text-center">
+<button class="bg-primary text-on-primary font-bold py-4 px-8 rounded-xl shadow-md hover:bg-primary/90 active:scale-95 transition-all duration-150 text-body-lg">
+                Grant All Permissions
+            </button>
+<a class="text-on-surface-variant font-label-md hover:text-primary transition-colors flex items-center justify-center gap-2" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="policy">policy</span>
+                Review Privacy Policy
+            </a>
+</div>
+</main>
+<!-- Suppressed navigation logic: This is a task-focused onboarding screen, global nav is suppressed per instructions. -->
+<!-- Footer Branding -->
+<footer class="w-full py-8 border-t border-outline-variant mt-auto text-center">
+<div class="flex justify-center items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary" data-icon="security">security</span>
+<span class="text-label-md font-label-md text-primary uppercase tracking-widest">GuardianNet Protection Suite</span>
+</div>
+<p class="text-on-surface-variant text-[11px]">© 2024 GuardianNet Technologies. All rights reserved.</p>
+</footer>
+</body></html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>GuardianNet | User Personal Safety</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .safe-glow { box-shadow: 0 0 20px rgba(72, 165, 75, 0.2); }
+        .emergency-pulse { box-shadow: 0 0 0 0 rgba(186, 26, 26, 0.7); }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed": "#002204",
+                      "surface-container-lowest": "#ffffff",
+                      "background": "#f8f9ff",
+                      "on-secondary-fixed": "#410002",
+                      "error-container": "#ffdad6",
+                      "surface-container-low": "#eff4ff",
+                      "tertiary-fixed": "#98f994",
+                      "on-primary-fixed": "#081b38",
+                      "secondary-fixed-dim": "#ffb4ac",
+                      "on-surface": "#0b1c30",
+                      "tertiary-fixed-dim": "#7ddc7a",
+                      "on-error-container": "#93000a",
+                      "surface-bright": "#f8f9ff",
+                      "outline-variant": "#c5c6ce",
+                      "surface-variant": "#d3e4fe",
+                      "on-secondary-container": "#fffbff",
+                      "on-tertiary": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "surface-container": "#e5eeff",
+                      "secondary": "#b7131a",
+                      "on-error": "#ffffff",
+                      "surface-dim": "#cbdbf5",
+                      "primary-fixed-dim": "#b6c7eb",
+                      "surface-container-highest": "#d3e4fe",
+                      "secondary-fixed": "#ffdad6",
+                      "secondary-container": "#db322f",
+                      "surface-tint": "#4e5f7e",
+                      "surface-container-high": "#dce9ff",
+                      "surface": "#f8f9ff",
+                      "inverse-surface": "#213145",
+                      "on-secondary": "#ffffff",
+                      "primary-fixed": "#d7e2ff",
+                      "on-primary-container": "#8293b5",
+                      "tertiary": "#001c03",
+                      "primary": "#031632",
+                      "on-secondary-fixed-variant": "#93000d",
+                      "primary-container": "#1a2b48",
+                      "tertiary-container": "#003308",
+                      "on-tertiary-container": "#48a54b",
+                      "inverse-on-surface": "#eaf1ff",
+                      "inverse-primary": "#b6c7eb",
+                      "on-background": "#0b1c30",
+                      "on-tertiary-fixed-variant": "#005313",
+                      "outline": "#75777e",
+                      "on-surface-variant": "#44474d",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed-variant": "#374765"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "32px",
+                      "sidebar-width": "260px",
+                      "unit": "4px",
+                      "gutter": "16px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "label-md": ["Inter"],
+                      "data-mono": ["Inter"]
+              },
+              "fontSize": {
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "data-mono": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-24 lg:pb-0 lg:pl-[260px]">
+<!-- Top AppBar -->
+<header class="bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 z-50 sticky top-0 shadow-md">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary tracking-tight">GuardianNet</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:bg-primary-container/20 transition-colors p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</div>
+</header>
+<!-- Navigation Drawer (Desktop) -->
+<aside class="hidden lg:flex flex-col fixed left-0 top-0 h-full z-40 bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container border-r border-outline-variant shadow-lg w-[260px]">
+<div class="p-6 mb-4">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-3xl" data-icon="security">security</span>
+<span class="font-headline-md text-headline-md text-on-primary font-bold">GuardianNet</span>
+</div>
+<div class="flex items-center gap-3 p-3 bg-primary-container/40 rounded-xl">
+<img alt="User" class="w-10 h-10 rounded-full border-2 border-on-primary/20" data-alt="A professional headshot of a corporate employee wearing a clean, modern uniform. The lighting is soft and directional, creating a high-end professional atmosphere. The background is a slightly blurred high-tech security office with cool blue and grey tones. The overall aesthetic is focused, secure, and modern light-mode corporate." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfJhWeZlG4iKwzMANu8bmE6os2XJuL73iIUPEYt6MrsDW-bJ6SiyY01MfkMGpUQykNYd6hXD6O4qM6c1r3stn4lb8qSlmCynrSDdASU6kqqqWYcpq19WEaLPrtCkk5rJ5MNtpgSucIuIlOlwXF69GEqoyqx0adWxcTv7BDAQR0S5GFyydZRqN6uTXp_oSv4fD8vUA6jUYbxOrvTZPPXJgts4k2uNtBTdc0G2jGSrcIO9tUWicHAZcv-fVtBmtvAWFmpk-ZTAJ7G8o"/>
+<div>
+<p class="font-label-md text-label-md text-on-primary">Field Agent</p>
+<p class="text-[10px] text-primary-fixed-dim uppercase tracking-widest">Active Session</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-2">
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg mx-2 my-1 transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="shutter_speed">shutter_speed</span>
+<span>Safety</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-primary-fixed-dim hover:text-on-primary hover:bg-primary-fixed-dim/10 mx-2 my-1 transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span>Messages</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-primary-fixed-dim hover:text-on-primary hover:bg-primary-fixed-dim/10 mx-2 my-1 transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span>Home</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-primary-fixed-dim hover:text-on-primary hover:bg-primary-fixed-dim/10 mx-2 my-1 transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span>Profile</span>
+</a>
+</nav>
+</aside>
+<main class="p-margin-mobile md:p-margin-desktop max-w-7xl mx-auto space-y-6">
+<!-- Status Hero Section -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<div class="md:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-xl p-8 flex flex-col items-center justify-center text-center safe-glow overflow-hidden relative group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[120px]" data-icon="verified_user">verified_user</span>
+</div>
+<div class="w-24 h-24 bg-on-tertiary-container/10 rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-on-tertiary-container text-5xl" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h2 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-[0.2em] mb-2">Current System Status</h2>
+<div class="text-[64px] leading-none font-extrabold text-on-tertiary-container tracking-tighter mb-4">SAFE</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">Your location is being monitored in real-time. No threats detected in your immediate vicinity. All protocols are active.</p>
+<div class="mt-6 flex gap-4">
+<span class="flex items-center gap-2 px-3 py-1 bg-surface-container rounded-full text-[11px] font-bold text-on-surface-variant">
+<span class="w-2 h-2 bg-on-tertiary-container rounded-full"></span> GPS ACTIVE
+                    </span>
+<span class="flex items-center gap-2 px-3 py-1 bg-surface-container rounded-full text-[11px] font-bold text-on-surface-variant">
+<span class="w-2 h-2 bg-on-tertiary-container rounded-full"></span> 98% BATTERY
+                    </span>
+</div>
+</div>
+<!-- Dark Movement / Alert Card -->
+<div class="md:col-span-4 flex flex-col gap-6">
+<div class="bg-surface-container-highest border border-outline-variant rounded-xl p-6 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary font-bold">Dark Movement</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Unlit zone proximity</p>
+</div>
+<span class="material-symbols-outlined text-secondary" data-icon="dark_mode">dark_mode</span>
+</div>
+<div class="mt-8 flex items-end justify-between">
+<div class="space-y-1">
+<span class="text-xs font-bold text-secondary-container bg-secondary-fixed px-2 py-0.5 rounded">INACTIVE</span>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-tight">Status Monitor</p>
+</div>
+<div class="h-12 w-24 flex items-end gap-1">
+<div class="w-2 bg-outline-variant h-2 rounded-t"></div>
+<div class="w-2 bg-outline-variant h-3 rounded-t"></div>
+<div class="w-2 bg-outline-variant h-1 rounded-t"></div>
+<div class="w-2 bg-outline-variant h-4 rounded-t"></div>
+<div class="w-2 bg-outline-variant h-2 rounded-t"></div>
+</div>
+</div>
+</div>
+<div class="bg-inverse-surface text-inverse-on-surface rounded-xl p-6 shadow-md border border-white/10">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-tertiary-fixed" data-icon="support_agent">support_agent</span>
+<h3 class="font-label-md text-label-md font-bold tracking-widest">COMMAND CONNECT</h3>
+</div>
+<p class="font-body-md text-body-md opacity-80 mb-4">Command center is standing by. Estimated response time: <span class="font-bold text-white">&lt; 45s</span></p>
+<button class="w-full py-2 bg-white/10 hover:bg-white/20 transition-colors rounded-lg text-xs font-bold uppercase tracking-wider border border-white/20">
+                        Test Connection
+                    </button>
+</div>
+</div>
+</section>
+<!-- Emergency Trigger Section -->
+<section class="bg-error-container border-2 border-secondary rounded-2xl p-6 md:p-10 flex flex-col md:flex-row items-center gap-8 shadow-xl">
+<div class="flex-1 text-center md:text-left">
+<h2 class="font-headline-lg font-extrabold text-on-error-container mb-2">Emergency Trigger</h2>
+<p class="font-body-lg text-on-error-container opacity-80">Press and hold for 2 seconds to alert local authorities and internal security teams of an immediate threat.</p>
+</div>
+<button class="relative w-32 h-32 md:w-40 md:h-40 bg-secondary flex flex-col items-center justify-center rounded-full text-white shadow-2xl active:scale-95 transition-all group overflow-hidden">
+<div class="absolute inset-0 bg-white/10 animate-ping rounded-full scale-110 opacity-20"></div>
+<span class="material-symbols-outlined text-5xl mb-1" data-icon="emergency_share" data-weight="fill">emergency_share</span>
+<span class="text-xs font-black uppercase tracking-tighter">Trigger</span>
+<span class="text-[10px] font-bold uppercase opacity-60">Alarm</span>
+</button>
+</section>
+<!-- Map and Messaging Grid -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Location Map -->
+<div class="lg:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm flex flex-col h-[450px]">
+<div class="p-4 border-b border-outline-variant flex justify-between items-center bg-white">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="map">map</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">Active Zone Map</h3>
+</div>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-surface-container rounded-lg transition-colors"><span class="material-symbols-outlined text-sm" data-icon="my_location">my_location</span></button>
+<button class="p-2 hover:bg-surface-container rounded-lg transition-colors"><span class="material-symbols-outlined text-sm" data-icon="layers">layers</span></button>
+</div>
+</div>
+<div class="relative flex-1 bg-surface-dim">
+<img alt="Map View" class="w-full h-full object-cover grayscale-[0.2]" data-alt="A detailed satellite-style map of a modern urban business district with clear grid layouts and green spaces. The map features translucent blue overlays representing safe geofenced zones. A bright green pulse marker indicates the user's current location, while several blue shield icons represent designated safe havens and security outposts. The lighting is bright and clear, emphasizing data readability and a secure atmosphere." data-location="Chicago" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoPfzAS2JC54HD3qckRAIwlw7Ba0SODEhrQzAu9e31MQfspcb1zw00dXU6jqk1R5UkiBMTtP13jly7vEhWBcPEOuyFjRdhb79tBb0DeOGDzIfnAOpkQKf-RxFbO52VBQrQAuBneron5_vqA3tgHc9fwRrdLLaAYoBF_0fboo30CiFPsZLfGDOHeCLLKb55i3NARKORk9hD7tblRG0zpndhD4Nn72iok_jz0cb6uLK8rmCwFbJuvN3bciqWgfJDYqYwRCuByVaz4f0"/>
+<!-- Map Overlays -->
+<div class="absolute top-4 left-4 space-y-2">
+<div class="bg-white/90 backdrop-blur-md px-3 py-2 rounded-lg shadow-md border border-outline-variant flex items-center gap-2">
+<span class="w-3 h-3 bg-on-tertiary-container rounded-full"></span>
+<span class="text-[11px] font-bold text-on-surface">Main Office (Safe Zone)</span>
+</div>
+<div class="bg-white/90 backdrop-blur-md px-3 py-2 rounded-lg shadow-md border border-outline-variant flex items-center gap-2">
+<span class="w-3 h-3 bg-secondary rounded-full animate-pulse"></span>
+<span class="text-[11px] font-bold text-on-surface">Restricted Entry</span>
+</div>
+</div>
+<!-- Floating Legend -->
+<div class="absolute bottom-4 right-4 bg-primary text-on-primary px-4 py-3 rounded-xl shadow-lg space-y-2">
+<p class="text-[10px] font-black uppercase tracking-widest opacity-60 border-b border-on-primary/20 pb-1">Nearby Safe Zones</p>
+<div class="flex items-center justify-between gap-4">
+<span class="text-xs font-bold">Lobby Precinct</span>
+<span class="text-[10px] bg-on-tertiary-container/20 text-tertiary-fixed-dim px-2 py-0.5 rounded">150m</span>
+</div>
+<div class="flex items-center justify-between gap-4">
+<span class="text-xs font-bold">West Gate Post</span>
+<span class="text-[10px] bg-on-tertiary-container/20 text-tertiary-fixed-dim px-2 py-0.5 rounded">420m</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Messaging Widget -->
+<div class="lg:col-span-4 bg-surface-container-lowest border border-outline-variant rounded-xl flex flex-col h-[450px] shadow-sm">
+<div class="p-4 border-b border-outline-variant bg-white flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="chat_bubble">chat_bubble</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">Admin Check-ins</h3>
+</div>
+<span class="w-2 h-2 bg-secondary rounded-full"></span>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-4">
+<!-- Admin Message -->
+<div class="flex flex-col items-start max-w-[85%]">
+<div class="bg-surface-container text-on-surface p-3 rounded-tr-xl rounded-br-xl rounded-bl-xl text-sm shadow-sm border border-outline-variant/30">
+                            Please confirm your status as you exit the North Terminal.
+                        </div>
+<span class="text-[10px] text-on-surface-variant mt-1 ml-1 font-bold">System Admin • 14:02</span>
+</div>
+<!-- User Reply (Automatic Check-in) -->
+<div class="flex flex-col items-end">
+<div class="bg-primary text-on-primary p-3 rounded-tl-xl rounded-bl-xl rounded-br-xl text-sm shadow-sm">
+                            Status confirmed: SAFE. Moving to West Perimeter.
+                        </div>
+<span class="text-[10px] text-on-surface-variant mt-1 mr-1 font-bold">Auto-Checkin • 14:05</span>
+</div>
+<!-- Admin Message -->
+<div class="flex flex-col items-start max-w-[85%]">
+<div class="bg-surface-container text-on-surface p-3 rounded-tr-xl rounded-br-xl rounded-bl-xl text-sm shadow-sm border border-outline-variant/30">
+                            Understood. Dark Movement sensor is active for your next transition zone.
+                        </div>
+<span class="text-[10px] text-on-surface-variant mt-1 ml-1 font-bold">System Admin • 14:10</span>
+</div>
+</div>
+<div class="p-4 border-t border-outline-variant bg-surface-container-low">
+<div class="relative">
+<input class="w-full bg-white border border-outline-variant rounded-full py-2 pl-4 pr-12 text-sm focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Quick reply..." type="text"/>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-primary text-on-primary rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="send">send</span>
+</button>
+</div>
+<div class="flex gap-2 mt-3">
+<button class="flex-1 py-1.5 bg-white border border-outline-variant rounded text-[10px] font-bold uppercase hover:bg-surface-container transition-colors">I'm Safe</button>
+<button class="flex-1 py-1.5 bg-white border border-outline-variant rounded text-[10px] font-bold uppercase hover:bg-surface-container transition-colors">On Site</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Mobile Only) -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-safe h-16 bg-surface-container-highest dark:bg-surface-container-lowest border-t border-outline-variant shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-transform active:scale-90 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-transform active:scale-90 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="mt-1">Messages</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary-container font-bold bg-primary/10 rounded-xl px-4 py-1 transition-transform active:scale-90 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="shutter_speed">shutter_speed</span>
+<span class="mt-1">Safety</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-transform active:scale-90 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="mt-1">Profile</span>
+</a>
+</nav>
+<!-- Contextual FAB (Trigger Check-in) -->
+<button class="fixed bottom-20 right-6 lg:bottom-10 lg:right-10 w-14 h-14 bg-primary-container text-on-primary-container rounded-full shadow-2xl flex items-center justify-center z-50 hover:scale-110 active:scale-95 transition-all border-2 border-primary/20">
+<span class="material-symbols-outlined text-2xl" data-icon="how_to_reg" data-weight="fill">how_to_reg</span>
+</button>
+</body></html>

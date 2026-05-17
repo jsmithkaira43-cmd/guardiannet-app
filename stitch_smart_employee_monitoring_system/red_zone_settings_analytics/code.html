@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed": "#002204",
+                      "surface-container-lowest": "#ffffff",
+                      "background": "#f8f9ff",
+                      "on-secondary-fixed": "#410002",
+                      "error-container": "#ffdad6",
+                      "surface-container-low": "#eff4ff",
+                      "tertiary-fixed": "#98f994",
+                      "on-primary-fixed": "#081b38",
+                      "secondary-fixed-dim": "#ffb4ac",
+                      "on-surface": "#0b1c30",
+                      "tertiary-fixed-dim": "#7ddc7a",
+                      "on-error-container": "#93000a",
+                      "surface-bright": "#f8f9ff",
+                      "outline-variant": "#c5c6ce",
+                      "surface-variant": "#d3e4fe",
+                      "on-secondary-container": "#fffbff",
+                      "on-tertiary": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "surface-container": "#e5eeff",
+                      "secondary": "#b7131a",
+                      "on-error": "#ffffff",
+                      "surface-dim": "#cbdbf5",
+                      "primary-fixed-dim": "#b6c7eb",
+                      "surface-container-highest": "#d3e4fe",
+                      "secondary-fixed": "#ffdad6",
+                      "secondary-container": "#db322f",
+                      "surface-tint": "#4e5f7e",
+                      "surface-container-high": "#dce9ff",
+                      "surface": "#f8f9ff",
+                      "inverse-surface": "#213145",
+                      "on-secondary": "#ffffff",
+                      "primary-fixed": "#d7e2ff",
+                      "on-primary-container": "#8293b5",
+                      "tertiary": "#001c03",
+                      "primary": "#031632",
+                      "on-secondary-fixed-variant": "#93000d",
+                      "primary-container": "#1a2b48",
+                      "tertiary-container": "#003308",
+                      "on-tertiary-container": "#48a54b",
+                      "inverse-on-surface": "#eaf1ff",
+                      "inverse-primary": "#b6c7eb",
+                      "on-background": "#0b1c30",
+                      "on-tertiary-fixed-variant": "#005313",
+                      "outline": "#75777e",
+                      "on-surface-variant": "#44474d",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed-variant": "#374765"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "32px",
+                      "sidebar-width": "260px",
+                      "unit": "4px",
+                      "gutter": "16px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "label-md": ["Inter"],
+                      "data-mono": ["Inter"]
+              },
+              "fontSize": {
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "data-mono": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen">
+<header class="bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container docked full-width top-0 shadow-md flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 z-50 fixed">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-primary" data-icon="security">security</span>
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary tracking-tight">GuardianNet</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined hover:bg-primary-container/20 p-2 rounded-full transition-colors" data-icon="notifications">notifications</button>
+<div class="hidden md:flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary-fixed-dim flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="person">person</span>
+</div>
+</div>
+</div>
+</header>
+<aside class="hidden lg:flex flex-col fixed left-0 top-0 h-full z-40 bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container border-r border-outline-variant shadow-lg w-sidebar-width pt-20">
+<div class="px-6 py-4 flex flex-col gap-2">
+<div class="mb-6 flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a middle-aged security operations manager wearing a dark suit, set against a blurred office background with cool blue lighting. The image maintains a high-end corporate aesthetic with sharp focus and professional color grading. The lighting is soft and flattering, reflecting an authoritative yet reliable personality in a modern enterprise environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhYR3phe2I_w6PTyiuLp6R7GbMmH3lzDLM1IlTM8_HoLEY2IVCdxIPS6orabYO-vHjxZc-jy9LxYFrRSqeElEZz--qC5SugLybDfC7W51_5ZEVRIrJ0-oWr28iYMe9WCye6Lm3ChMhCqas0eTsFcYmYgIALJs58u87ZtVTC94yGME2cewE3LuGUZzI8UMyEmSPeyhdmBQLUs-Eu3B-m5fjJ3gdjUZ5wlLs7tQkSKxYpRFqb_lJHul1JRfMd_Xh39fWEfELcW0g0_U"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-primary">Command Center</p>
+<p class="text-[10px] text-primary-fixed-dim">System Administrator</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 text-primary-fixed-dim hover:text-on-primary transition-all duration-200 ease-in-out hover:bg-primary-fixed-dim/10 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="font-label-md text-label-md">Live Map</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-primary-fixed-dim hover:text-on-primary transition-all duration-200 ease-in-out hover:bg-primary-fixed-dim/10 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="font-label-md text-label-md">Geofencing</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-primary-fixed-dim hover:text-on-primary transition-all duration-200 ease-in-out hover:bg-primary-fixed-dim/10 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-md text-label-md">Team Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+<span class="font-label-md text-label-md font-bold">Safety Analytics</span>
+</a>
+</nav>
+</div>
+</aside>
+<main class="lg:pl-sidebar-width pt-20 pb-20 md:pb-8 px-margin-mobile md:px-margin-desktop">
+<section class="max-w-7xl mx-auto py-6">
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+<div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Movement Trends &amp; Analytics</h2>
+<p class="font-body-md text-on-surface-variant">Real-time telemetry and incident forecasting</p>
+</div>
+<div class="flex items-center bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2 gap-3 shadow-sm">
+<span class="material-symbols-outlined text-outline" data-icon="calendar_today">calendar_today</span>
+<span class="font-data-mono text-data-mono">Oct 18, 2023 - Oct 24, 2023</span>
+<span class="material-symbols-outlined text-outline" data-icon="arrow_drop_down">arrow_drop_down</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
+<div class="lg:col-span-4 bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0_2px_4px_rgba(0,0,0,0.05)] p-6 flex flex-col items-center justify-center relative overflow-hidden">
+<div class="absolute top-4 left-4">
+<h3 class="font-label-md text-label-md uppercase text-outline">Safety Score</h3>
+</div>
+<div class="relative flex items-center justify-center mt-4">
+<svg class="w-48 h-48 transform -rotate-90">
+<circle class="text-surface-container" cx="96" cy="96" fill="transparent" r="88" stroke="currentColor" stroke-width="12"></circle>
+<circle class="text-on-tertiary-container" cx="96" cy="96" fill="transparent" r="88" stroke="currentColor" stroke-dasharray="552.92" stroke-dashoffset="44.23" stroke-linecap="round" stroke-width="12"></circle>
+</svg>
+<div class="absolute flex flex-col items-center">
+<span class="font-headline-lg text-headline-lg text-on-tertiary-container">92%</span>
+<span class="font-label-md text-label-md text-on-surface-variant">OPTIMAL</span>
+</div>
+</div>
+<div class="mt-6 flex items-center gap-2 bg-on-tertiary-fixed/5 px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-[16px] text-on-tertiary-fixed-variant" data-icon="trending_up">trending_up</span>
+<span class="font-label-md text-label-md text-on-tertiary-fixed-variant">+4.2% from last week</span>
+</div>
+</div>
+<div class="lg:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0_2px_4px_rgba(0,0,0,0.05)] p-6">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface">Total Movements</h3>
+<div class="flex gap-2">
+<button class="bg-primary-container text-on-primary-container font-label-md text-label-md px-3 py-1 rounded-md">Weekly</button>
+<button class="hover:bg-surface-container font-label-md text-label-md px-3 py-1 rounded-md text-on-surface-variant transition-colors">Daily</button>
+</div>
+</div>
+<div class="h-64 w-full relative flex items-end justify-between gap-2 pt-4">
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+<div class="border-t border-outline-variant/30 w-full h-0"></div>
+<div class="border-t border-outline-variant/30 w-full h-0"></div>
+<div class="border-t border-outline-variant/30 w-full h-0"></div>
+<div class="border-t border-outline-variant/30 w-full h-0"></div>
+</div>
+<div class="relative flex-1 flex flex-col items-center group">
+<div class="w-full bg-primary/10 rounded-t-sm h-[60%] transition-all group-hover:bg-primary/20"></div>
+<span class="mt-2 font-label-md text-label-md text-outline">Mon</span>
+</div>
+<div class="relative flex-1 flex flex-col items-center group">
+<div class="w-full bg-primary/10 rounded-t-sm h-[75%] transition-all group-hover:bg-primary/20"></div>
+<span class="mt-2 font-label-md text-label-md text-outline">Tue</span>
+</div>
+<div class="relative flex-1 flex flex-col items-center group">
+<div class="w-full bg-primary/10 rounded-t-sm h-[55%] transition-all group-hover:bg-primary/20"></div>
+<span class="mt-2 font-label-md text-label-md text-outline">Wed</span>
+</div>
+<div class="relative flex-1 flex flex-col items-center group">
+<div class="w-full bg-primary/10 rounded-t-sm h-[85%] transition-all group-hover:bg-primary/20"></div>
+<span class="mt-2 font-label-md text-label-md text-outline">Thu</span>
+</div>
+<div class="relative flex-1 flex flex-col items-center group">
+<div class="w-full bg-primary/10 rounded-t-sm h-[92%] transition-all group-hover:bg-primary/20"></div>
+<span class="mt-2 font-label-md text-label-md text-outline">Fri</span>
+</div>
+<div class="relative flex-1 flex flex-col items-center group">
+<div class="w-full bg-primary/10 rounded-t-sm h-[40%] transition-all group-hover:bg-primary/20"></div>
+<span class="mt-2 font-label-md text-label-md text-outline">Sat</span>
+</div>
+<div class="relative flex-1 flex flex-col items-center group">
+<div class="w-full bg-primary/10 rounded-t-sm h-[35%] transition-all group-hover:bg-primary/20"></div>
+<span class="mt-2 font-label-md text-label-md text-outline">Sun</span>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+<div class="lg:col-span-1 bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0_2px_4px_rgba(0,0,0,0.05)] overflow-hidden">
+<div class="p-6">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Frequent Red Zone Entries</h3>
+<p class="font-label-md text-label-md text-on-surface-variant">Hotspot density mapping</p>
+</div>
+<div class="relative h-48 bg-surface-dim">
+<img class="w-full h-full object-cover opacity-60" data-alt="A stylized digital top-down map of a corporate facility or industrial park with a dark navy background. Vibrant red circular overlays indicate heat clusters of unauthorized movement in restricted areas. The aesthetic is high-tech and analytical, using sharp vector lines and glowing neon-red gradients to contrast with the deep blue professional interface colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDvWnlw79CBZ6S9r2eB29G7qjww0D1B2fsgdLqdg_0nzBSxYKt6OhjxtgGP_v4dKGuFdPiKHoecqTOvWZ_SB6CfR2qIPmbfqDe3V4cLaC9sqVIz6At93n2Bgocq9BUE6enOuoVCDfoWu9SfFk9TV2O85iP6yhsazmhb2nuDWxcBzryrDJSkaOygaPqX_QpP1-1PeOe2Y_eSmK9QV7OjK4bzwqbTHpRlJ-EByQmLx-xS9VRV_RNqQc0QUGk-KAhL2e8Q2KazJkdnRo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest to-transparent"></div>
+</div>
+<div class="p-6 pt-0 flex flex-col gap-3">
+<div class="flex items-center justify-between p-3 bg-error-container/20 rounded-lg">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="font-body-md text-on-surface">Storage Wing B</span>
+</div>
+<span class="font-data-mono text-data-mono text-on-error-container font-bold">42 Hits</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-secondary-fixed/30 rounded-lg">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-body-md text-on-surface">Main Power Grid</span>
+</div>
+<span class="font-data-mono text-data-mono text-on-secondary-fixed-variant font-bold">18 Hits</span>
+</div>
+</div>
+</div>
+<div class="lg:col-span-2 bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0_2px_4px_rgba(0,0,0,0.05)] overflow-hidden flex flex-col">
+<div class="p-6 border-b border-outline-variant flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md text-on-surface">Safety Log</h3>
+<button class="text-primary font-label-md text-label-md hover:underline flex items-center gap-1">
+                            Export CSV <span class="material-symbols-outlined text-[16px]" data-icon="download">download</span>
+</button>
+</div>
+<div class="flex-1 overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-6 py-3 font-label-md text-label-md text-outline uppercase">Time</th>
+<th class="px-6 py-3 font-label-md text-label-md text-outline uppercase">Operator</th>
+<th class="px-6 py-3 font-label-md text-label-md text-outline uppercase">Action / Event</th>
+<th class="px-6 py-3 font-label-md text-label-md text-outline uppercase">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-4 font-data-mono text-data-mono">14:22:15</td>
+<td class="px-6 py-4 font-body-md text-on-surface">Marcus Chen</td>
+<td class="px-6 py-4 font-body-md text-on-surface">Entered <span class="font-bold text-secondary">Red Zone A</span></td>
+<td class="px-6 py-4">
+<span class="bg-error-container text-on-error-container px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">Alert</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-4 font-data-mono text-data-mono">13:45:02</td>
+<td class="px-6 py-4 font-body-md text-on-surface">Sarah Jenkins</td>
+<td class="px-6 py-4 font-body-md text-on-surface">Triggered remote alarm: Hub-4</td>
+<td class="px-6 py-4">
+<span class="bg-secondary-fixed text-on-secondary-fixed-variant px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">Resolved</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-4 font-data-mono text-data-mono">12:10:44</td>
+<td class="px-6 py-4 font-body-md text-on-surface">System Auto</td>
+<td class="px-6 py-4 font-body-md text-on-surface">Geofence validation complete</td>
+<td class="px-6 py-4">
+<span class="bg-on-tertiary-fixed/10 text-on-tertiary-fixed-variant px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">Info</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-4 font-data-mono text-data-mono">11:58:30</td>
+<td class="px-6 py-4 font-body-md text-on-surface">Alex Rivera</td>
+<td class="px-6 py-4 font-body-md text-on-surface">Exit protocol initiated: Zone C</td>
+<td class="px-6 py-4">
+<span class="bg-on-tertiary-fixed/10 text-on-tertiary-fixed-variant px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">Success</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0_2px_4px_rgba(0,0,0,0.05)] p-6 mb-6">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Red Zone Monitoring Schedule</h3>
+<p class="font-label-md text-label-md text-on-surface-variant">Define peak sensitivity hours for restricted area monitoring</p>
+</div>
+<div class="flex items-center gap-3 bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant">
+<span class="font-label-md text-label-md text-on-surface-variant">Active Monitoring</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-outline uppercase">Monitoring Start Time</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-outline text-[20px]">schedule</span>
+<input class="w-full pl-10 pr-4 py-2.5 bg-surface-container-low border border-outline-variant rounded-lg font-data-mono text-data-mono focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" type="time" value="18:00"/>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-outline uppercase">Monitoring End Time</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-outline text-[20px]">schedule</span>
+<input class="w-full pl-10 pr-4 py-2.5 bg-surface-container-low border border-outline-variant rounded-lg font-data-mono text-data-mono focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" type="time" value="06:00"/>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-outline-variant flex justify-end">
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-label-md text-label-md font-bold hover:opacity-90 transition-opacity">Save Settings</button>
+</div>
+</div><div class="bg-primary text-on-primary rounded-xl p-6 flex flex-col md:flex-row items-center justify-between gap-6 overflow-hidden relative">
+<div class="relative z-10">
+<h3 class="font-headline-md text-headline-md mb-2">Automated Risk Assessment</h3>
+<p class="text-primary-fixed-dim font-body-md max-w-xl">Based on last week's movement trends, the system predicts a 15% increase in unauthorized entries during shift transitions. We recommend adjusting geofence sensitivities between 18:00 and 19:00.</p>
+</div>
+<button class="relative z-10 bg-on-primary text-primary px-6 py-3 rounded-lg font-label-md text-label-md font-bold hover:bg-primary-fixed transition-colors whitespace-nowrap">Apply Recommendations</button>
+<div class="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-secondary/20 to-transparent pointer-events-none"></div>
+</div>
+</section>
+</main>
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-safe h-16 bg-surface-container-highest dark:bg-surface-container-lowest border-t border-outline-variant shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-label-md text-label-md">Messages</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary-container font-bold bg-primary/10 rounded-xl px-4 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="shutter_speed">shutter_speed</span>
+<span class="font-label-md text-label-md">Safety</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+</body></html>
