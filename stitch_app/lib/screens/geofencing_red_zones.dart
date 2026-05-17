@@ -198,10 +198,8 @@ class _GeofencingRedZonesScreenState extends State<GeofencingRedZonesScreen> {
               child: Image.network(
                 'https://lh3.googleusercontent.com/aida-public/AB6AXuDPLUT4sLpiDyjUEHLOiqfepSV93UyGp6tnTxgQBg-MKMVI_PXPr2qbOpL7RcbVA5540u_j5vas2-A3GJPRV2_6zt9vPlgz-5Wtu2qqra9IcMFhFR0-eyyOFh7PCi42AHza3lBg39B_kRa6nmKAiKXRmlvGXE2Q-RmbPRR2cHqgOVWxu2GxahJvZu_pT-dtZe-DzvvbP85T4mwUPsZ183dmJ8I3zmIopAfDlkLKJimmelJ7QMF7QOr7fPUETah8z0RD4obU9A-JFnY',
                 fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(
-                  Colors.white.withOpacity(0.4),
-                  BlendMode.dstATop,
-                ),
+                color: Colors.white.withOpacity(0.4),
+                colorBlendMode: BlendMode.dstATop,
               ),
             ),
           ),

@@ -308,41 +308,32 @@ class _ActiveTrackingStatusScreenState extends State<ActiveTrackingStatusScreen>
           Row(
             children: [
               Expanded(
-                child: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.secondary,
-                  foregroundColor: Colors.white,
-                  elevation: 4,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                child: TextButton(
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('SOS Signal Transmitted!')),
+                    );
+                  },
+                  style: TextButton.styleFrom(
+                    backgroundColor: AppColors.secondary,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                   ),
-                ).value == null
-                    ? Container()
-                    : TextButton(
-                        onPressed: () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('SOS Signal Transmitted!')),
-                          );
-                        },
-                        style: TextButton.styleFrom(
-                          backgroundColor: AppColors.secondary,
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(vertical: 20),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.emergency, size: 24),
-                            SizedBox(width: 12),
-                            Text(
-                              'QUICK SOS',
-                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-                            ),
-                          ],
-                        ),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.emergency, size: 24),
+                      SizedBox(width: 12),
+                      Text(
+                        'QUICK SOS',
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                       ),
+                    ],
+                  ),
+                ),
               ),
               const SizedBox(width: 16),
               Expanded(
