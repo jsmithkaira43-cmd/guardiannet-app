@@ -47,7 +47,7 @@ class _GuardiannetSecureLoginScreenState
               decoration: BoxDecoration(
                 color: Theme.of(context)
                     .colorScheme
-                    .surfaceVariant
+                    .surfaceContainerHighest
                     .withOpacity(0.4),
                 shape: BoxShape.circle,
               ),
