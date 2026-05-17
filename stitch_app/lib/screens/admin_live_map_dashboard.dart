@@ -48,8 +48,8 @@ class _AdminLiveMapDashboardScreenState extends State<AdminLiveMapDashboardScree
     _positionSubscription = Geolocator.getPositionStream(locationSettings: settings)
         .listen((Position position) {
           if (mounted) {
+            final latLng = LatLng(position.latitude, position.longitude);
             setState(() {
-              final latLng = LatLng(position.latitude, position.longitude);
               _currentPosition = latLng;
               _routePoints.add(latLng);
             });
