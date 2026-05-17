@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'routes/app_routes.dart';
 import 'theme/app_theme.dart';
+import 'data/services/firebase_sync_service.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  // Safe initialization block (catches empty credentials/no setups gracefully)
+  await FirebaseSyncService.instance.initializeSafe();
+  
   runApp(const GuardianNetApp());
 }
 
