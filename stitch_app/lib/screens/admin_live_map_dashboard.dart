@@ -2,9 +2,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong2/latlong2.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:geolocator/geolocator.dart';
-import '../services/gps_location_service.dart';
+import '../data/services/gps_location_service.dart';
 
 class AdminLiveMapDashboardScreen extends StatefulWidget {
   const AdminLiveMapDashboardScreen({super.key});
