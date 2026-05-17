@@ -36,6 +36,18 @@ jobs:
           rm -rf android
           flutter create --platforms android --org com.guardiannet .
           rm -rf test
+          python3 -c "
+          import os
+          for r, d, files in os.walk('android'):
+              for f in files:
+                  if f in ['settings.gradle', 'build.gradle']:
+                      path = os.path.join(r, f)
+                      with open(path, 'r') as file:
+                          c = file.read()
+                      c = c.replace('1.7.1', '1.9.24').replace('1.8.22', '1.9.24')
+                      with open(path, 'w') as file:
+                          file.write(c)
+          "
           mv ../AndroidManifest.xml.bak android/app/src/main/AndroidManifest.xml
 
       - name: Get dependencies
