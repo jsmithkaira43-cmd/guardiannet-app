@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../theme/app_colors.dart';
+import '../data/repositories/safety_log_repository.dart';
 
 class SafetyAnalyticsLogsScreen extends StatefulWidget {
   const SafetyAnalyticsLogsScreen({super.key});
@@ -11,6 +12,24 @@ class SafetyAnalyticsLogsScreen extends StatefulWidget {
 
 class _SafetyAnalyticsLogsScreenState extends State<SafetyAnalyticsLogsScreen> {
   bool _isWeeklyChart = true;
+  final _logRepo = SafetyLogRepository();
+  List<Map<String, dynamic>> _logs = [];
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadLogs();
+  }
+
+  Future<void> _loadLogs() async {
+    setState(() => _isLoading = true);
+    final list = await _logRepo.getAllLogs();
+    setState(() {
+      _logs = list;
+      _isLoading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -609,55 +628,58 @@ class _SafetyAnalyticsLogsScreenState extends State<SafetyAnalyticsLogsScreen> {
               ],
             ),
           ),
-          // Data Table
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: DataTable(
-              headingRowColor: MaterialStateProperty.all(AppColors.surfaceContainerLow),
-              columnSpacing: 36,
-              columns: const [
-                DataColumn(label: Text('TIME', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: AppColors.outline))),
-                DataColumn(label: Text('OPERATOR', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: AppColors.outline))),
-                DataColumn(label: Text('ACTION / EVENT', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: AppColors.outline))),
-                DataColumn(label: Text('STATUS', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: AppColors.outline))),
-              ],
-              rows: [
-                _buildTableRow(
-                  time: '14:22:15',
-                  operator: 'Marcus Chen',
-                  event: 'Entered Red Zone A',
-                  badgeText: 'ALERT',
-                  badgeBg: AppColors.errorContainer,
-                  badgeFg: AppColors.onErrorContainer,
-                  isCriticalEvent: true,
+          if (_isLoading)
+            const Padding(
+              padding: EdgeInsets.all(32.0),
+              child: Center(child: CircularProgressIndicator()),
+            )
+          else if (_logs.isEmpty)
+            const Padding(
+              padding: EdgeInsets.all(48.0),
+              child: Center(
+                child: Text(
+                  'No safety log events recorded in system.',
+                  style: TextStyle(color: AppColors.onSurfaceVariant),
                 ),
-                _buildTableRow(
-                  time: '13:45:02',
-                  operator: 'Sarah Jenkins',
-                  event: 'Triggered remote alarm: Hub-4',
-                  badgeText: 'RESOLVED',
-                  badgeBg: AppColors.secondaryFixed,
-                  badgeFg: AppColors.onSecondaryFixedVariant,
-                ),
-                _buildTableRow(
-                  time: '12:10:44',
-                  operator: 'System Auto',
-                  event: 'Geofence validation complete',
-                  badgeText: 'INFO',
-                  badgeBg: AppColors.surfaceContainer,
-                  badgeFg: AppColors.onPrimaryContainer,
-                ),
-                _buildTableRow(
-                  time: '11:58:30',
-                  operator: 'Alex Rivera',
-                  event: 'Exit protocol initiated: Zone C',
-                  badgeText: 'SUCCESS',
-                  badgeBg: AppColors.tertiaryFixed,
-                  badgeFg: AppColors.onTertiaryFixedVariant,
-                ),
-              ],
+              ),
+            )
+          else
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: DataTable(
+                headingRowColor: MaterialStateProperty.all(AppColors.surfaceContainerLow),
+                columnSpacing: 36,
+                columns: const [
+                  DataColumn(label: Text('TIME', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: AppColors.outline))),
+                  DataColumn(label: Text('OPERATOR', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: AppColors.outline))),
+                  DataColumn(label: Text('ACTION / EVENT', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: AppColors.outline))),
+                  DataColumn(label: Text('STATUS', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: AppColors.outline))),
+                ],
+                rows: List.generate(_logs.length, (index) {
+                  final log = _logs[index];
+                  final isCritical = (log['severity'] as String) == 'Critical';
+                  final isResolved = (log['status'] as String) == 'Resolved';
+
+                  final badgeText = isCritical ? 'ALERT' : (isResolved ? 'RESOLVED' : 'INFO');
+                  final badgeBg = isCritical
+                      ? AppColors.errorContainer
+                      : (isResolved ? AppColors.tertiaryFixed : AppColors.surfaceContainerLow);
+                  final badgeFg = isCritical
+                      ? AppColors.onErrorContainer
+                      : (isResolved ? AppColors.onTertiaryFixedVariant : AppColors.onSurfaceVariant);
+
+                  return _buildTableRow(
+                    time: (log['timestamp'] as String).replaceFirst('Today, ', '').replaceFirst('Yesterday, ', ''),
+                    operator: log['employeeName'] as String,
+                    event: '${log['eventType']} at ${log['location']}',
+                    badgeText: badgeText,
+                    badgeBg: badgeBg,
+                    badgeFg: badgeFg,
+                    isCriticalEvent: isCritical,
+                  );
+                }),
+              ),
             ),
-          ),
           const SizedBox(height: 16),
         ],
       ),

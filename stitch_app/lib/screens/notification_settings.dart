@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../theme/app_colors.dart';
+import '../data/repositories/settings_repository.dart';
 
 class NotificationSettingsScreen extends StatefulWidget {
   const NotificationSettingsScreen({super.key});
@@ -25,6 +26,37 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
   bool _quietHoursEnabled = false;
   TimeOfDay _startTime = const TimeOfDay(hour: 22, minute: 0);
   TimeOfDay _endTime = const TimeOfDay(hour: 6, minute: 0);
+
+  final _settingsRepo = SettingsRepository();
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSettings();
+  }
+
+  Future<void> _loadSettings() async {
+    setState(() => _isLoading = true);
+    final map = await _settingsRepo.getAllSettings();
+    setState(() {
+      _geofenceEnabled = map['geofenceEnabled'] as bool;
+      _redZoneEnabled = map['redZoneEnabled'] as bool;
+      _darkMovementEnabled = map['darkMovementEnabled'] as bool;
+      _systemHealthEnabled = map['systemHealthEnabled'] as bool;
+      _pushEnabled = map['pushEnabled'] as bool;
+      _smsEnabled = map['smsEnabled'] as bool;
+      _emailEnabled = map['emailEnabled'] as bool;
+      _quietHoursEnabled = map['quietHoursEnabled'] as bool;
+      _startTime = TimeOfDay(hour: map['quietStartHour'] as int, minute: map['quietStartMinute'] as int);
+      _endTime = TimeOfDay(hour: map['quietEndHour'] as int, minute: map['quietEndMinute'] as int);
+      _isLoading = false;
+    });
+  }
+
+  Future<void> _updateSetting(String key, dynamic value) async {
+    await _settingsRepo.saveSetting(key, value);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,12 +92,14 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
           if (isDesktop) _buildSidebar(context),
           // Content Area
           Expanded(
-            child: SingleChildScrollView(
-              padding: EdgeInsets.symmetric(
-                horizontal: isDesktop ? 48.0 : 16.0,
-                vertical: 32.0,
-              ),
-              child: Center(
+            child: _isLoading
+                ? const Center(child: CircularProgressIndicator())
+                : SingleChildScrollView(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: isDesktop ? 48.0 : 16.0,
+                      vertical: 32.0,
+                    ),
+                    child: Center(
                 child: Container(
                   constraints: const BoxConstraints(maxWidth: 1100),
                   child: Column(
@@ -308,7 +342,10 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
             description: 'Notify when personnel exit defined operational zones.',
             value: _geofenceEnabled,
             activeColor: AppColors.primary,
-            onChanged: (val) => setState(() => _geofenceEnabled = val),
+            onChanged: (val) {
+              setState(() => _geofenceEnabled = val);
+              _updateSetting(_settingsRepo.keyGeofenceEnabled, val);
+            },
           ),
           _buildToggleItem(
             title: 'Red Zone Entry (Critical)',
@@ -316,14 +353,20 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
             value: _redZoneEnabled,
             activeColor: AppColors.secondary,
             isCritical: true,
-            onChanged: (val) => setState(() => _redZoneEnabled = val),
+            onChanged: (val) {
+              setState(() => _redZoneEnabled = val);
+              _updateSetting(_settingsRepo.keyRedZoneEnabled, val);
+            },
           ),
           _buildToggleItem(
             title: 'Dark Movement Alerts',
             description: 'Detection of personnel movement in unlit or low-visibility sectors.',
             value: _darkMovementEnabled,
             activeColor: AppColors.primary,
-            onChanged: (val) => setState(() => _darkMovementEnabled = val),
+            onChanged: (val) {
+              setState(() => _darkMovementEnabled = val);
+              _updateSetting(_settingsRepo.keyDarkMovementEnabled, val);
+            },
           ),
           _buildToggleItem(
             title: 'System Health',
@@ -331,7 +374,10 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
             value: _systemHealthEnabled,
             activeColor: AppColors.primary,
             isLast: true,
-            onChanged: (val) => setState(() => _systemHealthEnabled = val),
+            onChanged: (val) {
+              setState(() => _systemHealthEnabled = val);
+              _updateSetting(_settingsRepo.keySystemHealthEnabled, val);
+            },
           ),
         ],
       ),
@@ -449,7 +495,10 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
                     title: 'Push',
                     subtitle: 'DESKTOP & MOBILE',
                     checked: _pushEnabled,
-                    onChanged: (val) => setState(() => _pushEnabled = val!),
+                    onChanged: (val) {
+                      setState(() => _pushEnabled = val!);
+                      _updateSetting(_settingsRepo.keyPushEnabled, val!);
+                    },
                   ),
                 ),
                 const SizedBox(width: 16),
@@ -459,7 +508,10 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
                     title: 'SMS',
                     subtitle: 'EMERGENCY BACKUP',
                     checked: _smsEnabled,
-                    onChanged: (val) => setState(() => _smsEnabled = val!),
+                    onChanged: (val) {
+                      setState(() => _smsEnabled = val!);
+                      _updateSetting(_settingsRepo.keySmsEnabled, val!);
+                    },
                   ),
                 ),
                 const SizedBox(width: 16),
@@ -469,7 +521,10 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
                     title: 'Email',
                     subtitle: 'SHIFT SUMMARIES',
                     checked: _emailEnabled,
-                    onChanged: (val) => setState(() => _emailEnabled = val!),
+                    onChanged: (val) {
+                      setState(() => _emailEnabled = val!);
+                      _updateSetting(_settingsRepo.keyEmailEnabled, val!);
+                    },
                   ),
                 ),
               ],
@@ -583,7 +638,10 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
                 Switch(
                   value: _quietHoursEnabled,
                   activeColor: AppColors.primary,
-                  onChanged: (val) => setState(() => _quietHoursEnabled = val),
+                  onChanged: (val) {
+                    setState(() => _quietHoursEnabled = val);
+                    _updateSetting(_settingsRepo.keyQuietHoursEnabled, val);
+                  },
                 ),
               ],
             ),
@@ -607,6 +665,8 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
                           );
                           if (selected != null) {
                             setState(() => _startTime = selected);
+                            _updateSetting(_settingsRepo.keyQuietStartHour, selected.hour);
+                            _updateSetting(_settingsRepo.keyQuietStartMinute, selected.minute);
                           }
                         },
                       ),
@@ -623,6 +683,8 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
                           );
                           if (selected != null) {
                             setState(() => _endTime = selected);
+                            _updateSetting(_settingsRepo.keyQuietEndHour, selected.hour);
+                            _updateSetting(_settingsRepo.keyQuietEndMinute, selected.minute);
                           }
                         },
                       ),

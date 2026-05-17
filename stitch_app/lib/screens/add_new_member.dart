@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../theme/app_colors.dart';
+import '../data/repositories/member_repository.dart';
 
 class AddNewMemberScreen extends StatefulWidget {
   const AddNewMemberScreen({super.key});
@@ -616,11 +617,29 @@ class _AddNewMemberScreenState extends State<AddNewMemberScreen> {
         ),
         const SizedBox(width: 16),
         ElevatedButton.icon(
-          onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Operative Invitation Sent Successfully!')),
-            );
-            context.go('/team_management');
+          onPressed: () async {
+            if (_fullNameController.text.trim().isEmpty || _employeeIdController.text.trim().isEmpty) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Please fill out Name and Employee ID!')),
+              );
+              return;
+            }
+            final repo = MemberRepository();
+            await repo.insertMember({
+              'fullName': _fullNameController.text.trim(),
+              'employeeId': _employeeIdController.text.trim(),
+              'email': _emailController.text.trim().isEmpty ? 'no-email@guardiannet.com' : _emailController.text.trim(),
+              'phone': _phoneController.text.trim().isEmpty ? '(555) 000-0000' : _phoneController.text.trim(),
+              'role': _selectedRole ?? 'Hazard Mitigation Specialist',
+              'department': _selectedDepartment ?? 'Emergency Response Unit',
+              'status': 'Active',
+            });
+            if (mounted) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Operative Invitation Sent & Saved Successfully!')),
+              );
+              context.go('/team_management');
+            }
           },
           icon: const Icon(Icons.send, size: 18),
           label: const Text('Send Invitation'),

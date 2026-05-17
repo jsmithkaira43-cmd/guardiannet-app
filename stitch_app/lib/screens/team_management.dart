@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../theme/app_colors.dart';
+import '../data/repositories/member_repository.dart';
 
 class TeamManagementScreen extends StatefulWidget {
   const TeamManagementScreen({super.key});
@@ -13,9 +14,33 @@ class _TeamManagementScreenState extends State<TeamManagementScreen> {
   String _selectedRoleFilter = 'Role: All';
   String _selectedStatusFilter = 'Status: All';
   final _searchController = TextEditingController();
+  final _memberRepo = MemberRepository();
+  List<Map<String, dynamic>> _allMembers = [];
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadMembers();
+    _searchController.addListener(_onSearchChanged);
+  }
+
+  Future<void> _loadMembers() async {
+    setState(() => _isLoading = true);
+    final list = await _memberRepo.getAllMembers();
+    setState(() {
+      _allMembers = list;
+      _isLoading = false;
+    });
+  }
+
+  void _onSearchChanged() {
+    setState(() {}); // Redraw filtered list on keystroke
+  }
 
   @override
   void dispose() {
+    _searchController.removeListener(_onSearchChanged);
     _searchController.dispose();
     super.dispose();
   }
@@ -222,6 +247,31 @@ class _TeamManagementScreenState extends State<TeamManagementScreen> {
 
   // Active Personnel List Card Component
   Widget _buildPersonnelListCard(ThemeData theme) {
+    final query = _searchController.text.trim().toLowerCase();
+    final filtered = _allMembers.where((m) {
+      final matchesSearch = query.isEmpty ||
+          (m['fullName'] as String).toLowerCase().contains(query) ||
+          (m['employeeId'] as String).toLowerCase().contains(query) ||
+          (m['email'] as String).toLowerCase().contains(query);
+
+      final roleText = (m['role'] as String).toLowerCase();
+      final filterText = _selectedRoleFilter.replaceFirst('Role: ', '').toLowerCase();
+      final matchesRole = _selectedRoleFilter == 'Role: All' ||
+          roleText.contains(filterText) ||
+          (filterText == 'admin' && roleText.contains('manager')) ||
+          (filterText == 'field staff' && roleText.contains('specialist')) ||
+          (filterText == 'field staff' && roleText.contains('engineer'));
+
+      final statusText = (m['status'] as String).toLowerCase();
+      final filterStatus = _selectedStatusFilter.replaceFirst('Status: ', '').toLowerCase();
+      final matchesStatus = _selectedStatusFilter == 'Status: All' ||
+          (filterStatus == 'on-duty' && statusText == 'active') ||
+          (filterStatus == 'off-duty' && statusText == 'offline') ||
+          (filterStatus == 'away' && statusText == 'suspended');
+
+      return matchesSearch && matchesRole && matchesStatus;
+    }).toList();
+
     return Container(
       decoration: BoxDecoration(
         color: AppColors.surfaceContainerLowest,
@@ -264,9 +314,9 @@ class _TeamManagementScreenState extends State<TeamManagementScreen> {
                     color: AppColors.primary.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(100),
                   ),
-                  child: const Text(
-                    '12 Members Total',
-                    style: TextStyle(
+                  child: Text(
+                    '${filtered.length} Matches',
+                    style: const TextStyle(
                       color: AppColors.primary,
                       fontSize: 10,
                       fontWeight: FontWeight.bold,
@@ -276,41 +326,52 @@ class _TeamManagementScreenState extends State<TeamManagementScreen> {
               ],
             ),
           ),
-          // Personnel rows
-          _buildPersonnelRow(
-            avatarUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAeVv0ioI_YHxViDCjQH6TxSc1-Jqk5lnhnZ7WwlsNg3Nd-JtQpeN-266ym7u-5NmlENh-Oot1LuQ06yrbyuyc_Xlo6DM8GZbQ5QUUKBBxxxYxHnr4nco7Rk7dZ_Hb3dBcxOOzobGGH-XivlmM5VKwx2NPo1tIOHdP0MKy2DVI0dfZEJNPNaAEg7DYwCuOBXA-U_DjwrSzXy1t2-6NrCZMjDWxnRaXMXjOV3TyWLtBcxVbyLibSv3rcY_blIaw6yCPPAZ8x8JRW8is',
-            name: 'Marcus Vance',
-            role: 'Admin',
-            roleIcon: Icons.shield,
-            status: 'On-Duty',
-            statusColor: AppColors.tertiaryFixedDim,
-            textColor: AppColors.onTertiaryFixedVariant,
-            location: 'HQ North Terminal',
-            isOnline: true,
-          ),
-          _buildPersonnelRow(
-            avatarUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXu89m1Whu4RlG5hfnnXtSR7eAK35t3hPrjQH5B4lb46kCs-q1UBKfv7iK_9bQCLemzqHS6mJULS7acPWi2D5crXp1CU2DKywCC1S_PpHfw5S1Oq6uQnTTU0z8y-b1gcX_YeNtvmGmbKckbo1yqbZHQ4zIc_lNWvponeQyfxcS6qhWV36G6J49o4O5zLRZ2fgZ_u_zT2SjbYczKjVcEEMnd6BpSFHYlyIcgMlcjtPuqxFumwgfBmOrJczgbzMlnohoTqdiEEBwTK7DA',
-            name: 'Elena Rodriguez',
-            role: 'Field Staff',
-            roleIcon: Icons.directions_walk,
-            status: 'On-Duty',
-            statusColor: AppColors.tertiaryFixedDim,
-            textColor: AppColors.onTertiaryFixedVariant,
-            location: 'Sector 4 Patrol',
-            isOnline: true,
-          ),
-          _buildPersonnelRow(
-            avatarUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD8sEIuUFFAEy8bW2Ubm2J_Wf_mi303vzaHz-h8SmsJ7jPP0lMM3vCthG5OVzceb4dyqfmPr2NFN7OG_OgcnkjColU8hGOiqHlwgPZW_4-kODVTpOI6-H-kU8duDAhbo0TK2QP59M31tXSG7ywkGnj6yQclHWmxyZu1kq_1GeV1Vq25eRLTLFQUh6CLVPkEiSnSnwg26GONnwjeVlK8Gs1Fzaa7p39cgdrcC7BrMfWxy51b_Rri_C_bdxGEth92mFUU1XYPzgnJS7w',
-            name: 'Julian Chen',
-            role: 'Dispatcher',
-            roleIcon: Icons.support_agent,
-            status: 'Off-Duty',
-            statusColor: AppColors.outlineVariant,
-            textColor: AppColors.onSurfaceVariant,
-            location: 'Last active: 2h ago',
-            isOnline: false,
-            isLast: true,
-          ),
+          if (_isLoading)
+            const Padding(
+              padding: EdgeInsets.all(32.0),
+              child: Center(child: CircularProgressIndicator()),
+            )
+          else if (filtered.isEmpty)
+            Padding(
+              padding: const EdgeInsets.all(48.0),
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.group_off, size: 48, color: AppColors.outline),
+                    const SizedBox(height: 12),
+                    Text(
+                      'No matching operatives found',
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: AppColors.onSurfaceVariant,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          else
+            ...List.generate(filtered.length, (index) {
+              final m = filtered[index];
+              final isOnline = (m['status'] as String) == 'Active';
+              return _buildPersonnelRow(
+                avatarUrl: m['avatarUrl'] as String,
+                name: m['fullName'] as String,
+                role: m['role'] as String,
+                roleIcon: (m['role'] as String).contains('Admin') || (m['role'] as String).contains('Manager')
+                    ? Icons.shield
+                    : (m['role'] as String).contains('Specialist') || (m['role'] as String).contains('Engineer')
+                        ? Icons.directions_walk
+                        : Icons.support_agent,
+                status: isOnline ? 'On-Duty' : 'Off-Duty',
+                statusColor: isOnline ? AppColors.tertiaryFixedDim : AppColors.outlineVariant,
+                textColor: isOnline ? AppColors.onTertiaryFixedVariant : AppColors.onSurfaceVariant,
+                location: isOnline ? 'Active Sector' : 'Offline Session',
+                isOnline: isOnline,
+                isLast: index == filtered.length - 1,
+              );
+            }),
         ],
       ),
     );
